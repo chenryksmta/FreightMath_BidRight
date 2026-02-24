@@ -2085,33 +2085,119 @@ body::before {
   color: var(--steel);
 }
 
-/* ─── TESTIMONIAL CARDS ─── */
-.testimonial-row {
-  display: flex;
-  gap: clamp(16px, 1.8vw, 32px);
-  justify-content: center;
-  align-items: stretch;
-  max-width: 1900px;
-  margin: clamp(16px, 1.5vw, 28px) auto 0;
+/* ─── VIDEO FRAME ─── */
+.video-frame {
   width: 100%;
-}
-.testimonial-card {
-  flex: 1;
-  max-width: 600px;
-  border-radius: 14px;
+  max-width: clamp(1120px, 96vw, 1760px);
+  margin: clamp(16px, 1.5vw, 32px) auto 0;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.testimonial-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08);
-}
-.testimonial-card img {
+
+/* ─── TESTIMONIAL CAROUSEL ─── */
+.testimonial-carousel {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  max-width: clamp(1200px, 90vw, 1800px);
+  min-height: clamp(460px, 40vw, 700px);
+  margin: clamp(12px, 1.2vw, 24px) auto 0;
+}
+
+.testimonial-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+.testimonial-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.testimonial-quote-mark {
+  font-size: clamp(128px, 11vw, 200px);
+  line-height: 0.6;
+  color: var(--accent);
+  opacity: 0.25;
+  font-family: Georgia, 'Times New Roman', serif;
+  margin-bottom: clamp(4px, 0.4vw, 8px);
+  user-select: none;
+}
+
+.testimonial-quote {
+  font-size: clamp(40px, 3.4vw, 60px);
+  line-height: 1.55;
+  color: var(--text-primary);
+  font-weight: 400;
+  font-style: italic;
+  max-width: 1600px;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.testimonial-attribution {
+  margin-top: clamp(16px, 1.4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.testimonial-name {
+  font-size: clamp(32px, 2.4vw, 44px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.testimonial-title {
+  font-size: clamp(26px, 1.8vw, 34px);
+  color: var(--steel);
+  font-weight: 500;
+}
+
+.testimonial-logo {
+  margin-top: clamp(16px, 1.4vw, 28px);
+  height: clamp(96px, 8.4vw, 152px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.testimonial-logo img {
+  max-height: 100%;
+  max-width: clamp(280px, 24vw, 440px);
+  object-fit: contain;
+}
+
+/* Dot indicators */
+.testimonial-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: clamp(16px, 1.4vw, 28px);
+}
+.testimonial-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.testimonial-dot:hover { transform: scale(1.2); }
+.testimonial-dot.active {
+  background: var(--accent);
 }
 
 /* ─── BRIDGE DART ANIMATION ─── */
@@ -2326,6 +2412,5 @@ body::before {
   .or-steps .fm-step { min-width: 160px; }
   .or-cards { grid-template-columns: repeat(2, 1fr); }
   .cost-model { width: 100%; min-width: 0; }
-  .testimonial-row { flex-direction: column; align-items: center; }
-  .testimonial-card { max-width: 340px; }
+  .testimonial-carousel { max-width: 100%; }
 }

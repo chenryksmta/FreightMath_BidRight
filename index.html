@@ -431,21 +431,73 @@
       </div>
     </div>
 
-    <!-- SLIDE 4: CARRIER TESTIMONIALS -->
+    <!-- SLIDE 5: VIDEO — FreightMath Overview -->
+    <div class="slide slide-dark" data-section="The Why">
+      <div class="center-content stagger">
+        <div class="section-label">See It in Action</div>
+        <h2 class="slide-title" style="font-size:clamp(30px, 3vw, 60px)">The FreightMath Dashboard</h2>
+        <div class="video-frame">
+          <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+            <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+              <iframe src="https://fast.wistia.net/embed/iframe/v0xfft1ojs?seo=false&videoFoam=true" title="FreightMath Overview" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" style="width:100%;height:100%;border-radius:12px"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: CARRIER TESTIMONIALS — Cycling Carousel -->
     <div class="slide slide-accent" data-section="The Why">
       <div class="center-content stagger">
         <div class="section-label">Real Outcomes</div>
         <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px)">Carrier Tested &mdash; Carrier Approved</h2>
-        <div class="testimonial-row">
-          <div class="testimonial-card">
-            <img src="DEKR.png" alt="Decker Truck Line testimonial — Bob Elkins, COO" loading="lazy">
+
+        <div class="testimonial-carousel" id="testimonial-carousel">
+          <!-- Testimonial 1: Decker -->
+          <div class="testimonial-slide active" data-testimonial="0">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <blockquote class="testimonial-quote">KSMTA helps us think about our network strategically and operationally. Their data drives smarter decisions and gives us confidence we&rsquo;re pursuing freight that truly benefits the network.</blockquote>
+            <div class="testimonial-attribution">
+              <span class="testimonial-name">Bob Elkins</span>
+              <span class="testimonial-title">Chief Operating Officer</span>
+            </div>
+            <div class="testimonial-logo">
+              <img src="DEKR%20LOGO.png" alt="Decker Truck Line">
+            </div>
           </div>
-          <div class="testimonial-card">
-            <img src="BAYN.png" alt="Bay &amp; Bay testimonial — Josh Urness, Sr. Director of Pricing" loading="lazy">
+
+          <!-- Testimonial 2: Bay & Bay -->
+          <div class="testimonial-slide" data-testimonial="1">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <blockquote class="testimonial-quote">This team brings more than data &mdash; they add a valuable human element by helping us understand what the numbers truly mean. A special shout-out to Jordan Nelson, whose personalized analyses have guided us through tough business decisions and directly improved our profitability.</blockquote>
+            <div class="testimonial-attribution">
+              <span class="testimonial-name">Josh Urness</span>
+              <span class="testimonial-title">Sr. Director of Pricing</span>
+            </div>
+            <div class="testimonial-logo">
+              <img src="BAYN%20Logo.png" alt="Bay &amp; Bay Transportation">
+            </div>
           </div>
-          <div class="testimonial-card">
-            <img src="PMBR.png" alt="Pemberton Truck Lines testimonial — John Pemberton, President" loading="lazy">
+
+          <!-- Testimonial 3: Pemberton -->
+          <div class="testimonial-slide" data-testimonial="2">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <blockquote class="testimonial-quote">We&rsquo;ve been working with KSMTA using their FreightMath&trade; tool, and it&rsquo;s been a game changer. FreightMath allows us to drill deep into lanes and markets to clearly see what works and what doesn&rsquo;t, making our decisions more strategic and data driven.</blockquote>
+            <div class="testimonial-attribution">
+              <span class="testimonial-name">John Pemberton</span>
+              <span class="testimonial-title">President</span>
+            </div>
+            <div class="testimonial-logo">
+              <img src="PMBR%20Logo.png" alt="Pemberton Truck Lines, Inc.">
+            </div>
           </div>
+        </div>
+
+        <!-- Dot indicators -->
+        <div class="testimonial-dots">
+          <button class="testimonial-dot active" onclick="goToTestimonial(0)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(1)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(2)"></button>
         </div>
       </div>
     </div>
@@ -491,13 +543,12 @@
       <div class="center-content stagger">
         <div class="section-label" style="justify-content:center;font-size:16px">Introducing</div>
         <img src="https://nussbaumtech.com/wp-content/uploads/2025/11/bidrightlogo.png" alt="BidRight" style="height:clamp(60px,6vw,100px);margin-bottom:12px">
-        <h1 class="headline" style="margin-bottom:16px;font-size:clamp(36px, 4vw, 80px)"><span class="accent">BidRight</span></h1>
-        <p class="subtitle" style="text-align:center;font-size:clamp(16px, 1.2vw, 26px)">Built by carriers, for carriers.</p>
+        <p class="subtitle" style="text-align:center;font-size:clamp(32px, 2.4vw, 52px)"><span style="color:var(--accent)">Built by carriers,</span> <strong style="color:var(--text-primary)">for carriers.</strong></p>
         <div class="divider-line" style="margin:28px auto"></div>
-        <p style="font-size:20px;color:var(--steel);max-width:900px;text-align:center;line-height:1.6">What began as an internal tool called <strong style="color:var(--text-primary)">SalesScope</strong> at Nussbaum Transportation is now <strong style="color:var(--accent)">BidRight</strong> &mdash; purpose-built to revolutionize carrier bidding with automation, pricing intelligence, and collaboration.</p>
+        <p style="font-size:clamp(32px, 2.6vw, 44px);color:var(--steel);max-width:1400px;text-align:center;line-height:1.6">What began as an internal tool called <strong style="color:var(--text-primary)">SalesScope</strong> at <a href="https://nussbaum.com/" target="_blank" rel="noopener" style="color:var(--text-primary);text-decoration:underline;text-underline-offset:3px">Nussbaum Transportation</a> is now <strong style="color:var(--accent)">BidRight</strong> &mdash; purpose-built to revolutionize carrier bidding with automation, pricing intelligence, and collaboration.</p>
         <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">
-          <span class="tag tag-yellow" style="font-size:13px"><i data-lucide="award" class="lucide-xs"></i> CCJ Innovator of the Year 2025</span>
-          <span class="tag tag-green" style="font-size:13px"><i data-lucide="trending-up" class="lucide-xs"></i> 5% Above Market &mdash; 10 Consecutive Quarters</span>
+          <span class="tag tag-yellow" style="font-size:26px"><i data-lucide="award" style="width:22px;height:22px"></i> CCJ Innovator of the Year 2025</span>
+          <span class="tag tag-green" style="font-size:26px"><i data-lucide="trending-up" style="width:22px;height:22px"></i> 5% Above Market &mdash; 10 Consecutive Quarters</span>
         </div>
       </div>
     </div>
@@ -952,9 +1003,12 @@
   <!-- Bottom Navigation -->
   <nav id="nav">
     <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>&larr; Previous</button>
-    <div id="slide-counter"><span>1</span> / 19</div>
+    <div id="slide-counter"><span>1</span> / 20</div>
     <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
   </nav>
+
+  <!-- Wistia Async -->
+  <script src="https://fast.wistia.net/assets/external/E-v1.js" async></script>
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>

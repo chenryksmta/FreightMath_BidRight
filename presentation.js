@@ -272,6 +272,39 @@ function resetCycle() {
   if (prompt) prompt.style.opacity = '0.6';
 }
 
+// ─── TESTIMONIAL CAROUSEL ───
+let testimonialCurrent = 0;
+let testimonialTimer = null;
+const TESTIMONIAL_COUNT = 3;
+const TESTIMONIAL_INTERVAL = 6000;
+
+function goToTestimonial(n) {
+  testimonialCurrent = n;
+  const tSlides = document.querySelectorAll('.testimonial-slide');
+  const tDots = document.querySelectorAll('.testimonial-dot');
+  tSlides.forEach((s, i) => s.classList.toggle('active', i === n));
+  tDots.forEach((d, i) => d.classList.toggle('active', i === n));
+}
+
+function nextTestimonial() {
+  goToTestimonial((testimonialCurrent + 1) % TESTIMONIAL_COUNT);
+}
+
+function startTestimonialCycle() {
+  stopTestimonialCycle();
+  testimonialTimer = setInterval(nextTestimonial, TESTIMONIAL_INTERVAL);
+}
+
+function stopTestimonialCycle() {
+  if (testimonialTimer) { clearInterval(testimonialTimer); testimonialTimer = null; }
+}
+
+function resetTestimonialCarousel() {
+  stopTestimonialCycle();
+  goToTestimonial(0);
+  startTestimonialCycle();
+}
+
 // ─── INTERACTIVE COST MODEL ───
 function updateCostModel() {
   const loadedEl = document.getElementById('cm-loaded');
@@ -362,24 +395,31 @@ const observer = new MutationObserver(() => {
     }
   }
 
-  // Slide 6: Animate bridge reveal
+  // Slide 6: Testimonial carousel
   if (slides[6] && slides[6].classList.contains('active')) {
+    resetTestimonialCarousel();
+  } else {
+    stopTestimonialCycle();
+  }
+
+  // Slide 7: Animate bridge reveal
+  if (slides[7] && slides[7].classList.contains('active')) {
     resetBridge();
     setTimeout(animateBridge, 400);
   }
 
-  // Slide 9: Reset origin timeline
-  if (slides[9] && slides[9].classList.contains('active')) {
+  // Slide 10: Reset origin timeline
+  if (slides[10] && slides[10].classList.contains('active')) {
     resetOrigin();
   }
 
-  // Slide 11: Reset lifecycle flow
-  if (slides[11] && slides[11].classList.contains('active')) {
+  // Slide 12: Reset lifecycle flow
+  if (slides[12] && slides[12].classList.contains('active')) {
     resetLifecycle();
   }
 
-  // Slide 14: Reset cycle diagram
-  if (slides[14] && slides[14].classList.contains('active')) {
+  // Slide 15: Reset cycle diagram
+  if (slides[15] && slides[15].classList.contains('active')) {
     resetCycle();
   }
 });

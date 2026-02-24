@@ -1,47 +1,25 @@
-# Integration Guide
+# FreightMath BidRight — Integration Guide
 
-## Quick Setup (3 Steps)
+## Quick Setup (2 Steps)
 
-### Step 1: Copy Slide Content into index.html
+### Step 1: Test Locally
 
-The slide content is currently in `slides_content.html`. You need to copy it into the `<div id="deck">` section of `index.html`.
+Open `index.html` in your browser. The presentation works immediately with:
+- 18 slides with full navigation (arrow keys, buttons, section dots)
+- Interactive elements (tabs, click-to-reveal, checklists)
+- Animated stat cards and OR bars
 
-**In index.html, find this:**
-```html
-  <!-- Main Slide Deck Container -->
-  <div id="deck">
-    <!-- Slides will be inserted here -->
-    <!-- See slides_content.html for full slide HTML -->
-  </div>
-```
-
-**Replace with:**
-```html
-  <!-- Main Slide Deck Container -->
-  <div id="deck">
-    [PASTE ALL CONTENT FROM slides_content.html HERE]
-  </div>
-```
-
-### Step 2: Test Locally
-
-Open `index.html` in your browser. The presentation should work immediately with:
-- Slide navigation (arrow keys, buttons)
-- Section dots
-- Interactive elements
-- FreightMath map (on slide with map visualization)
-
-### Step 3: Deploy to GitHub
+### Step 2: Deploy to GitHub
 
 ```bash
 # Initialize git repository (if not already done)
 git init
 
 # Add all files
-git add index.html styles.css config.js map.js presentation.js README.md
+git add index.html styles.css config.js map.js presentation.js README.md QUICK_REFERENCE.md INTEGRATION_GUIDE.md
 
 # Commit
-git commit -m "Initial commit - Refactored FreightMath presentation"
+git commit -m "FreightMath BidRight — Interactive Primer & Demo"
 
 # Add your GitHub remote
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
@@ -53,16 +31,18 @@ git push -u origin main
 # Go to Settings > Pages > Select 'main' branch > Save
 ```
 
-## File Organization Summary
+## File Organization
 
 ```
 Your Repo/
-├── index.html              ← Main entry point
+├── index.html              ← Main entry point (all 18 slides)
 ├── styles.css              ← All styling
-├── config.js               ← Data & configuration  
-├── map.js                  ← Map functionality
+├── config.js               ← Presentation metadata
+├── map.js                  ← Map functionality (available, unused)
 ├── presentation.js         ← Navigation & interactions
-└── README.md               ← Documentation
+├── README.md               ← Full documentation
+├── QUICK_REFERENCE.md      ← Quick lookup guide
+└── INTEGRATION_GUIDE.md    ← This file
 ```
 
 ## Common Edits
@@ -73,84 +53,56 @@ Edit `styles.css` at the top (`:root` section):
 :root {
   --accent: #E26E17;    /* Orange accent */
   --navy: #0A2463;      /* Dark blue background */
-  /* etc. */
 }
 ```
 
 ### Add/Modify Slides
-Edit the slide HTML in `index.html` (inside `<div id="deck">`):
+Edit `index.html` (inside `<div id="deck">`):
 ```html
 <div class="slide slide-dark" data-section="New Section">
-  <div class="center-content">
+  <div class="full-content stagger">
+    <div class="section-label">Label</div>
     <h2 class="slide-title">New Slide</h2>
     <p>Content here...</p>
   </div>
 </div>
 ```
 
-### Update Map Cities
-Edit `config.js`:
-```javascript
-const cities = {
-  newCity: { lat: 40.7128, lng: -74.0060, name: 'New York, NY' },
-  // ...
-};
-```
-
 ### Modify Navigation Behavior
-Edit `presentation.js` - look for functions like:
-- `goToSlide(n)` - Jump to specific slide
-- `navigate(dir)` - Go forward/back
-- `updateUI()` - Update counter, progress bar, etc.
+Edit `presentation.js`:
+- `goToSlide(n)` — Jump to specific slide
+- `navigate(dir)` — Go forward/back
+- `updateUI()` — Update counter, progress bar
+
+### Add New Interactive Elements
+Edit `presentation.js`:
+- Add reveal/reset function pair
+- Wire into MutationObserver for auto-reset on slide entry
+- Add `onclick` handler in `index.html`
 
 ## Troubleshooting
 
 ### Slides Don't Appear
-- Check that you copied content from `slides_content.html` into `index.html`
-- Make sure the content is inside `<div id="deck">`
-
-### Map Doesn't Load
-- Check browser console for errors
-- Ensure internet connection (Leaflet loads from CDN)
-- Verify `config.js` is loaded before `map.js`
+- Verify slides are inside `<div id="deck">` in `index.html`
 
 ### Styles Look Wrong
 - Verify `styles.css` is in the same directory as `index.html`
-- Check that the `<link rel="stylesheet" href="styles.css">` tag is present in `index.html`
+- Check `<link rel="stylesheet" href="styles.css">` tag
 
 ### JavaScript Errors
 - Open browser DevTools (F12)
-- Check Console tab for error messages
-- Verify all `.js` files are in the same directory
+- Check Console tab for errors
+- Verify all `.js` files in same directory
 - Ensure load order: config.js → map.js → presentation.js
 
-## Advanced: Build Script (Optional)
-
-If you want to combine files for deployment, create a simple Node.js build script:
-
-```javascript
-// build.js
-const fs = require('fs');
-
-const slides = fs.readFileSync('slides_content.html', 'utf8');
-const html = fs.readFileSync('index.html', 'utf8');
-
-const combined = html.replace(
-  '<!-- Slides will be inserted here -->',
-  slides
-);
-
-fs.writeFileSync('dist/index.html', combined);
-console.log('Build complete!');
-```
-
-Run with: `node build.js`
+### Interactive Elements Don't Work
+- Check `onclick` handlers in HTML match function names in `presentation.js`
+- Verify element IDs match between HTML and JS
 
 ## Need Help?
 
-Reference the README.md for full documentation on:
-- Project structure
-- File responsibilities
+Reference `README.md` for full documentation including:
+- Complete slide outline
+- All interactive element types
+- CSS class reference
 - Keyboard shortcuts
-- Development workflow
-

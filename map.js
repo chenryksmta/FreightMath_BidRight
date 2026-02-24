@@ -171,49 +171,90 @@ function animateDot(from, to, color, duration) {
   requestAnimationFrame(moveDot);
 }
 
+function createRouteInfoIcon(text, borderColor) {
+  return L.divIcon({
+    className: 'fm-route-info',
+    html: `<div style="
+      background:rgba(15,23,42,0.92);
+      color:#e2e8f0;
+      font-family:var(--font-body);
+      font-size:10px;
+      font-weight:600;
+      padding:3px 8px;
+      border-radius:4px;
+      white-space:nowrap;
+      border-left:3px solid ${borderColor};
+      box-shadow:0 2px 8px rgba(0,0,0,0.5);
+      transform:translateY(-20px);
+    ">${text}</div>`,
+    iconSize: [0, 0]
+  });
+}
+
+function midpoint(a, b) {
+  return [(a.lat + b.lat) / 2, (a.lng + b.lng) / 2];
+}
+
 function buildCoreLayers() {
   const c = cities;
-  // Deadhead (dashed) from Tulsa to OKC
+  // Deadhead (dashed) from Joplin to KC
   fmLayers.core.push(animatedPolyline(c.deadhead, c.coreOrigin, '#EC433D', true, 0, 0));
-  fmLayers.core[0].setStyle({opacity: 0}); // will animate on show
-  
-  // Loaded (solid) from OKC to Memphis
+  fmLayers.core[0].setStyle({opacity: 0});
+
+  // Loaded (solid) from KC to Atlanta
   fmLayers.core.push(animatedPolyline(c.coreOrigin, c.coreDest, '#E26E17', false, 0, 0));
   fmLayers.core[1].setStyle({opacity: 0});
-  
-  // Markers
+
+  // City markers
   fmMarkers.core.push(L.marker([c.deadhead.lat, c.deadhead.lng], { icon: createCityIcon('#EC433D', 8) }));
   fmMarkers.core.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createPulseIcon('#4EA700', 16) }));
   fmMarkers.core.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createPulseIcon('#2C78C9', 16) }));
-  fmMarkers.core.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon('Core Origin', '#4EA700') }));
-  fmMarkers.core.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon('Core Destination', '#2C78C9') }));
+  // City name labels
+  fmMarkers.core.push(L.marker([c.deadhead.lat, c.deadhead.lng], { icon: createLabelIcon(c.deadhead.name + ' (Prior)', '#EC433D') }));
+  fmMarkers.core.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon(c.coreOrigin.name + ' (Origin)', '#4EA700') }));
+  fmMarkers.core.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon(c.coreDest.name + ' (Dest)', '#2C78C9') }));
+  // Route info labels at midpoints
+  fmMarkers.core.push(L.marker(midpoint(c.deadhead, c.coreOrigin), { icon: createRouteInfoIcon('160 mi &middot; Empty', '#EC433D') }));
+  fmMarkers.core.push(L.marker(midpoint(c.coreOrigin, c.coreDest), { icon: createRouteInfoIcon('802 mi &middot; $26 Tolls', '#E26E17') }));
 }
 
+// Inbound: mix of loaded (solid) and empty (dashed) movements into Origin
+// Solid = loaded freight flowing in, Dashed = empty repositioning in
 function buildInboundLayers() {
   const c = cities;
-  const ibCities = [c.ib1, c.ib2, c.ib3, c.ib4];
-  ibCities.forEach((city, i) => {
-    // Lines to core origin
-    fmLayers.inbound.push(animatedPolyline(city, c.coreOrigin, '#4EA700', false, 0, 0));
+  const ibRoutes = [
+    { city: c.ib1, dashed: false },  // Omaha — loaded
+    { city: c.ib2, dashed: true },   // Wichita — empty
+    { city: c.ib3, dashed: false },  // St. Louis — loaded
+    { city: c.ib4, dashed: false }   // Des Moines — loaded
+  ];
+  ibRoutes.forEach(r => {
+    fmLayers.inbound.push(animatedPolyline(r.city, c.coreOrigin, '#4EA700', r.dashed, 0, 0));
     fmLayers.inbound[fmLayers.inbound.length-1].setStyle({opacity:0});
-    // City markers
-    fmMarkers.inbound.push(L.marker([city.lat, city.lng], { icon: createCityIcon('#4EA700', 10) }));
+    fmMarkers.inbound.push(L.marker([r.city.lat, r.city.lng], { icon: createCityIcon(r.dashed ? '#64748b' : '#4EA700', 10) }));
   });
-  // Core origin marker
-  fmMarkers.inbound.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createPulseIcon('#000000', 18) }));
-  fmMarkers.inbound.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon('Core Origin', '#333') }));
+  fmMarkers.inbound.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createPulseIcon('#4EA700', 18) }));
+  fmMarkers.inbound.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon(c.coreOrigin.name + ' (Origin)', '#4EA700') }));
 }
 
+// Outbound: mix of loaded (solid) and empty (dashed) movements from Destination
+// Solid = truck finds freight leaving dest, Dashed = truck deadheads out
 function buildOutboundLayers() {
   const c = cities;
-  const obCities = [c.ob1, c.ob2, c.ob3, c.ob4, c.ob5];
-  obCities.forEach((city, i) => {
-    fmLayers.outbound.push(animatedPolyline(c.coreDest, city, '#2C78C9', false, 0, 0));
+  const obRoutes = [
+    { city: c.ob1, dashed: true },   // Charlotte — empty
+    { city: c.ob2, dashed: false },  // Jacksonville — loaded
+    { city: c.ob3, dashed: true },   // Montgomery — empty
+    { city: c.ob4, dashed: true },   // Birmingham — empty
+    { city: c.ob5, dashed: false }   // Nashville — loaded
+  ];
+  obRoutes.forEach(r => {
+    fmLayers.outbound.push(animatedPolyline(c.coreDest, r.city, '#2C78C9', r.dashed, 0, 0));
     fmLayers.outbound[fmLayers.outbound.length-1].setStyle({opacity:0});
-    fmMarkers.outbound.push(L.marker([city.lat, city.lng], { icon: createCityIcon('#2C78C9', 10) }));
+    fmMarkers.outbound.push(L.marker([r.city.lat, r.city.lng], { icon: createCityIcon(r.dashed ? '#64748b' : '#2C78C9', 10) }));
   });
-  fmMarkers.outbound.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createPulseIcon('#000000', 18) }));
-  fmMarkers.outbound.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon('Core Destination', '#333') }));
+  fmMarkers.outbound.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createPulseIcon('#2C78C9', 18) }));
+  fmMarkers.outbound.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon(c.coreDest.name + ' (Dest)', '#2C78C9') }));
 }
 
 function buildFreightMathLayers() {
@@ -223,27 +264,38 @@ function buildFreightMathLayers() {
   fmLayers.freightmath[0].setStyle({opacity:0});
   fmLayers.freightmath.push(animatedPolyline(c.coreOrigin, c.coreDest, '#E26E17', false, 0, 0));
   fmLayers.freightmath[1].setStyle({opacity:0});
-  
-  // Inbound routes
-  [c.ib1, c.ib2, c.ib3, c.ib4].forEach(city => {
-    fmLayers.freightmath.push(animatedPolyline(city, c.coreOrigin, '#4EA700', false, 0, 0));
+
+  // Inbound routes (matching loaded/empty mix)
+  [
+    { city: c.ib1, dashed: false },
+    { city: c.ib2, dashed: true },
+    { city: c.ib3, dashed: false },
+    { city: c.ib4, dashed: false }
+  ].forEach(r => {
+    fmLayers.freightmath.push(animatedPolyline(r.city, c.coreOrigin, '#4EA700', r.dashed, 0, 0));
     fmLayers.freightmath[fmLayers.freightmath.length-1].setStyle({opacity:0});
-    fmMarkers.freightmath.push(L.marker([city.lat, city.lng], { icon: createCityIcon('#4EA700', 8) }));
+    fmMarkers.freightmath.push(L.marker([r.city.lat, r.city.lng], { icon: createCityIcon(r.dashed ? '#64748b' : '#4EA700', 8) }));
   });
-  
-  // Outbound routes
-  [c.ob1, c.ob2, c.ob3, c.ob4, c.ob5].forEach(city => {
-    fmLayers.freightmath.push(animatedPolyline(c.coreDest, city, '#2C78C9', false, 0, 0));
+
+  // Outbound routes (matching loaded/empty mix)
+  [
+    { city: c.ob1, dashed: true },
+    { city: c.ob2, dashed: false },
+    { city: c.ob3, dashed: true },
+    { city: c.ob4, dashed: true },
+    { city: c.ob5, dashed: false }
+  ].forEach(r => {
+    fmLayers.freightmath.push(animatedPolyline(c.coreDest, r.city, '#2C78C9', r.dashed, 0, 0));
     fmLayers.freightmath[fmLayers.freightmath.length-1].setStyle({opacity:0});
-    fmMarkers.freightmath.push(L.marker([city.lat, city.lng], { icon: createCityIcon('#2C78C9', 8) }));
+    fmMarkers.freightmath.push(L.marker([r.city.lat, r.city.lng], { icon: createCityIcon(r.dashed ? '#64748b' : '#2C78C9', 8) }));
   });
-  
+
   // Core markers
   fmMarkers.freightmath.push(L.marker([c.deadhead.lat, c.deadhead.lng], { icon: createCityIcon('#EC433D', 7) }));
   fmMarkers.freightmath.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createPulseIcon('#4EA700', 16) }));
   fmMarkers.freightmath.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createPulseIcon('#2C78C9', 16) }));
-  fmMarkers.freightmath.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon('Core Origin', '#4EA700') }));
-  fmMarkers.freightmath.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon('Core Destination', '#2C78C9') }));
+  fmMarkers.freightmath.push(L.marker([c.coreOrigin.lat, c.coreOrigin.lng], { icon: createLabelIcon(c.coreOrigin.name, '#4EA700') }));
+  fmMarkers.freightmath.push(L.marker([c.coreDest.lat, c.coreDest.lng], { icon: createLabelIcon(c.coreDest.name, '#2C78C9') }));
 }
 
 function clearFMLayers() {
@@ -289,6 +341,17 @@ function showFMStep(step) {
   fmMarkers[step].forEach(m => bounds.push(m.getLatLng()));
   if (bounds.length > 1) {
     fmMap.fitBounds(L.latLngBounds(bounds).pad(0.15), { animate: true, duration: 0.8 });
+  }
+
+
+  // Highlight corresponding OR card
+  document.querySelectorAll('.or-card').forEach(c => c.classList.remove('active'));
+  const cardMap = {core:'or-card-core', inbound:'or-card-inbound', outbound:'or-card-outbound', freightmath:'or-card-fm'};
+  if (step === 'freightmath') {
+    document.querySelectorAll('.or-card').forEach(c => c.classList.add('active'));
+  } else {
+    const card = document.getElementById(cardMap[step]);
+    if (card) card.classList.add('active');
   }
 }
 
@@ -342,4 +405,3 @@ function drawUSOutline() {
     opacity: 0.6
   }).addTo(fmMap);
 }
-document.head.appendChild(pulseStyle);

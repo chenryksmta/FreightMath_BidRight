@@ -1,197 +1,110 @@
-# FreightMath Presentation - "Top 12 Traits of High-Performing Truckload Carriers"
+# FreightMath BidRight — Interactive Primer & Demo
 
-A modular, interactive slide deck showcasing FreightMath's analysis of successful truckload carriers.
+An interactive slide deck presenting FreightMath + BidRight: the complete bid lifecycle platform for truckload carriers.
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 /
-├── index.html              # Main HTML structure (clean, references external assets)
+├── index.html              # Main HTML — all 18 slides
 ├── styles.css              # All CSS styling (fonts, animations, layouts)
-├── config.js               # Configuration data (cities, presentation metadata)
-├── map.js                  # FreightMath map visualization (Leaflet integration)
+├── config.js               # Presentation metadata & section definitions
+├── map.js                  # Map visualization (Leaflet, available but unused)
 ├── presentation.js         # Slide navigation and interaction logic
-├── slides_content.html     # Raw slide HTML content (to be integrated)
-└── README.md               # This file
+├── README.md               # This file
+├── QUICK_REFERENCE.md      # Quick lookup guide
+└── INTEGRATION_GUIDE.md    # Setup & deployment guide
 ```
 
-## 🔧 File Responsibilities
+## Slide Outline (18 Slides)
 
-### `index.html`
-- Clean HTML structure
-- Loads external CSS and JavaScript
-- Persistent UI elements (logo, navigation, section dots)
-- Container for slide deck
+### Section 1 — The Why (Chris leads)
+| # | Title | Type | Interactive |
+|---|-------|------|-------------|
+| 0 | Hero / Title | `slide-hero` | Stagger animation |
+| 1 | The Problem | `slide-dark` | Animated stat cards |
+| 2 | Why Pricing Is Broken | `slide-accent` | Click-to-reveal flow |
+| 3 | The Measurement Engine | `slide-dark` | Tab panels (3 tabs) |
+| 4 | How Carriers Use FM Today | `slide-accent` | Animated OR bars |
 
-### `styles.css`
-- CSS custom properties (colors, fonts, transitions)
-- Typography and layout classes
-- Component styles (cards, stats, buttons, etc.)
-- Responsive design breakpoints
-- Map-specific styling
+### Section 2 — The Bridge (Handoff)
+| # | Title | Type | Interactive |
+|---|-------|------|-------------|
+| 5 | From Intelligence to Action | `slide-dark` | Auto-reveal flow |
+| 6 | Introducing BidRight | `slide-hero` | Hero branding |
 
-### `config.js`
-- City coordinates for map visualizations
-- Presentation metadata
-- Section definitions
-- Configurable constants
+### Section 3 — BidRight Story (Tyler leads)
+| # | Title | Type | Interactive |
+|---|-------|------|-------------|
+| 7 | Manual, Slow, Error-Prone | `slide-accent` | Before/After split |
+| 8 | From SalesScope to BidRight | `slide-dark` | Click-to-reveal timeline |
+| 9 | The Impact at Scale | `slide-accent` | Animated stat cards |
 
-### `map.js`
-- Leaflet map initialization
-- City marker creation
-- Animated route visualization
-- Map layer management (core, inbound, outbound, freightmath)
-- Auto-play functionality
+### Section 4 — What BidRight Does (Co-lead)
+| # | Title | Type | Interactive |
+|---|-------|------|-------------|
+| 10 | FM + BidRight Together | `slide-dark` | Click-to-reveal 4-step flow |
+| 11 | Automated Intelligence | `slide-accent` | Tab panels (3 tabs) |
+| 12 | FM-Powered Bid Construction | `slide-dark` | Interactive checklist |
+| 13 | Continuous Improvement | `slide-accent` | Click-to-reveal cycle diagram |
+| 14 | High-Level Capabilities | `slide-dark` | 6-card grid |
 
-### `presentation.js`
-- Slide navigation engine
-- Keyboard controls (←/→ arrows, Space, Page Up/Down)
-- Section dot navigation
-- Animation triggers
-- Interactive element handlers (tabs, checklists, reveals)
-- OR bar animations
-- Survey visualization
+### Section 5 — Call to Action (Chris)
+| # | Title | Type | Interactive |
+|---|-------|------|-------------|
+| 15 | Why Now | `slide-accent` | Bullet list |
+| 16 | Ways to Engage | `slide-dark` | 3-column card grid |
+| 17 | Ready to BidRight? | `slide-hero` | 2x2 CTA grid |
 
-### `slides_content.html`
-- Complete slide HTML markup
-- Needs to be integrated into index.html's `<div id="deck">` section
+## Quick Start
 
-## 🚀 Quick Start
+1. Open `index.html` in any modern browser
+2. Navigate with arrow keys, buttons, or section dots
+3. Click interactive elements (flows, checklists, tabs)
 
-### Integration Steps
+## File Responsibilities
 
-1. **Copy slide content into index.html:**
-   ```html
-   <!-- In index.html, replace the #deck div with content from slides_content.html -->
-   ```
+- **index.html** — All 18 slides with HTML content and interactive markup
+- **styles.css** — CSS custom properties, typography, layout, components, animations, responsive breakpoints
+- **config.js** — Presentation metadata and section definitions
+- **presentation.js** — Slide engine, keyboard/touch nav, tab switching, click-to-reveal handlers, animation triggers
+- **map.js** — Leaflet map (available, not actively used in this deck)
 
-2. **Open in browser:**
-   - Can be opened directly as a local file
-   - Or serve via any web server (Python, Node, etc.)
+## Keyboard Shortcuts
 
-3. **For local development:**
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Node.js (with npx http-server)
-   npx http-server
-   ```
+| Key | Action |
+|-----|--------|
+| `→` / `↓` | Next slide |
+| `←` / `↑` | Previous slide |
+| Section dots | Jump to any slide |
 
-## 🎯 Making Edits
+## Interactive Elements
 
-### Updating Styles
-Edit `styles.css`:
-- Color scheme: CSS variables at top of file (`:root` section)
-- Typography: Font sizes and families
-- Layout: Grid/flexbox configurations
-- Animations: Keyframes and transitions
+1. **Stagger animations** — All slides cascade children on entry
+2. **Animated stat cards** — Slides 1, 9
+3. **Click-to-reveal flows** — Slides 2, 8, 10, 13
+4. **Tab panels** — Slides 3, 11
+5. **Animated OR bars** — Slide 4
+6. **Auto-reveal flow** — Slide 5 (bridge animation)
+7. **Split layout** — Slide 7 (before/after)
+8. **Interactive checklist** — Slide 12
+9. **Card grids** — Slides 14, 16
+10. **CTA grid** — Slide 17
 
-### Modifying Slides
-Edit `slides_content.html`:
-- Add/remove/modify slide content
-- Each slide is a `<div class="slide">` element
-- Use data attributes: `data-section="Section Name"`
+## Dependencies
 
-### Changing Navigation
-Edit `presentation.js`:
-- Slide transition logic
-- Keyboard shortcuts
-- Animation triggers
-- Interactive element behaviors
+- **Leaflet 1.9.4** (CDN) — available for map features
+- **Google Fonts** (CDN) — Public Sans, JetBrains Mono
 
-### Updating Map
-Edit `map.js`:
-- City locations in `config.js`
-- Route colors and styles
-- Animation timing
-- Layer definitions
+## Deployment
 
-### Configuration Changes
-Edit `config.js`:
-- City coordinates
-- Section definitions
-- Presentation metadata
-
-## 🎨 Key Features
-
-- **Smooth transitions**: CSS cubic-bezier animations
-- **Keyboard navigation**: Arrow keys, Space, Page Up/Down
-- **Section dots**: Quick navigation to different sections
-- **Interactive elements**: 
-  - Animated OR (Operating Ratio) bars
-  - Click-to-reveal steps
-  - Tab panels
-  - Interactive checklists
-  - Survey visualization
-- **FreightMath map**: 
-  - Leaflet-based interactive map
-  - Animated truck routes
-  - Core/inbound/outbound visualization
-  - Auto-play mode
-
-## 🎹 Keyboard Shortcuts
-
-- `→` or `Space` - Next slide
-- `←` - Previous slide
-- `PageDown` - Next slide
-- `PageUp` - Previous slide
-- Click section dots - Jump to section
-
-## 🌐 Dependencies
-
-### External Libraries
-- **Leaflet 1.9.4** - Interactive map visualization
-- **Google Fonts** - Public Sans, JetBrains Mono
-- **CartoDB** - Map tiles (dark theme)
-
-### CDN Resources
-All external resources are loaded via CDN (no local dependencies required).
-
-## 📝 Development Workflow
-
-1. **Edit CSS** → See immediate style changes
-2. **Edit slides_content.html** → Update content
-3. **Edit presentation.js** → Modify interactions
-4. **Edit map.js** → Change visualizations
-5. **Edit config.js** → Update data
-
-## 🔗 GitHub Deployment
-
-Ready for GitHub Pages deployment:
+Ready for GitHub Pages:
 
 1. Commit all files
-2. Enable GitHub Pages in repository settings
-3. Select main branch as source
-4. Presentation will be available at: `https://[username].github.io/[repo-name]/`
-
-## 💡 Tips for Claude Collaboration
-
-When asking Claude to make changes, be specific about which file:
-
-- "Update the accent color" → `styles.css`
-- "Add a new slide" → `slides_content.html`
-- "Change the map animation speed" → `map.js`
-- "Add a keyboard shortcut" → `presentation.js`
-- "Update city coordinates" → `config.js`
-
-## 📊 Presentation Outline
-
-1. **Intro** - Title slide
-2. **Agenda** - 12 Traits overview
-3. **Trait 1** - Transparency & Financial Literacy
-4. **Trait 2** - Delegation & Empowerment  
-5. **Trait 3** - Centralized Pricing (BidRight)
-6. **Trait 4** - Network Discipline
-7. **Trait 5** - Power Lanes vs Spider Lanes
-8. **Trait 6** - FreightMath Integration
-9-23. Additional traits and case studies
-
-## 📄 License
-
-© KSM Transport Advisors - FreightMath
+2. Enable GitHub Pages (Settings > Pages > main branch)
+3. Available at `https://[username].github.io/[repo-name]/`
 
 ---
 
-**Version**: 1.0 (Refactored February 2026)
-**Author**: Chris Henry, KSM Transport Advisors
+**Version**: 2.0 (February 2026)
+**Authors**: Chris Henry (KSM Transport Advisors), Tyler Dietrich (Nussbaum Technology)

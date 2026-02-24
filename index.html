@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FreightMath BidRight — KSM Transport Advisors</title>
+  <title>FreightMath BidRight — Interactive Primer &amp; Demo</title>
 
   <!-- External Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,14 +12,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
 
-  <!-- Persistent FreightMath Logo -->
+  <!-- Persistent Logos -->
+  <img id="br-logo" src="https://nussbaumtech.com/wp-content/uploads/2025/11/bidrightlogo.png" alt="BidRight">
   <img id="fm-logo" src="https://info.ksmcpa.com/hubfs/FreightMath/Images/KSM_FM_Logo_RGB_Color.png" alt="FreightMath">
 
-  <!-- Progress Track (Hidden by default) -->
+  <!-- Progress Track -->
   <div id="progress-track">
     <div id="progress-bar" style="width: 0%"></div>
   </div>
@@ -30,23 +31,919 @@
   <!-- Main Slide Deck Container -->
   <div id="deck">
 
-    <!-- SLIDE 0: HERO -->
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 1 — THE WHY (Chris leads) -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 0: HERO / TITLE -->
     <div class="slide slide-hero active" data-section="Intro">
       <div class="center-content stagger">
-        <div class="section-label" style="justify-content:center;font-size:16px">FreightMath by <strong>KSM Transport Advisors</strong></div>
-        <h1 class="headline" style="margin-bottom:20px;font-size:clamp(104px, 12.5vw, 180px)">FreightMath <span class="accent">BidRight</span></h1>
-        <p class="subtitle" style="text-align:center;font-size:clamp(24px, 2.6vw, 32px)">Interactive Primer &amp; Demo</p>
+        <h1 class="headline" style="margin-bottom:20px;font-size:clamp(72px, 8vw, 160px)">FreightMath <span style="color:var(--text-primary);margin:0 0.1em">+</span> <span class="accent">BidRight</span></h1>
+        <p class="subtitle" style="text-align:center;font-size:clamp(32px, 2.4vw, 52px)">Interactive Primer &amp; Demo</p>
         <div class="divider-line" style="margin:28px auto"></div>
-        <p style="font-size:25px;color:var(--steel)">Chris Henry &nbsp;&middot;&nbsp; President &nbsp;&middot;&nbsp; <strong>KSM Transport Advisors</strong></p>
+        <p style="font-size:40px;color:var(--steel)">Chris Henry &nbsp;&middot;&nbsp; President &nbsp;&middot;&nbsp; <strong>KSM Transport Advisors</strong></p>
+        <p style="font-size:40px;color:var(--steel);margin-top:4px">Tyler Dietrich &nbsp;&middot;&nbsp; President &nbsp;&middot;&nbsp; <strong>Nussbaum Technology</strong></p>
       </div>
     </div>
 
-    <!-- SLIDE 1: PLACEHOLDER -->
-    <div class="slide slide-dark" data-section="Overview">
+    <!-- SLIDE 1: THE PROBLEM — Volatility & Complexity -->
+    <div class="slide slide-dark" data-section="The Why">
+      <div class="full-content stagger">
+        <div class="section-label">Section 1 &mdash; The Why</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Achieving positive net margins in truckload is difficult &mdash; especially over the last four years</h2>
+        <ul class="bullet-list" style="max-width:1000px;margin-top:28px;font-size:clamp(28px, 1.88vw, 44px)">
+          <li style="font-size:inherit"><span class="dot"></span>Most carriers lack the tools and data infrastructure needed to build and maintain a proper activity-based costing model &mdash; one that reveals true load-level and network profitability.</li>
+          <li style="font-size:inherit"><span class="dot"></span>Without sophisticated pricing tools, even carriers who understand their true costs struggle to translate that knowledge into effective, surgical pricing that protects and grows margins.</li>
+        </ul>
+        <div class="stat-grid" style="max-width:1100px;margin-top:28px">
+          <div class="stat-card loss">
+            <div class="value" style="font-size:44px">8&ndash;12%</div>
+            <div class="label">Avg. OR Variance</div>
+            <div class="sublabel">Lane-level spread</div>
+          </div>
+          <div class="stat-card warning">
+            <div class="value" style="font-size:44px">&plusmn;$0.35</div>
+            <div class="label">Rate Swing / Mile</div>
+            <div class="sublabel">Quarter over quarter</div>
+          </div>
+          <div class="stat-card loss">
+            <div class="value" style="font-size:44px">3&ndash;5%</div>
+            <div class="label">Margin Erosion</div>
+            <div class="sublabel">From mis-priced bids</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: DATA COMPLEXITY — The Data Problem -->
+    <div class="slide slide-accent" data-section="The Why" style="padding-top:clamp(70px, 5vw, 100px)">
+      <div class="full-content stagger">
+        <div class="section-label">The Data Problem</div>
+        <h2 class="slide-title" style="font-size:clamp(24px, 2.3vw, 48px)">It Starts With Credible Data</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:1000px;margin-bottom:20px;line-height:1.6">Allocating costs and measuring true profitability in a truckload network is a complex exercise. Carriers must start with <strong style="color:var(--text-primary)">credible data</strong> and <strong style="color:var(--text-primary)">practical logic</strong> &mdash; but most TMS data looks like the left column. <span style="color:var(--accent)">Click each row to clean it.</span></p>
+
+        <div id="data-cleaner" style="width:100%;display:flex;flex-direction:column;gap:0">
+
+          <!-- Header Row -->
+          <div class="dc-header">
+            <div class="dc-col-status"></div>
+            <div class="dc-col-issue">Your TMS Data</div>
+            <div class="dc-col-arrow"></div>
+            <div class="dc-col-clean">FreightMath Cleaned</div>
+          </div>
+
+          <!-- Row 1: Inaccurate Timestamps -->
+          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="timestamps">
+            <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
+            <div class="dc-col-issue">
+              <div class="dc-dirty-data">
+                <div class="dc-field-label">Load #4892 &mdash; OKC &rarr; MEM</div>
+                <div class="dc-field-row"><span class="dc-field-name">Pickup:</span> <span class="dc-field-val dc-error">03/15 02:00 AM</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Delivery:</span> <span class="dc-field-val dc-error">03/15 01:30 AM</span></div>
+                <div class="dc-problem-tag"><i data-lucide="clock" class="lucide-xs"></i> Delivery BEFORE pickup &mdash; negative transit time</div>
+              </div>
+            </div>
+            <div class="dc-col-arrow"><span class="dc-arrow-icon"><i data-lucide="arrow-right" class="lucide-sm"></i></span></div>
+            <div class="dc-col-clean">
+              <div class="dc-clean-data">
+                <div class="dc-field-label" style="color:var(--green)"><i data-lucide="check-circle" class="lucide-xs"></i> Corrected with FreightMath Continuity Logic</div>
+                <div class="dc-field-row"><span class="dc-field-name">Pickup:</span> <span class="dc-field-val dc-fixed">03/15 06:12 AM</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Delivery:</span> <span class="dc-field-val dc-fixed">03/15 02:47 PM</span></div>
+                <div class="dc-fix-tag">8.6 hrs transit &bull; 462 mi &bull; accurate cost allocation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2: Missing Segments -->
+          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="segments">
+            <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
+            <div class="dc-col-issue">
+              <div class="dc-dirty-data">
+                <div class="dc-field-label">Truck #287 &mdash; 03/12 to 03/14</div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 1:</span> <span class="dc-field-val">DAL &rarr; OKC (loaded)</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 2:</span> <span class="dc-field-val dc-error">??? &mdash; 22 hrs unaccounted</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 3:</span> <span class="dc-field-val">OKC &rarr; MEM (loaded)</span></div>
+                <div class="dc-problem-tag"><i data-lucide="map-pin-off" class="lucide-xs"></i> Missing segment &mdash; where was the truck for 22 hours?</div>
+              </div>
+            </div>
+            <div class="dc-col-arrow"><span class="dc-arrow-icon"><i data-lucide="arrow-right" class="lucide-sm"></i></span></div>
+            <div class="dc-col-clean">
+              <div class="dc-clean-data">
+                <div class="dc-field-label" style="color:var(--green)"><i data-lucide="check-circle" class="lucide-xs"></i> Gap reconstructed</div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 1:</span> <span class="dc-field-val dc-fixed">DAL &rarr; OKC (loaded)</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 2:</span> <span class="dc-field-val dc-fixed">OKC yard dwell &mdash; 14 hrs</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 3:</span> <span class="dc-field-val dc-fixed">OKC &rarr; shipper &mdash; 38 mi DH</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Seg 4:</span> <span class="dc-field-val dc-fixed">OKC &rarr; MEM (loaded)</span></div>
+                <div class="dc-fix-tag">Every hour &amp; mile accounted for</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3: Duplicate Trucks -->
+          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="duplicates">
+            <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
+            <div class="dc-col-issue">
+              <div class="dc-dirty-data">
+                <div class="dc-field-label">Load #5201 &mdash; ATL &rarr; JAX</div>
+                <div class="dc-field-row"><span class="dc-field-name">Truck:</span> <span class="dc-field-val dc-error">#104, #287, #104</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Driver:</span> <span class="dc-field-val dc-error">Martinez, &mdash;, Johnson</span></div>
+                <div class="dc-problem-tag"><i data-lucide="copy" class="lucide-xs"></i> Two trucks on one load &mdash; TMS re-assignment artifacts</div>
+              </div>
+            </div>
+            <div class="dc-col-arrow"><span class="dc-arrow-icon"><i data-lucide="arrow-right" class="lucide-sm"></i></span></div>
+            <div class="dc-col-clean">
+              <div class="dc-clean-data">
+                <div class="dc-field-label" style="color:var(--green)"><i data-lucide="check-circle" class="lucide-xs"></i> Resolved to actual asset</div>
+                <div class="dc-field-row"><span class="dc-field-name">Truck:</span> <span class="dc-field-val dc-fixed">#104 (confirmed)</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Driver:</span> <span class="dc-field-val dc-fixed">Martinez (full trip)</span></div>
+                <div class="dc-fix-tag">Single asset &bull; accurate driver cost &bull; clean linehaul</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 4: Phantom Deadheads -->
+          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="phantom">
+            <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
+            <div class="dc-col-issue">
+              <div class="dc-dirty-data">
+                <div class="dc-field-label">Truck #104 &mdash; 03/18</div>
+                <div class="dc-field-row"><span class="dc-field-name">Empty mi:</span> <span class="dc-field-val dc-error">347 miles deadhead</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Origin:</span> <span class="dc-field-val dc-error">MEM &rarr; DAL (no load)</span></div>
+                <div class="dc-problem-tag"><i data-lucide="ghost" class="lucide-xs"></i> Phantom deadhead &mdash; truck was actually loaded (wrong status code)</div>
+              </div>
+            </div>
+            <div class="dc-col-arrow"><span class="dc-arrow-icon"><i data-lucide="arrow-right" class="lucide-sm"></i></span></div>
+            <div class="dc-col-clean">
+              <div class="dc-clean-data">
+                <div class="dc-field-label" style="color:var(--green)"><i data-lucide="check-circle" class="lucide-xs"></i> Matched to load #5318</div>
+                <div class="dc-field-row"><span class="dc-field-name">Status:</span> <span class="dc-field-val dc-fixed">Loaded (revenue move)</span></div>
+                <div class="dc-field-row"><span class="dc-field-name">Revenue:</span> <span class="dc-field-val dc-fixed">$812.40 recovered</span></div>
+                <div class="dc-fix-tag">347 &ldquo;empty&rdquo; miles reclassified &bull; OR drops 2.1 pts</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <p id="data-cleaner-prompt" style="font-size:16px;color:var(--accent);opacity:0.6;margin-top:12px;text-align:center;transition:opacity 0.4s">Click each row to clean the data &mdash; <span id="dc-counter">0</span> of 4 resolved</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: COST ALLOCATION — Visual Pipeline -->
+    <div class="slide slide-dark" data-section="The Why" style="padding-top:clamp(70px, 5vw, 100px)">
+      <div class="full-content stagger">
+        <div class="section-label">Cost Allocation Engine</div>
+        <h2 class="slide-title" style="font-size:clamp(24px, 2.3vw, 48px)">From GL Data to Load-Level Profitability</h2>
+        <p style="font-size:16px;color:var(--steel);max-width:1000px;margin-bottom:16px">Every carrier&rsquo;s General Ledger is unique. FreightMath maps it to a common standard, then distributes costs to every load.</p>
+
+        <div class="alloc-pipeline">
+
+          <!-- TIER 1: GL Data — scattered colored pills -->
+          <div class="gl-row">
+            <span class="gl-pill" style="--pill-color:rgba(225,29,72,0.12);--pill-text:var(--red);--pill-tilt:-2deg"><i data-lucide="fuel" class="lucide-xs"></i> Fuel</span>
+            <span class="gl-pill" style="--pill-color:rgba(40,50,196,0.12);--pill-text:var(--accent);--pill-tilt:1.5deg"><i data-lucide="user" class="lucide-xs"></i> Driver Pay</span>
+            <span class="gl-pill" style="--pill-color:rgba(5,150,105,0.12);--pill-text:var(--green);--pill-tilt:-1deg"><i data-lucide="shield" class="lucide-xs"></i> Insurance</span>
+            <span class="gl-pill" style="--pill-color:rgba(217,119,6,0.12);--pill-text:var(--yellow);--pill-tilt:2.5deg"><i data-lucide="wrench" class="lucide-xs"></i> Maintenance</span>
+            <span class="gl-pill" style="--pill-color:rgba(37,99,235,0.12);--pill-text:var(--cyan);--pill-tilt:-1.5deg"><i data-lucide="landmark" class="lucide-xs"></i> Tolls</span>
+            <span class="gl-pill" style="--pill-color:rgba(107,114,128,0.12);--pill-text:var(--steel);--pill-tilt:1deg"><i data-lucide="building" class="lucide-xs"></i> Admin</span>
+            <span class="gl-pill" style="--pill-color:rgba(139,92,246,0.12);--pill-text:#8b5cf6;--pill-tilt:-2.5deg"><i data-lucide="wallet" class="lucide-xs"></i> Benefits</span>
+            <span class="gl-pill" style="--pill-color:rgba(236,72,153,0.12);--pill-text:#ec4899;--pill-tilt:1.8deg"><i data-lucide="trending-down" class="lucide-xs"></i> Depreciation</span>
+          </div>
+
+          <!-- Connector: Map & Transform -->
+          <div class="alloc-connector">
+            <i data-lucide="chevron-down"></i>
+            <span style="color:var(--accent);text-transform:uppercase;letter-spacing:0.1em">Map &amp; Transform</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+
+          <!-- TIER 2: Standard Chart of Accounts -->
+          <div class="coa-box">
+            <div class="coa-header"><i data-lucide="table-2" class="lucide-xs"></i> FreightMath Standard Chart of Accounts</div>
+            <div class="coa-grid">
+              <div class="coa-cell" style="border-left:3px solid var(--accent)">Driver Compensation</div>
+              <div class="coa-cell" style="border-left:3px solid var(--red)">Fuel</div>
+              <div class="coa-cell" style="border-left:3px solid #8b5cf6">Equipment Expense</div>
+              <div class="coa-cell" style="border-left:3px solid var(--yellow)">Maintenance</div>
+              <div class="coa-cell" style="border-left:3px solid var(--green)">Insurance</div>
+              <div class="coa-cell" style="border-left:3px solid var(--cyan)">Direct Onroad Expense</div>
+              <div class="coa-cell" style="border-left:3px solid var(--steel)">Overhead</div>
+              <div class="coa-cell" style="border-left:3px solid #ec4899">Admin</div>
+            </div>
+          </div>
+
+          <!-- Connector: Branching lines -->
+          <div class="alloc-connector" style="padding:4px 0">
+            <i data-lucide="chevron-down"></i>
+            <span style="color:var(--green);text-transform:uppercase;letter-spacing:0.1em">Distribute to Loads</span>
+          </div>
+          <div class="alloc-branch">
+            <div class="branch-drop"></div>
+            <div class="branch-drop"></div>
+            <div class="branch-drop"></div>
+            <div class="branch-drop"></div>
+            <div class="branch-drop"></div>
+          </div>
+
+          <!-- TIER 3: 5 Methods with mini-visualizations -->
+          <div class="method-grid">
+            <!-- Variable Costs -->
+            <div class="method-card">
+              <div class="method-icon" style="background:rgba(40,50,196,0.1);color:var(--accent)"><i data-lucide="truck"></i></div>
+              <h4>Variable Costs</h4>
+              <div class="mini-bar">
+                <div class="mini-bar-seg" style="width:65%;background:var(--accent);border-radius:6px 0 0 6px"></div>
+                <div class="mini-bar-seg" style="width:35%;background:rgba(107,114,128,0.3);border-radius:0 6px 6px 0"></div>
+              </div>
+              <span class="mini-legend">Loaded 65% &middot; Empty 35%</span>
+              <p class="method-desc">Proportional share of empty &amp; loaded miles</p>
+            </div>
+            <!-- Overhead -->
+            <div class="method-card">
+              <div class="method-icon" style="background:rgba(37,99,235,0.1);color:var(--cyan)"><i data-lucide="clock"></i></div>
+              <h4>Overhead</h4>
+              <div class="mini-bar">
+                <div class="mini-bar-seg" style="width:45%;background:var(--cyan);border-radius:6px 0 0 6px"></div>
+                <div class="mini-bar-seg" style="width:30%;background:var(--yellow)"></div>
+                <div class="mini-bar-seg" style="width:25%;background:rgba(107,114,128,0.3);border-radius:0 6px 6px 0"></div>
+              </div>
+              <span class="mini-legend">Loads &middot; Empty &middot; Dwell</span>
+              <p class="method-desc">Distributed by loads, empty &amp; dwell hours</p>
+            </div>
+            <!-- Pre-Standard Allocations -->
+            <div class="method-card">
+              <div class="method-icon" style="background:rgba(5,150,105,0.1);color:var(--green)"><i data-lucide="user-check"></i></div>
+              <h4>Pre-Standard</h4>
+              <div class="mini-checks">
+                <div class="mini-check-item"><span class="mini-check-dot">&#10003;</span> Driver Settlements</div>
+                <div class="mini-check-item"><span class="mini-check-dot">&#10003;</span> Direct Charges</div>
+                <div class="mini-check-item"><span class="mini-check-dot">&#10003;</span> Equipment Costs</div>
+              </div>
+              <p class="method-desc">Specific costs allocated directly to each load</p>
+            </div>
+            <!-- Toll Costs -->
+            <div class="method-card">
+              <div class="method-icon" style="background:rgba(217,119,6,0.1);color:var(--yellow)"><i data-lucide="shield-check"></i></div>
+              <h4>Toll Costs</h4>
+              <div class="toll-badge"><i data-lucide="check-circle" style="width:12px;height:12px"></i> Near-Time Validated</div>
+              <p class="method-desc">Direct &amp; accurate toll costs, validated in near-time</p>
+            </div>
+            <!-- Trailer Pool -->
+            <div class="method-card">
+              <div class="method-icon" style="background:rgba(225,29,72,0.1);color:var(--red)"><i data-lucide="box"></i></div>
+              <h4>Trailer Pool</h4>
+              <div class="pool-grid">
+                <div class="pool-slot filled" style="--slot-color:var(--accent)"></div>
+                <div class="pool-slot filled" style="--slot-color:var(--cyan)"></div>
+                <div class="pool-slot filled" style="--slot-color:var(--green)"></div>
+                <div class="pool-slot filled" style="--slot-color:var(--yellow)"></div>
+                <div class="pool-slot empty"></div>
+                <div class="pool-slot filled" style="--slot-color:var(--red)"></div>
+              </div>
+              <p class="method-desc">Dedicated trailer pool costing model</p>
+            </div>
+          </div>
+
+          <!-- Connector to loads -->
+          <div class="alloc-connector" style="padding:4px 0">
+            <i data-lucide="chevron-down"></i>
+          </div>
+
+          <!-- TIER 4: Load-level output -->
+          <div class="load-row">
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 1</span></div>
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 2</span></div>
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 3</span></div>
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 4</span></div>
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 5</span></div>
+            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 6</span></div>
+            <div class="load-box" style="opacity:0.5;border-style:dashed"><i data-lucide="package"></i><div class="load-cost-bar" style="opacity:0.4"></div><span class="load-label">Load n</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: FREIGHTMATH OR — Map Visualization -->
+    <div class="slide slide-dark" data-section="The Why" style="padding-top:clamp(60px, 4vw, 90px)">
+      <div class="full-content stagger">
+        <div class="section-label">FreightMath OR</div>
+        <h2 class="slide-title" style="font-size:clamp(22px, 2vw, 40px)">How FreightMath OR Is Calculated</h2>
+
+        <div class="or-viz">
+          <!-- Left: Step navigation -->
+          <div class="or-steps">
+            <button class="fm-step active" data-step="core" onclick="showFMStep('core')">
+              <span class="step-dot" style="background:#E26E17"></span>
+              <div><strong>Core OR</strong><span class="step-desc">The load itself &mdash; one-way profitability from origin to destination</span></div>
+            </button>
+            <button class="fm-step" data-step="inbound" onclick="showFMStep('inbound')">
+              <span class="step-dot" style="background:#4EA700"></span>
+              <div><strong>Inbound OR</strong><span class="step-desc">Probability of finding freight into your origin market</span></div>
+            </button>
+            <button class="fm-step" data-step="outbound" onclick="showFMStep('outbound')">
+              <span class="step-dot" style="background:#2C78C9"></span>
+              <div><strong>Outbound OR</strong><span class="step-desc">Probability of finding freight leaving your destination</span></div>
+            </button>
+            <button class="fm-step" data-step="freightmath" onclick="showFMStep('freightmath')">
+              <span class="step-dot" style="background:var(--accent)"></span>
+              <div><strong>FreightMath OR</strong><span class="step-desc">Complete network-aware operating ratio</span></div>
+            </button>
+          </div>
+
+          <!-- Center: Leaflet Map -->
+          <div class="or-map-wrap">
+            <div id="fm-map"></div>
+            <div class="map-legend">
+              <span class="legend-item"><span class="legend-line legend-loaded"></span> Loaded</span>
+              <span class="legend-item"><span class="legend-line legend-deadhead"></span> Empty</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#4EA700"></span> Inbound</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#2C78C9"></span> Outbound</span>
+              <span class="legend-item"><span class="legend-dot" style="background:#64748b"></span> Empty Repo</span>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Cost Model (visible on Core OR step) -->
+          <div class="cost-model">
+            <div class="cost-model-header"><i data-lucide="calculator" class="lucide-xs"></i> Interactive Cost Model</div>
+
+            <div class="cost-slider-group">
+              <div class="cost-slider-row">
+                <label>Loaded Miles <span class="cost-route">KC &rarr; ATL</span></label>
+                <output id="cm-loaded-val">802</output>
+              </div>
+              <input type="range" id="cm-loaded" min="600" max="1000" value="802" step="10" class="cm-slider cm-slider-loaded" oninput="updateCostModel()">
+            </div>
+
+            <div class="cost-slider-group">
+              <div class="cost-slider-row">
+                <label>Deadhead Miles <span class="cost-route">Joplin &rarr; KC</span></label>
+                <output id="cm-dead-val">160</output>
+              </div>
+              <input type="range" id="cm-dead" min="50" max="300" value="160" step="10" class="cm-slider cm-slider-dead" oninput="updateCostModel()">
+            </div>
+
+            <div class="cost-slider-group">
+              <div class="cost-slider-row">
+                <label>Transit Hours</label>
+                <output id="cm-hours-val">20</output>
+              </div>
+              <input type="range" id="cm-hours" min="10" max="40" value="20" step="1" class="cm-slider cm-slider-hours" oninput="updateCostModel()">
+            </div>
+
+            <div class="cost-breakdown">
+              <div class="cost-line"><span>Revenue</span><span class="cost-rate-hint">$2.77/mi</span><span id="cm-rev" class="cost-amount">$2,222</span></div>
+              <div class="cost-line cost-sub"><span>Variable</span><span class="cost-rate-hint">$1.67/mi</span><span id="cm-var" class="cost-amount">&minus;$1,607</span></div>
+              <div class="cost-line cost-sub"><span>Fixed</span><span class="cost-rate-hint">$28.86/hr</span><span id="cm-fix" class="cost-amount">&minus;$577</span></div>
+              <div class="cost-divider"></div>
+              <div class="cost-line cost-total"><span>Total Cost</span><span></span><span id="cm-total" class="cost-amount">$2,184</span></div>
+              <div class="cost-result">
+                <div class="cost-result-item"><span class="cost-result-label">Cost / Mile</span><span id="cm-cpm" class="cost-result-val">$2.27</span></div>
+                <div class="cost-result-item"><span class="cost-result-label">Core OR</span><span id="cm-or" class="cost-result-val cost-or-val profitable">98.3</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OR Metric Cards -->
+        <div class="or-cards">
+          <div class="or-card active" id="or-card-core" style="--or-accent:#E26E17">
+            <span class="or-card-label">Core OR</span>
+            <span class="or-card-value">95.0</span>
+            <span class="or-card-sub">One-way Profitability</span>
+          </div>
+          <div class="or-card" id="or-card-inbound" style="--or-accent:#4EA700">
+            <span class="or-card-label">Inbound OR</span>
+            <span class="or-card-value">98.2</span>
+            <span class="or-card-sub">Cost to Enter Origin</span>
+          </div>
+          <div class="or-card" id="or-card-outbound" style="--or-accent:#D97706">
+            <span class="or-card-label">Outbound OR</span>
+            <span class="or-card-value">92.5</span>
+            <span class="or-card-sub">Value of Exiting Dest</span>
+          </div>
+          <div class="or-card" id="or-card-fm" style="--or-accent:var(--accent)">
+            <span class="or-card-label">FreightMath OR</span>
+            <span class="or-card-value">94.8</span>
+            <span class="or-card-sub">Total Network Contribution</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: CARRIER TESTIMONIALS -->
+    <div class="slide slide-accent" data-section="The Why">
       <div class="center-content stagger">
-        <div class="section-label">Getting Started</div>
-        <h2 class="slide-title">Slides Go Here</h2>
-        <p style="color:var(--steel);font-size:20px;line-height:1.6;max-width:900px">This is a placeholder deck. Add your slide content inside the <code style="background:rgba(255,255,255,0.1);padding:2px 8px;border-radius:4px;font-family:var(--font-mono)">&lt;div id="deck"&gt;</code> container.</p>
+        <div class="section-label">Real Outcomes</div>
+        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px)">Carrier Tested &mdash; Carrier Approved</h2>
+        <div class="testimonial-row">
+          <div class="testimonial-card">
+            <img src="DEKR.png" alt="Decker Truck Line testimonial — Bob Elkins, COO" loading="lazy">
+          </div>
+          <div class="testimonial-card">
+            <img src="BAYN.png" alt="Bay &amp; Bay testimonial — Josh Urness, Sr. Director of Pricing" loading="lazy">
+          </div>
+          <div class="testimonial-card">
+            <img src="PMBR.png" alt="Pemberton Truck Lines testimonial — John Pemberton, President" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 2 — THE BRIDGE (Chris -> Tyler handoff) -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 5: FROM INTELLIGENCE TO ACTION — Flow Reveal -->
+    <div class="slide slide-dark" data-section="The Bridge">
+      <div class="center-content stagger">
+        <div class="section-label">Section 2 &mdash; The Bridge</div>
+        <h2 class="slide-title" style="font-size:clamp(44px, 4.5vw, 96px)">From Intelligence to Action</h2>
+        <p style="font-size:clamp(28px, 2.4vw, 44px);color:var(--steel);max-width:clamp(800px, 62vw, 1300px);margin-bottom:clamp(32px, 3vw, 56px)">FreightMath gives you the <strong style="color:var(--text-primary)">&ldquo;what&rdquo;</strong> &mdash; the next frontier is <strong style="color:var(--accent)">&ldquo;how.&rdquo;</strong></p>
+        <div id="bridge-flow" class="flow-steps" style="max-width:clamp(800px, 70vw, 1400px);justify-content:center;align-items:center;gap:clamp(16px, 2vw, 40px)">
+          <div class="flow-step bridge-reveal" style="flex:none;width:clamp(300px, 24vw, 520px);padding:clamp(36px, 3vw, 64px) clamp(28px, 2.2vw, 48px);opacity:1;transition:all 0.6s ease">
+            <div class="lucide-hero" style="margin-bottom:clamp(14px, 1.2vw, 24px)"><i data-lucide="brain" style="width:clamp(64px, 5.8vw, 96px);height:clamp(64px, 5.8vw, 96px);color:var(--cyan)"></i></div>
+            <h4 style="color:var(--cyan);font-size:clamp(28px, 2.4vw, 48px)">FreightMath</h4>
+            <p style="font-size:clamp(22px, 1.8vw, 36px)">Data &amp; Intelligence</p>
+          </div>
+          <div class="flow-arrow bridge-reveal" style="opacity:0;transition:all 0.6s ease"><i data-lucide="move-right" style="width:clamp(56px, 4.5vw, 88px);height:clamp(56px, 4.5vw, 88px)"></i></div>
+          <div class="flow-step bridge-reveal" style="flex:none;width:clamp(300px, 24vw, 520px);padding:clamp(36px, 3vw, 64px) clamp(28px, 2.2vw, 48px);opacity:0;transition:all 0.6s ease;border-color:rgba(40,50,196,0.3)">
+            <div class="lucide-hero" style="margin-bottom:clamp(14px, 1.2vw, 24px);position:relative;display:inline-flex;justify-content:center">
+              <i data-lucide="target" style="width:clamp(64px, 5.8vw, 96px);height:clamp(64px, 5.8vw, 96px);color:var(--accent)"></i>
+              <div id="bridge-dart" class="bridge-dart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" fill="var(--accent)" stroke="var(--accent)"></polygon>
+                </svg>
+              </div>
+              <div id="bridge-dart-ring" class="bridge-dart-ring"></div>
+            </div>
+            <h4 style="color:var(--accent);font-size:clamp(28px, 2.4vw, 48px)">BidRight</h4>
+            <p style="font-size:clamp(22px, 1.8vw, 36px)">Strategy &amp; Execution</p>
+          </div>
+        </div>
+        <p id="bridge-prompt" style="font-size:clamp(24px, 2vw, 40px);color:var(--accent);opacity:0;margin-top:clamp(24px, 2.2vw, 44px);transition:opacity 0.4s">The complete bid lifecycle &mdash; powered by data.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: INTRODUCING BIDRIGHT — Hero -->
+    <div class="slide slide-hero" data-section="BidRight">
+      <div class="center-content stagger">
+        <div class="section-label" style="justify-content:center;font-size:16px">Introducing</div>
+        <img src="https://nussbaumtech.com/wp-content/uploads/2025/11/bidrightlogo.png" alt="BidRight" style="height:clamp(60px,6vw,100px);margin-bottom:12px">
+        <h1 class="headline" style="margin-bottom:16px;font-size:clamp(36px, 4vw, 80px)"><span class="accent">BidRight</span></h1>
+        <p class="subtitle" style="text-align:center;font-size:clamp(16px, 1.2vw, 26px)">Built by carriers, for carriers.</p>
+        <div class="divider-line" style="margin:28px auto"></div>
+        <p style="font-size:20px;color:var(--steel);max-width:900px;text-align:center;line-height:1.6">What began as an internal tool called <strong style="color:var(--text-primary)">SalesScope</strong> at Nussbaum Transportation is now <strong style="color:var(--accent)">BidRight</strong> &mdash; purpose-built to revolutionize carrier bidding with automation, pricing intelligence, and collaboration.</p>
+        <div style="margin-top:20px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center">
+          <span class="tag tag-yellow" style="font-size:13px"><i data-lucide="award" class="lucide-xs"></i> CCJ Innovator of the Year 2025</span>
+          <span class="tag tag-green" style="font-size:13px"><i data-lucide="trending-up" class="lucide-xs"></i> 5% Above Market &mdash; 10 Consecutive Quarters</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 3 — BIDRIGHT STORY (Tyler leads) -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 7: THE BIDDING PROBLEM — Before/After Split -->
+    <div class="slide slide-accent" data-section="BidRight Story" style="padding-top:clamp(70px, 5vw, 100px)">
+      <div class="full-content stagger">
+        <div class="section-label">Section 3 &mdash; The Bidding Problem</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Manual, Slow, Error-Prone</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Most carriers still manage bids in spreadsheets &mdash; slow, error-prone, and disconnected from real market data.</p>
+        <div class="split" style="margin-top:16px">
+          <div>
+            <h3 style="font-size:22px;color:var(--red);margin-bottom:16px"><i data-lucide="x-circle" class="lucide-inline"></i> Before BidRight</h3>
+            <img src="https://ucd-cws.github.io/CABW2020_R_training/images/messy_spreadsheet.png" alt="Messy spreadsheet bid process" class="product-screenshot" style="margin-bottom:16px;max-height:180px;object-fit:cover;width:100%">
+            <ul class="bullet-list">
+              <li><span class="dot" style="background:var(--red)"></span>Hours spent fixing spreadsheets</li>
+              <li><span class="dot" style="background:var(--red)"></span>Prone to errors &mdash; no validation or guardrails</li>
+              <li><span class="dot" style="background:var(--red)"></span>Unclear who's doing what and when</li>
+              <li><span class="dot" style="background:var(--red)"></span>Unclear pricing strategy &mdash; gut feel over data</li>
+              <li><span class="dot" style="background:var(--red)"></span>Manual assembly of market reports</li>
+              <li><span class="dot" style="background:var(--red)"></span>Slow bid cycles &mdash; shippers won't wait</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="font-size:22px;color:var(--green);margin-bottom:16px"><i data-lucide="check-circle" class="lucide-inline"></i> After BidRight</h3>
+            <img src="https://nussbaumtech.com/wp-content/uploads/2025/12/Bid-Workflow2-scaled.png" alt="BidRight workflow interface" class="product-screenshot" style="margin-bottom:16px;max-height:180px;object-fit:cover;width:100%">
+            <ul class="bullet-list">
+              <li><span class="dot" style="background:var(--green)"></span>Import and standardize RFPs in seconds</li>
+              <li><span class="dot" style="background:var(--green)"></span>Automation with precision and accuracy</li>
+              <li><span class="dot" style="background:var(--green)"></span>Clear assignments and status indicators</li>
+              <li><span class="dot" style="background:var(--green)"></span>Defined strategic pricing variables for teams</li>
+              <li><span class="dot" style="background:var(--green)"></span>Integrated market data in your workflow</li>
+              <li><span class="dot" style="background:var(--green)"></span>Process hundreds to thousands of lanes daily</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: ORIGIN STORY — Timeline Reveal -->
+    <div class="slide slide-dark" data-section="BidRight Story">
+      <div class="full-content stagger">
+        <div class="section-label">Origin Story</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">From SalesScope to BidRight</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Born inside a real carrier operation. Proven over 10 consecutive quarters. Now available to the industry.</p>
+        <div id="origin-timeline" class="flow-steps" onclick="revealNextOrigin()" style="cursor:pointer;max-width:1400px">
+          <div class="flow-step origin-reveal" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+            <div class="num">SalesScope</div>
+            <h4>Internal Tool</h4>
+            <p>Built inside Nussbaum Transportation to automate their own bid process &amp; pricing</p>
+          </div>
+          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="num">10 Quarters</div>
+            <h4>Proven Results</h4>
+            <p>5% above market rates for 10 consecutive quarters. Industry-leading miles per truck.</p>
+          </div>
+          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="num">2025</div>
+            <h4><i data-lucide="award" class="lucide-xs"></i> CCJ Innovator</h4>
+            <p>CCJ crowns Nussbaum &ldquo;Innovator of the Year&rdquo; for the software now known as BidRight</p>
+          </div>
+          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease;border-color:rgba(40,50,196,0.3)">
+            <div class="num" style="color:var(--accent)">Now</div>
+            <h4 style="color:var(--accent)">BidRight + FM</h4>
+            <p>Productized for the industry &mdash; powered by FreightMath intelligence</p>
+          </div>
+        </div>
+        <div id="origin-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
+          <button class="reveal-btn" onclick="revealNextOrigin()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Milestone</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: THE IMPACT — Animated Stat Cards -->
+    <div class="slide slide-accent" data-section="BidRight Story">
+      <div class="full-content stagger">
+        <div class="section-label">Measurable Results</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">The Impact at Scale</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:28px">Real results from Nussbaum Transportation &mdash; where BidRight was born and proven.</p>
+        <div class="stat-grid" style="max-width:1100px">
+          <div class="stat-card ok">
+            <div class="value" style="font-size:44px">20x</div>
+            <div class="label">Faster Bidding</div>
+            <div class="sublabel">vs. traditional process</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" style="font-size:44px;color:var(--green)">15x</div>
+            <div class="label">Faster Team Review</div>
+            <div class="sublabel">Collaboration built in</div>
+          </div>
+          <div class="stat-card">
+            <div class="value" style="font-size:44px;color:var(--accent)">+5%</div>
+            <div class="label">Above Market Rates</div>
+            <div class="sublabel">10 consecutive quarters</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 4 — WHAT BIDRIGHT DOES (Co-lead) -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 10: FM + BIDRIGHT TOGETHER — 4 Core Capabilities Flow -->
+    <div class="slide slide-dark" data-section="How It Works">
+      <div class="full-content stagger">
+        <div class="section-label">Section 4 &mdash; Four Core Capabilities</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">FM + BidRight Together</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">BidRight automates manual steps and brings clarity to pricing, profitability, and performance &mdash; all in one place.</p>
+        <div id="lifecycle-flow" class="flow-steps" onclick="revealNextLifecycle()" style="cursor:pointer;max-width:1400px">
+          <div class="flow-step lifecycle-reveal" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+            <div class="num">01</div>
+            <h4>Bid Management</h4>
+            <p>Bulk-import RFPs into a standardized format. Organize &amp; track in one platform.</p>
+          </div>
+          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="num">02</div>
+            <h4>Workflow Collaboration</h4>
+            <p>Review progress, assignments, and comments. Flag issues for upcoming meetings.</p>
+          </div>
+          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="num">03</div>
+            <h4>Pricing Intelligence</h4>
+            <p>Analyze market data, past decisions, profitability trends &mdash; all within your workflow.</p>
+          </div>
+          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="num">04</div>
+            <h4>Award Review</h4>
+            <p>Evaluate awarded lanes and quickly identify unprofitable freight.</p>
+          </div>
+        </div>
+        <div id="lifecycle-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
+          <button class="reveal-btn" onclick="revealNextLifecycle()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Capability</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: CORE CAPABILITIES — Tab Panels -->
+    <div class="slide slide-accent" data-section="How It Works">
+      <div class="full-content stagger">
+        <div class="section-label">Core Capabilities &mdash; Deep Dive</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Inside BidRight</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Explore each capability &mdash; every one powered by FreightMath intelligence.</p>
+        <div class="tab-group">
+          <button class="tab-btn active" onclick="switchTab(event,'cap')"><i data-lucide="inbox" class="lucide-xs"></i> Bid Management</button>
+          <button class="tab-btn" onclick="switchTab(event,'cap')"><i data-lucide="users" class="lucide-xs"></i> Workflow</button>
+          <button class="tab-btn" onclick="switchTab(event,'cap')"><i data-lucide="bar-chart-3" class="lucide-xs"></i> Pricing Intel</button>
+          <button class="tab-btn" onclick="switchTab(event,'cap')"><i data-lucide="trophy" class="lucide-xs"></i> Award Review</button>
+        </div>
+        <div id="cap-tab-0" class="tab-panel active" style="max-width:1100px">
+          <div class="two-col" style="gap:24px">
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="inbox"></i></div>
+              <h3 style="font-size:20px">Structured RFP Intake</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Bulk-import RFPs instantly into a standardized format. Organize and track bid projects in one centralized platform.</p>
+            </div>
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="layers"></i></div>
+              <h3 style="font-size:20px">Lane Scoring</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Each lane receives a composite score based on network fit, margin potential, and volume history. Prioritize effort where it matters most.</p>
+            </div>
+          </div>
+        </div>
+        <div id="cap-tab-1" class="tab-panel" style="max-width:1100px">
+          <div class="two-col" style="gap:24px">
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="users"></i></div>
+              <h3 style="font-size:20px">Team Collaboration</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Review progress, assignments, and comments from team members. Flag important issues for upcoming meetings. Everyone stays aligned.</p>
+            </div>
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="git-branch"></i></div>
+              <h3 style="font-size:20px">Clear Assignments</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Built-in status indicators and task ownership. No more asking &ldquo;who&rsquo;s doing what?&rdquo; &mdash; clear accountability across the team.</p>
+            </div>
+          </div>
+        </div>
+        <div id="cap-tab-2" class="tab-panel" style="max-width:1100px">
+          <div class="two-col" style="gap:24px">
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(78,167,0,0.15);color:var(--green)"><i data-lucide="bar-chart-3"></i></div>
+              <h3 style="font-size:20px">Market Data Integration</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Analyze market data, past decisions, profitability trends, and key strategic variables &mdash; all within your bidding workflow.</p>
+            </div>
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(78,167,0,0.15);color:var(--green)"><i data-lucide="dollar-sign"></i></div>
+              <h3 style="font-size:20px">FM Cost Overlay</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Your fully-loaded cost model from FreightMath is automatically applied to every lane &mdash; true floor price and target margin before you bid.</p>
+            </div>
+          </div>
+        </div>
+        <div id="cap-tab-3" class="tab-panel" style="max-width:1100px">
+          <div class="two-col" style="gap:24px">
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="trophy"></i></div>
+              <h3 style="font-size:20px">Win/Loss Analysis</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Evaluate awarded lanes and quickly identify unprofitable freight. Every outcome feeds back into the system to improve future bids.</p>
+            </div>
+            <div class="card" style="padding:32px">
+              <div class="card-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="search"></i></div>
+              <h3 style="font-size:20px">Pattern Recognition</h3>
+              <p style="font-size:18px;color:var(--steel);line-height:1.6">Deep-dive analysis reveals why you win, why you lose, and how to adjust. Continuous improvement built into the platform.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: WHAT BIDRIGHT REPLACES — Interactive Checklist -->
+    <div class="slide slide-dark" data-section="How It Works">
+      <div class="full-content stagger">
+        <div class="section-label">What BidRight Replaces</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Your Old Bid Process</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Check off the manual steps BidRight automates &mdash; every one powered by FreightMath intelligence.</p>
+        <div class="checklist" style="max-width:900px">
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Bulk RFP import &amp; standardization (no more reformatting)</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">FM cost overlay on every lane &mdash; true floor price before you bid</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Market data, past decisions &amp; profitability trends in one view</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Team assignments, progress tracking &amp; collaboration</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Defined strategic pricing variables across your team</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Award evaluation &mdash; quickly identify unprofitable freight</span>
+          </div>
+          <div class="check-item" onclick="toggleCheck(this)">
+            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
+            <span class="check-text">Role-based access, division management &amp; audit logging</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 13: AWARD ANALYSIS & FEEDBACK LOOP — Cycle Diagram -->
+    <div class="slide slide-accent" data-section="How It Works">
+      <div class="full-content stagger">
+        <div class="section-label">The BidRight Flywheel</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Continuous Improvement</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Every bid outcome feeds back into the system. This is how Nussbaum stayed 5% above market for 10 quarters.</p>
+        <div id="cycle-diagram" class="cycle-container" onclick="revealNextCycle()" style="cursor:pointer;max-width:900px;margin:0 auto">
+          <div class="cycle-ring">
+            <div class="cycle-step cycle-reveal" data-pos="top" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+              <div class="cycle-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="inbox"></i></div>
+              <div class="cycle-label">Import</div>
+              <div class="cycle-desc">Bulk-import &amp; score RFP lanes</div>
+            </div>
+            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="right" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+              <div class="cycle-icon" style="background:rgba(78,167,0,0.15);color:var(--green)"><i data-lucide="dollar-sign"></i></div>
+              <div class="cycle-label">Price</div>
+              <div class="cycle-desc">FM-powered pricing intelligence</div>
+            </div>
+            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="bottom" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+              <div class="cycle-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="trophy"></i></div>
+              <div class="cycle-label">Award</div>
+              <div class="cycle-desc">Evaluate wins &amp; flag unprofitable freight</div>
+            </div>
+            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="left" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+              <div class="cycle-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="refresh-cw"></i></div>
+              <div class="cycle-label">Refine</div>
+              <div class="cycle-desc">Improve models with every outcome</div>
+            </div>
+          </div>
+        </div>
+        <div id="cycle-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
+          <button class="reveal-btn" onclick="revealNextCycle()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Step</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 14: DEVELOPMENT ROADMAP & SECURITY -->
+    <div class="slide slide-dark" data-section="How It Works">
+      <div class="full-content stagger">
+        <div class="section-label">Development Progress</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">BidRight Roadmap</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Actively building in the open. Real progress, real timelines.</p>
+
+        <!-- Roadmap Timeline -->
+        <div class="roadmap" style="max-width:1200px">
+          <div class="roadmap-track">
+            <div class="roadmap-phase completed">
+              <div class="roadmap-marker"><i data-lucide="check" class="lucide-sm"></i></div>
+              <div class="roadmap-content">
+                <h4>Phase 1: Foundation</h4>
+                <span class="roadmap-status tag tag-green" style="font-size:11px">Completed</span>
+                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                  <li>Architecture &amp; Automation</li>
+                  <li>Database &amp; Navigation</li>
+                  <li>Customer Login &amp; Teams</li>
+                </ul>
+              </div>
+            </div>
+            <div class="roadmap-phase completed">
+              <div class="roadmap-marker"><i data-lucide="check" class="lucide-sm"></i></div>
+              <div class="roadmap-content">
+                <h4>Phase 2: Bid Setup</h4>
+                <span class="roadmap-status tag tag-green" style="font-size:11px">Completed</span>
+                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                  <li>Creating &amp; Importing Bids</li>
+                  <li>Task Management</li>
+                  <li>Customer Details</li>
+                </ul>
+              </div>
+            </div>
+            <div class="roadmap-phase in-progress">
+              <div class="roadmap-marker"><i data-lucide="loader" class="lucide-sm"></i></div>
+              <div class="roadmap-content">
+                <h4>Phase 3: Bid Workflow</h4>
+                <span class="roadmap-status tag tag-cyan" style="font-size:11px">In Progress</span>
+                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                  <li>Workflow &amp; Bid Detail Pages</li>
+                  <li>Export &amp; Bid Import</li>
+                  <li>Feedback &amp; Awards Control</li>
+                </ul>
+              </div>
+            </div>
+            <div class="roadmap-phase design">
+              <div class="roadmap-marker"><i data-lucide="pencil" class="lucide-sm"></i></div>
+              <div class="roadmap-content">
+                <h4>Phase 4: Follow Up</h4>
+                <span class="roadmap-status tag tag-yellow" style="font-size:11px">Design Phase</span>
+                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                  <li>Dashboard &amp; Awards</li>
+                  <li>Payment Processing</li>
+                  <li>Rate &amp; Commit Review</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security Bar -->
+        <div style="display:flex;gap:16px;align-items:center;margin-top:24px;padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;max-width:1200px;flex-wrap:wrap">
+          <i data-lucide="shield-check" style="width:20px;height:20px;color:var(--green);flex-shrink:0"></i>
+          <span style="font-size:16px;color:var(--steel)"><strong style="color:var(--text-primary)">Security First</strong> &mdash; Role-based access &bull; Division management &bull; Audit logging &bull; Your privacy is our top priority</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ -->
+    <!-- SECTION 5 — CALL TO ACTION (Chris) -->
+    <!-- ═══════════════════════════════════════════════════ -->
+
+    <!-- SLIDE 15: WHY NOW — Urgency Drivers -->
+    <div class="slide slide-accent" data-section="Next Steps">
+      <div class="full-content stagger">
+        <div class="section-label">Section 5 &mdash; Why Now</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Market Conditions Demand Better Tools</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">The carriers who win the next cycle will be the ones who invest in pricing infrastructure now.</p>
+        <ul class="bullet-list" style="max-width:900px">
+          <li><span class="dot"></span><strong style="color:var(--text-primary)">Rate volatility is increasing</strong> &mdash; Q/Q swings are wider than historical averages</li>
+          <li><span class="dot"></span><strong style="color:var(--text-primary)">Shippers expect more from carriers</strong> &mdash; data-backed bids win more awards</li>
+          <li><span class="dot"></span><strong style="color:var(--text-primary)">Margin compression is real</strong> &mdash; the days of "good enough" pricing are over</li>
+          <li><span class="dot"></span><strong style="color:var(--text-primary)">RFP complexity is growing</strong> &mdash; more lanes, tighter timelines, multi-round bids</li>
+          <li><span class="dot"></span><strong style="color:var(--text-primary)">Your competitors are investing</strong> &mdash; pricing technology is no longer optional</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- SLIDE 16: WAYS TO ENGAGE — 3-Column Card Grid -->
+    <div class="slide slide-dark" data-section="Next Steps">
+      <div class="center-content stagger">
+        <div class="section-label">Your Next Step</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Ways to Engage</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:28px">Choose the path that fits your timeline and goals.</p>
+        <div class="three-col" style="max-width:1100px">
+          <div class="card" style="padding:32px;text-align:center">
+            <div class="lucide-hero"><i data-lucide="book-open" style="width:40px;height:40px;color:var(--steel)"></i></div>
+            <h3 style="font-size:20px;margin-bottom:8px">Learn More</h3>
+            <p style="font-size:16px">Deep-dive into FreightMath capabilities and see how your data fits the model.</p>
+            <div class="divider-line" style="margin:16px auto"></div>
+            <p style="font-size:16px;color:var(--accent);font-weight:600">30-min overview</p>
+          </div>
+          <div class="card" style="padding:32px;text-align:center;border-color:rgba(40,50,196,0.25)">
+            <div class="lucide-hero"><i data-lucide="monitor-play" style="width:40px;height:40px;color:var(--accent)"></i></div>
+            <h3 style="font-size:20px;margin-bottom:8px;color:var(--accent)">Request Demo</h3>
+            <p style="font-size:16px">See BidRight in action with sample RFP data from your market.</p>
+            <div class="divider-line" style="margin:16px auto"></div>
+            <p style="font-size:16px;color:var(--accent);font-weight:600">Live walkthrough</p>
+          </div>
+          <div class="card" style="padding:32px;text-align:center">
+            <div class="lucide-hero"><i data-lucide="rocket" style="width:40px;height:40px;color:var(--steel)"></i></div>
+            <h3 style="font-size:20px;margin-bottom:8px">Start Pilot</h3>
+            <p style="font-size:16px">Run your next RFP through BidRight with full FM integration.</p>
+            <div class="divider-line" style="margin:16px auto"></div>
+            <p style="font-size:16px;color:var(--accent);font-weight:600">90-day pilot</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: CONNECT — CTA Grid -->
+    <div class="slide slide-hero" data-section="Connect">
+      <div class="center-content stagger">
+        <div class="section-label" style="justify-content:center;font-size:16px">Let's Connect</div>
+        <h1 class="headline" style="margin-bottom:16px;font-size:clamp(32px, 3.2vw, 68px)">Ready to <span class="accent">BidRight</span>?</h1>
+        <div class="divider-line" style="margin:20px auto"></div>
+        <div class="two-col" style="max-width:900px;gap:16px;margin-top:20px">
+          <a class="card cta-card" style="padding:24px;text-align:center;text-decoration:none;color:var(--text-primary);cursor:pointer">
+            <div class="lucide-cta"><i data-lucide="mail" style="width:28px;height:28px"></i></div>
+            <h3 style="font-size:17px">Email Us</h3>
+            <p style="font-size:16px;color:var(--accent)">info@freightmath.com</p>
+          </a>
+          <a class="card cta-card" style="padding:24px;text-align:center;text-decoration:none;color:var(--text-primary);cursor:pointer">
+            <div class="lucide-cta"><i data-lucide="globe" style="width:28px;height:28px"></i></div>
+            <h3 style="font-size:17px">Website</h3>
+            <p style="font-size:16px;color:var(--accent)">freightmath.com</p>
+          </a>
+          <a class="card cta-card" style="padding:24px;text-align:center;text-decoration:none;color:var(--text-primary);cursor:pointer">
+            <div class="lucide-cta"><i data-lucide="presentation" style="width:28px;height:28px"></i></div>
+            <h3 style="font-size:17px">Request Demo</h3>
+            <p style="font-size:16px;color:var(--accent)">Schedule a walkthrough</p>
+          </a>
+          <a class="card cta-card" style="padding:24px;text-align:center;text-decoration:none;color:var(--text-primary);cursor:pointer">
+            <div class="lucide-cta"><i data-lucide="target" style="width:28px;height:28px"></i></div>
+            <h3 style="font-size:17px">BidRight</h3>
+            <p style="font-size:16px;color:var(--accent)">Learn more about BidRight</p>
+          </a>
+        </div>
+        <p style="font-size:16px;color:var(--steel);margin-top:24px">Chris Henry &nbsp;&middot;&nbsp; <strong>KSM Transport Advisors</strong> &nbsp;&middot;&nbsp; Tyler Dietrich &nbsp;&middot;&nbsp; <strong>Nussbaum Technology</strong></p>
       </div>
     </div>
 
@@ -55,17 +952,23 @@
   <!-- Bottom Navigation -->
   <nav id="nav">
     <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>&larr; Previous</button>
-    <div id="slide-counter"><span>1</span> / 2</div>
+    <div id="slide-counter"><span>1</span> / 19</div>
     <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
   </nav>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
   <!-- Leaflet JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <!-- Application Scripts (order matters) -->
-  <script src="config.js?v=1"></script>
-  <script src="map.js?v=1"></script>
-  <script src="presentation.js?v=1"></script>
+  <script src="config.js?v=4"></script>
+  <script src="map.js?v=4"></script>
+  <script src="presentation.js?v=4"></script>
+
+  <!-- Initialize Lucide icons after DOM -->
+  <script>lucide.createIcons();</script>
 
 </body>
 </html>

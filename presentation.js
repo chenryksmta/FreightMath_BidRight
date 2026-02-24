@@ -238,6 +238,11 @@ function animateAlloc() {
         box.classList.add('visible');
       }, 1600 + i * 150));
     });
+    // Reveal any remaining alloc-reveal elements (e.g. CTA button)
+    const remaining = pipeline.querySelectorAll('.alloc-reveal:not(.visible):not(.gl-acct):not(.alloc-funnel):not(.coa-box):not(.coa-cell):not(.alloc-connector):not(.alloc-branch):not(.method-card):not(.load-box)');
+    allocTimers.push(setTimeout(() => {
+      remaining.forEach(el => el.classList.add('visible'));
+    }, 2800));
   }, 6200));
 }
 

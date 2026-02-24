@@ -97,7 +97,7 @@ body::before {
   inset: 0;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
+  z-index: 200;
 }
 
 /* ─── SLIDE CONTAINER ─── */
@@ -116,7 +116,7 @@ body::before {
   visibility: hidden;
   transform: translateY(30px);
   transition: opacity var(--slide-transition), transform var(--slide-transition), visibility 0s 0.7s;
-  padding: var(--slide-pad-v) var(--slide-pad-h);
+  padding: var(--slide-pad-v) var(--slide-pad-h) clamp(56px, 4.5vw, 80px);
   overflow-y: auto;
 }
 
@@ -2730,9 +2730,9 @@ body::before {
 
 /* ─── INTERACTIVE COST MODEL PANEL ─── */
 .cost-model {
-  width: 250px;
-  min-width: 250px;
-  padding: 14px;
+  width: clamp(220px, 16vw, 280px);
+  min-width: clamp(220px, 16vw, 280px);
+  padding: clamp(10px, 0.9vw, 16px);
   background: #0f172a;
   border-radius: 12px;
   border: 2px solid rgba(40,50,196,0.2);
@@ -2875,4 +2875,19 @@ body::before {
   .or-cards { grid-template-columns: repeat(2, 1fr); }
   .cost-model { width: 100%; min-width: 0; }
   .testimonial-carousel { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .method-grid { grid-template-columns: repeat(2, 1fr); }
+  .or-cards { grid-template-columns: 1fr 1fr; }
+  .bt-fuel-grid { grid-template-columns: 1fr; }
+  .engage-grid { grid-template-columns: 1fr; }
+  .engage-card { transform: translateY(40px); }
+  .engage-card.visible { transform: translateY(0); }
+  .roadmap-track { grid-template-columns: 1fr 1fr; }
+  .roadmap-track::before { display: none; }
+  .testimonial-quote { font-size: clamp(24px, 5vw, 36px); }
+  .testimonial-carousel { min-height: clamp(320px, 60vw, 460px); }
+  .load-row { justify-content: flex-start; }
 }

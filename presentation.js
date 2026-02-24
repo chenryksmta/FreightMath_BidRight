@@ -8,9 +8,16 @@
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
 let current = 0;
+let slideTimers = [];  // Global timer pool for auto-play animations
+
+function clearSlideTimers() {
+  slideTimers.forEach(t => clearTimeout(t));
+  slideTimers = [];
+}
 
 function goToSlide(n) {
   if (n < 0 || n >= totalSlides || n === current) return;
+  clearSlideTimers();
   slides[current].classList.remove('active');
   current = n;
   slides[current].classList.add('active');
@@ -526,7 +533,7 @@ const observer = new MutationObserver(() => {
     const items = document.querySelectorAll('#origin-timeline .origin-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
     });
   }
 
@@ -535,7 +542,7 @@ const observer = new MutationObserver(() => {
     const items = document.querySelectorAll('#lifecycle-flow .lifecycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
     });
   }
 
@@ -544,16 +551,7 @@ const observer = new MutationObserver(() => {
     const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
-    });
-  }
-
-  // Slide 17: Why Now — bullets appear one by one
-  if (slides[17] && slides[17].classList.contains('active')) {
-    const bullets = slides[17].querySelectorAll('.whynow-reveal');
-    bullets.forEach(el => el.classList.remove('visible'));
-    bullets.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 600 + i * 600);
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
     });
   }
 
@@ -562,7 +560,16 @@ const observer = new MutationObserver(() => {
     const phases = slides[16].querySelectorAll('.roadmap-reveal');
     phases.forEach(p => p.classList.remove('visible'));
     phases.forEach((phase, i) => {
-      setTimeout(() => phase.classList.add('visible'), 400 + i * 400);
+      slideTimers.push(setTimeout(() => phase.classList.add('visible'), 400 + i * 400));
+    });
+  }
+
+  // Slide 17: Why Now — bullets appear one by one
+  if (slides[17] && slides[17].classList.contains('active')) {
+    const bullets = slides[17].querySelectorAll('.whynow-reveal');
+    bullets.forEach(el => el.classList.remove('visible'));
+    bullets.forEach((el, i) => {
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 600 + i * 600));
     });
   }
 
@@ -571,7 +578,7 @@ const observer = new MutationObserver(() => {
     const items = slides[18].querySelectorAll('.bt-fuel-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
     });
   }
 
@@ -580,7 +587,7 @@ const observer = new MutationObserver(() => {
     const cards = slides[19].querySelectorAll('.engage-card');
     cards.forEach(c => c.classList.remove('visible'));
     cards.forEach((card, i) => {
-      setTimeout(() => card.classList.add('visible'), 400 + i * 350);
+      slideTimers.push(setTimeout(() => card.classList.add('visible'), 400 + i * 350));
     });
   }
 });

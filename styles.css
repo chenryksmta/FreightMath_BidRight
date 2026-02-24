@@ -2833,6 +2833,10 @@ body::before {
 .cm-slider-dead::-moz-range-thumb { background: #64748b; }
 .cm-slider-hours::-webkit-slider-thumb { background: var(--accent); }
 .cm-slider-hours::-moz-range-thumb { background: var(--accent); }
+.cm-slider-load-time::-webkit-slider-thumb { background: #f59e0b; }
+.cm-slider-load-time::-moz-range-thumb { background: #f59e0b; }
+.cm-slider-unload-time::-webkit-slider-thumb { background: #f59e0b; }
+.cm-slider-unload-time::-moz-range-thumb { background: #f59e0b; }
 
 .cost-breakdown {
   background: rgba(255,255,255,0.04);

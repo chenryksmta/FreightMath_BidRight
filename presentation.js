@@ -418,16 +418,23 @@ function updateCostModel() {
   const loadedEl = document.getElementById('cm-loaded');
   const deadEl = document.getElementById('cm-dead');
   const hoursEl = document.getElementById('cm-hours');
+  const loadTimeEl = document.getElementById('cm-load-time');
+  const unloadTimeEl = document.getElementById('cm-unload-time');
   if (!loadedEl) return;
 
   const loaded = parseInt(loadedEl.value);
   const dead = parseInt(deadEl.value);
-  const hours = parseInt(hoursEl.value);
+  const transitHours = parseInt(hoursEl.value);
+  const loadTime = parseFloat(loadTimeEl.value);
+  const unloadTime = parseFloat(unloadTimeEl.value);
+  const hours = transitHours + loadTime + unloadTime;
 
   // Update output displays
   document.getElementById('cm-loaded-val').textContent = loaded;
   document.getElementById('cm-dead-val').textContent = dead;
-  document.getElementById('cm-hours-val').textContent = hours;
+  document.getElementById('cm-hours-val').textContent = transitHours;
+  document.getElementById('cm-load-time-val').textContent = loadTime.toFixed(1);
+  document.getElementById('cm-unload-time-val').textContent = unloadTime.toFixed(1);
 
   // Constants (matching FreightMath Primer)
   const varCPM = 1.67;
@@ -449,6 +456,8 @@ function updateCostModel() {
   document.getElementById('cm-rev').textContent = fmt(revenue);
   document.getElementById('cm-var').textContent = '\u2212' + fmt(varCost);
   document.getElementById('cm-fix').textContent = '\u2212' + fmt(fixCost);
+  const fixHint = document.getElementById('cm-fix-hint');
+  if (fixHint) fixHint.textContent = '$28.86/hr \u00d7 ' + hours.toFixed(1) + 'h';
   document.getElementById('cm-total').textContent = fmt(totalCost);
   document.getElementById('cm-cpm').textContent = '$' + cpm.toFixed(2);
   document.getElementById('cm-or').textContent = or.toFixed(1);
@@ -484,10 +493,14 @@ function resetCostModel() {
   const loadedEl = document.getElementById('cm-loaded');
   const deadEl = document.getElementById('cm-dead');
   const hoursEl = document.getElementById('cm-hours');
+  const loadTimeEl = document.getElementById('cm-load-time');
+  const unloadTimeEl = document.getElementById('cm-unload-time');
   if (!loadedEl) return;
   loadedEl.value = 802;
   deadEl.value = 160;
   hoursEl.value = 20;
+  loadTimeEl.value = 1.3;
+  unloadTimeEl.value = 1.3;
   updateCostModel();
 }
 

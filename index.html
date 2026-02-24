@@ -80,7 +80,7 @@
       <div class="full-content stagger">
         <div class="section-label">The Data Problem</div>
         <h2 class="slide-title" style="font-size:clamp(22px, 2vw, 42px);margin-bottom:clamp(6px, 0.5vw, 12px)">It Starts With Credible Data</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:1000px;margin-bottom:10px;line-height:1.4">Allocating costs and measuring true profitability in a truckload network is a complex exercise. Carriers must start with <strong style="color:var(--text-primary)">credible data</strong> and <strong style="color:var(--text-primary)">practical logic</strong> &mdash; but most TMS data looks like the left column. <span style="color:var(--accent)">Click each row to clean it.</span></p>
+        <p style="font-size:18px;color:var(--steel);max-width:1000px;margin-bottom:10px;line-height:1.4">Allocating costs and measuring true profitability in a truckload network is a complex exercise. Carriers must start with <strong style="color:var(--text-primary)">credible data</strong> and <strong style="color:var(--text-primary)">practical logic</strong> &mdash; but most TMS data looks like the left column. <span style="color:var(--accent)">Watch FreightMath clean it.</span></p>
 
         <div id="data-cleaner" style="width:100%;display:flex;flex-direction:column;gap:0">
 
@@ -93,7 +93,7 @@
           </div>
 
           <!-- Row 1: Inaccurate Timestamps -->
-          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="timestamps">
+          <div class="dc-row" data-issue="timestamps">
             <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
             <div class="dc-col-issue">
               <div class="dc-dirty-data">
@@ -115,7 +115,7 @@
           </div>
 
           <!-- Row 2: Missing Segments -->
-          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="segments">
+          <div class="dc-row" data-issue="segments">
             <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
             <div class="dc-col-issue">
               <div class="dc-dirty-data">
@@ -140,7 +140,7 @@
           </div>
 
           <!-- Row 3: Duplicate Trucks -->
-          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="duplicates">
+          <div class="dc-row" data-issue="duplicates">
             <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
             <div class="dc-col-issue">
               <div class="dc-dirty-data">
@@ -162,7 +162,7 @@
           </div>
 
           <!-- Row 4: Phantom Deadheads -->
-          <div class="dc-row" onclick="cleanDataRow(this)" data-issue="phantom">
+          <div class="dc-row" data-issue="phantom">
             <div class="dc-col-status"><span class="dc-badge dc-badge-dirty"><i data-lucide="alert-triangle" class="lucide-sm"></i></span></div>
             <div class="dc-col-issue">
               <div class="dc-dirty-data">
@@ -1081,7 +1081,7 @@
   <!-- Application Scripts (order matters) -->
   <script src="config.js?v=4"></script>
   <script src="map.js?v=4"></script>
-  <script src="presentation.js?v=6"></script>
+  <script src="presentation.js?v=7"></script>
 
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>

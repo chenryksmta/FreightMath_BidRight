@@ -136,8 +136,17 @@ function resetDataCleaner() {
   const prompt = document.getElementById('data-cleaner-prompt');
   if (prompt) {
     prompt.style.color = 'var(--accent)';
-    prompt.innerHTML = 'Click each row to clean the data &mdash; <span id="dc-counter">0</span> of 4 resolved';
+    prompt.innerHTML = 'Cleaning data &mdash; <span id="dc-counter">0</span> of 4 resolved';
   }
+}
+
+function autoCleanData() {
+  const container = document.getElementById('data-cleaner');
+  if (!container) return;
+  const rows = container.querySelectorAll('.dc-row');
+  rows.forEach((row, i) => {
+    slideTimers.push(setTimeout(() => cleanDataRow(row), 1200 + i * 2500));
+  });
 }
 
 // ─── SLIDE 3: COST ALLOCATION FUNNEL — Auto-play animation ───
@@ -490,9 +499,10 @@ setTimeout(animateORBars, 500);
 const observer = new MutationObserver(() => {
   animateORBars();
 
-  // Slide 2: Reset data cleaner
+  // Slide 2: Auto-clean data rows with stagger
   if (slides[2] && slides[2].classList.contains('active')) {
     resetDataCleaner();
+    autoCleanData();
   }
 
   // Slide 3: Cost Allocation Funnel animation

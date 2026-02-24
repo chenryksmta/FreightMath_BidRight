@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -189,55 +189,65 @@
       </div>
     </div>
 
-    <!-- SLIDE 3: COST ALLOCATION — Visual Pipeline -->
+    <!-- SLIDE 3: COST ALLOCATION — Animated Funnel/Hopper -->
     <div class="slide slide-dark" data-section="The Why" style="padding-top:clamp(70px, 5vw, 100px)">
-      <div class="full-content stagger">
+      <div class="full-content">
         <div class="section-label">Cost Allocation Engine</div>
         <h2 class="slide-title" style="font-size:clamp(24px, 2.3vw, 48px)">From GL Data to Load-Level Profitability</h2>
         <p style="font-size:16px;color:var(--steel);max-width:1000px;margin-bottom:16px">Every carrier&rsquo;s General Ledger is unique. FreightMath maps it to a common standard, then distributes costs to every load.</p>
 
         <div class="alloc-pipeline">
 
-          <!-- TIER 1: GL Data — scattered colored pills -->
-          <div class="gl-row">
-            <span class="gl-pill" style="--pill-color:rgba(225,29,72,0.12);--pill-text:var(--red);--pill-tilt:-2deg"><i data-lucide="fuel" class="lucide-xs"></i> Fuel</span>
-            <span class="gl-pill" style="--pill-color:rgba(40,50,196,0.12);--pill-text:var(--accent);--pill-tilt:1.5deg"><i data-lucide="user" class="lucide-xs"></i> Driver Pay</span>
-            <span class="gl-pill" style="--pill-color:rgba(5,150,105,0.12);--pill-text:var(--green);--pill-tilt:-1deg"><i data-lucide="shield" class="lucide-xs"></i> Insurance</span>
-            <span class="gl-pill" style="--pill-color:rgba(217,119,6,0.12);--pill-text:var(--yellow);--pill-tilt:2.5deg"><i data-lucide="wrench" class="lucide-xs"></i> Maintenance</span>
-            <span class="gl-pill" style="--pill-color:rgba(37,99,235,0.12);--pill-text:var(--cyan);--pill-tilt:-1.5deg"><i data-lucide="landmark" class="lucide-xs"></i> Tolls</span>
-            <span class="gl-pill" style="--pill-color:rgba(107,114,128,0.12);--pill-text:var(--steel);--pill-tilt:1deg"><i data-lucide="building" class="lucide-xs"></i> Admin</span>
-            <span class="gl-pill" style="--pill-color:rgba(139,92,246,0.12);--pill-text:#8b5cf6;--pill-tilt:-2.5deg"><i data-lucide="wallet" class="lucide-xs"></i> Benefits</span>
-            <span class="gl-pill" style="--pill-color:rgba(236,72,153,0.12);--pill-text:#ec4899;--pill-tilt:1.8deg"><i data-lucide="trending-down" class="lucide-xs"></i> Depreciation</span>
+          <!-- PHASE 1: GL Account Pills — scattered, then absorbed -->
+          <div class="gl-scatter">
+            <span class="gl-acct alloc-reveal" style="--scatter-x:-30px;--scatter-y:-12px;--scatter-r:-4deg;--pill-color:rgba(225,29,72,0.12);--pill-text:var(--red)" data-delay="0"><i data-lucide="fuel" class="lucide-xs"></i> Acct 5100 &mdash; Fuel Expense</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:20px;--scatter-y:-8px;--scatter-r:3deg;--pill-color:rgba(40,50,196,0.12);--pill-text:var(--accent)" data-delay="100"><i data-lucide="user" class="lucide-xs"></i> Acct 6200 &mdash; Driver Settlements</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:-15px;--scatter-y:10px;--scatter-r:-2deg;--pill-color:rgba(5,150,105,0.12);--pill-text:var(--green)" data-delay="200"><i data-lucide="shield" class="lucide-xs"></i> Acct 6500 &mdash; Insurance Premiums</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:25px;--scatter-y:6px;--scatter-r:5deg;--pill-color:rgba(217,119,6,0.12);--pill-text:var(--yellow)" data-delay="300"><i data-lucide="wrench" class="lucide-xs"></i> Acct 5400 &mdash; Repairs &amp; Maint</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:-22px;--scatter-y:-6px;--scatter-r:-3deg;--pill-color:rgba(37,99,235,0.12);--pill-text:var(--cyan)" data-delay="400"><i data-lucide="landmark" class="lucide-xs"></i> Acct 5300 &mdash; Tolls &amp; Permits</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:18px;--scatter-y:12px;--scatter-r:2deg;--pill-color:rgba(107,114,128,0.12);--pill-text:var(--steel)" data-delay="500"><i data-lucide="building" class="lucide-xs"></i> Acct 7100 &mdash; Admin &amp; Overhead</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:-28px;--scatter-y:4px;--scatter-r:-5deg;--pill-color:rgba(139,92,246,0.12);--pill-text:#8b5cf6" data-delay="600"><i data-lucide="wallet" class="lucide-xs"></i> Acct 6300 &mdash; Benefits &amp; Tax</span>
+            <span class="gl-acct alloc-reveal" style="--scatter-x:12px;--scatter-y:-10px;--scatter-r:4deg;--pill-color:rgba(236,72,153,0.12);--pill-text:#ec4899" data-delay="700"><i data-lucide="trending-down" class="lucide-xs"></i> Acct 5200 &mdash; Depreciation</span>
           </div>
 
-          <!-- Connector: Map & Transform -->
-          <div class="alloc-connector">
-            <i data-lucide="chevron-down"></i>
-            <span style="color:var(--accent);text-transform:uppercase;letter-spacing:0.1em">Map &amp; Transform</span>
-            <i data-lucide="chevron-down"></i>
+          <!-- PHASE 2-3: MapLedger Funnel -->
+          <div class="alloc-funnel alloc-reveal" data-delay="0">
+            <div class="funnel-body">
+              <div class="funnel-shimmer"></div>
+              <div class="funnel-label"><img src="KSM_MapLedger_Logo_RGB_Color%20(002).png" alt="MapLedger" class="funnel-logo"></div>
+              <div class="funnel-particles">
+                <span class="funnel-dot" style="--dot-color:var(--red);--dot-x:25%"></span>
+                <span class="funnel-dot" style="--dot-color:var(--accent);--dot-x:50%"></span>
+                <span class="funnel-dot" style="--dot-color:var(--green);--dot-x:70%"></span>
+                <span class="funnel-dot" style="--dot-color:var(--yellow);--dot-x:35%"></span>
+                <span class="funnel-dot" style="--dot-color:var(--cyan);--dot-x:60%"></span>
+                <span class="funnel-dot" style="--dot-color:#8b5cf6;--dot-x:45%"></span>
+              </div>
+            </div>
+            <div class="funnel-spout"></div>
           </div>
 
-          <!-- TIER 2: Standard Chart of Accounts -->
-          <div class="coa-box">
+          <!-- PHASE 4: Standard Chart of Accounts -->
+          <div class="coa-box alloc-reveal" data-delay="0">
             <div class="coa-header"><i data-lucide="table-2" class="lucide-xs"></i> FreightMath Standard Chart of Accounts</div>
             <div class="coa-grid">
-              <div class="coa-cell" style="border-left:3px solid var(--accent)">Driver Compensation</div>
-              <div class="coa-cell" style="border-left:3px solid var(--red)">Fuel</div>
-              <div class="coa-cell" style="border-left:3px solid #8b5cf6">Equipment Expense</div>
-              <div class="coa-cell" style="border-left:3px solid var(--yellow)">Maintenance</div>
-              <div class="coa-cell" style="border-left:3px solid var(--green)">Insurance</div>
-              <div class="coa-cell" style="border-left:3px solid var(--cyan)">Direct Onroad Expense</div>
-              <div class="coa-cell" style="border-left:3px solid var(--steel)">Overhead</div>
-              <div class="coa-cell" style="border-left:3px solid #ec4899">Admin</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--accent)" data-delay="0">Driver Compensation</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--red)" data-delay="120">Fuel</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid #8b5cf6" data-delay="240">Equipment Expense</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--yellow)" data-delay="360">Maintenance</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--green)" data-delay="480">Insurance</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--cyan)" data-delay="600">Direct Onroad Expense</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid var(--steel)" data-delay="720">Overhead</div>
+              <div class="coa-cell alloc-reveal" style="border-left:3px solid #ec4899" data-delay="840">Admin</div>
             </div>
           </div>
 
-          <!-- Connector: Branching lines -->
-          <div class="alloc-connector" style="padding:4px 0">
+          <!-- PHASE 5: Distribution -->
+          <div class="alloc-connector alloc-reveal" data-delay="0" style="padding:4px 0">
             <i data-lucide="chevron-down"></i>
             <span style="color:var(--green);text-transform:uppercase;letter-spacing:0.1em">Distribute to Loads</span>
           </div>
-          <div class="alloc-branch">
+          <div class="alloc-branch alloc-reveal" data-delay="0">
             <div class="branch-drop"></div>
             <div class="branch-drop"></div>
             <div class="branch-drop"></div>
@@ -245,10 +255,9 @@
             <div class="branch-drop"></div>
           </div>
 
-          <!-- TIER 3: 5 Methods with mini-visualizations -->
+          <!-- 5 Method Cards -->
           <div class="method-grid">
-            <!-- Variable Costs -->
-            <div class="method-card">
+            <div class="method-card alloc-reveal" data-delay="0">
               <div class="method-icon" style="background:rgba(40,50,196,0.1);color:var(--accent)"><i data-lucide="truck"></i></div>
               <h4>Variable Costs</h4>
               <div class="mini-bar">
@@ -258,8 +267,7 @@
               <span class="mini-legend">Loaded 65% &middot; Empty 35%</span>
               <p class="method-desc">Proportional share of empty &amp; loaded miles</p>
             </div>
-            <!-- Overhead -->
-            <div class="method-card">
+            <div class="method-card alloc-reveal" data-delay="200">
               <div class="method-icon" style="background:rgba(37,99,235,0.1);color:var(--cyan)"><i data-lucide="clock"></i></div>
               <h4>Overhead</h4>
               <div class="mini-bar">
@@ -270,8 +278,7 @@
               <span class="mini-legend">Loads &middot; Empty &middot; Dwell</span>
               <p class="method-desc">Distributed by loads, empty &amp; dwell hours</p>
             </div>
-            <!-- Pre-Standard Allocations -->
-            <div class="method-card">
+            <div class="method-card alloc-reveal" data-delay="400">
               <div class="method-icon" style="background:rgba(5,150,105,0.1);color:var(--green)"><i data-lucide="user-check"></i></div>
               <h4>Pre-Standard</h4>
               <div class="mini-checks">
@@ -281,15 +288,13 @@
               </div>
               <p class="method-desc">Specific costs allocated directly to each load</p>
             </div>
-            <!-- Toll Costs -->
-            <div class="method-card">
+            <div class="method-card alloc-reveal" data-delay="600">
               <div class="method-icon" style="background:rgba(217,119,6,0.1);color:var(--yellow)"><i data-lucide="shield-check"></i></div>
               <h4>Toll Costs</h4>
               <div class="toll-badge"><i data-lucide="check-circle" style="width:12px;height:12px"></i> Near-Time Validated</div>
               <p class="method-desc">Direct &amp; accurate toll costs, validated in near-time</p>
             </div>
-            <!-- Trailer Pool -->
-            <div class="method-card">
+            <div class="method-card alloc-reveal" data-delay="800">
               <div class="method-icon" style="background:rgba(225,29,72,0.1);color:var(--red)"><i data-lucide="box"></i></div>
               <h4>Trailer Pool</h4>
               <div class="pool-grid">
@@ -305,19 +310,19 @@
           </div>
 
           <!-- Connector to loads -->
-          <div class="alloc-connector" style="padding:4px 0">
+          <div class="alloc-connector alloc-reveal" data-delay="0" style="padding:4px 0">
             <i data-lucide="chevron-down"></i>
           </div>
 
-          <!-- TIER 4: Load-level output -->
+          <!-- Load-level output -->
           <div class="load-row">
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 1</span></div>
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 2</span></div>
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 3</span></div>
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 4</span></div>
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 5</span></div>
-            <div class="load-box"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 6</span></div>
-            <div class="load-box" style="opacity:0.5;border-style:dashed"><i data-lucide="package"></i><div class="load-cost-bar" style="opacity:0.4"></div><span class="load-label">Load n</span></div>
+            <div class="load-box alloc-reveal" data-delay="0"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 1</span></div>
+            <div class="load-box alloc-reveal" data-delay="150"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 2</span></div>
+            <div class="load-box alloc-reveal" data-delay="300"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 3</span></div>
+            <div class="load-box alloc-reveal" data-delay="450"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 4</span></div>
+            <div class="load-box alloc-reveal" data-delay="600"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 5</span></div>
+            <div class="load-box alloc-reveal" data-delay="750"><i data-lucide="package"></i><div class="load-cost-bar"></div><span class="load-label">Load 6</span></div>
+            <div class="load-box alloc-reveal" data-delay="900" style="border-style:dashed"><i data-lucide="package"></i><div class="load-cost-bar" style="opacity:0.4"></div><span class="load-label">Load n</span></div>
           </div>
 
         </div>
@@ -491,6 +496,19 @@
               <img src="PMBR%20Logo.png" alt="Pemberton Truck Lines, Inc.">
             </div>
           </div>
+
+          <!-- Testimonial 4: Leonard's Express -->
+          <div class="testimonial-slide" data-testimonial="3">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <blockquote class="testimonial-quote">Before FreightMath, explaining our costs to clients was an uphill battle. Now, the data speaks for itself. It&rsquo;s easy to understand, easy to present, and in this market, it&rsquo;s been a game-changer &mdash; giving us the credibility to show clients both the efficiencies we&rsquo;ve built and the true cost of moving their freight.</blockquote>
+            <div class="testimonial-attribution">
+              <span class="testimonial-name">Michael McGovern</span>
+              <span class="testimonial-title">Chief Operating Officer</span>
+            </div>
+            <div class="testimonial-logo">
+              <img src="Leonards.png" alt="Leonard's Express">
+            </div>
+          </div>
         </div>
 
         <!-- Dot indicators -->
@@ -498,6 +516,7 @@
           <button class="testimonial-dot active" onclick="goToTestimonial(0)"></button>
           <button class="testimonial-dot" onclick="goToTestimonial(1)"></button>
           <button class="testimonial-dot" onclick="goToTestimonial(2)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(3)"></button>
         </div>
       </div>
     </div>
@@ -598,33 +617,30 @@
         <div class="section-label">Origin Story</div>
         <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">From SalesScope to BidRight</h2>
         <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Born inside a real carrier operation. Proven over 10 consecutive quarters. Now available to the industry.</p>
-        <div id="origin-timeline" class="flow-steps" onclick="revealNextOrigin()" style="cursor:pointer;max-width:1400px">
-          <div class="flow-step origin-reveal" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+        <div id="origin-timeline" class="flow-steps" style="max-width:1400px">
+          <div class="flow-step origin-reveal">
             <div class="num">SalesScope</div>
             <h4>Internal Tool</h4>
             <p>Built inside Nussbaum Transportation to automate their own bid process &amp; pricing</p>
           </div>
-          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+          <div class="flow-arrow origin-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal">
             <div class="num">10 Quarters</div>
             <h4>Proven Results</h4>
             <p>5% above market rates for 10 consecutive quarters. Industry-leading miles per truck.</p>
           </div>
-          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+          <div class="flow-arrow origin-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal">
             <div class="num">2025</div>
             <h4><i data-lucide="award" class="lucide-xs"></i> CCJ Innovator</h4>
             <p>CCJ crowns Nussbaum &ldquo;Innovator of the Year&rdquo; for the software now known as BidRight</p>
           </div>
-          <div class="flow-arrow origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step origin-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease;border-color:rgba(40,50,196,0.3)">
+          <div class="flow-arrow origin-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step origin-reveal" style="border-color:rgba(40,50,196,0.3)">
             <div class="num" style="color:var(--accent)">Now</div>
             <h4 style="color:var(--accent)">BidRight + FM</h4>
             <p>Productized for the industry &mdash; powered by FreightMath intelligence</p>
           </div>
-        </div>
-        <div id="origin-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
-          <button class="reveal-btn" onclick="revealNextOrigin()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Milestone</button>
         </div>
       </div>
     </div>
@@ -665,33 +681,30 @@
         <div class="section-label">Section 4 &mdash; Four Core Capabilities</div>
         <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">FM + BidRight Together</h2>
         <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">BidRight automates manual steps and brings clarity to pricing, profitability, and performance &mdash; all in one place.</p>
-        <div id="lifecycle-flow" class="flow-steps" onclick="revealNextLifecycle()" style="cursor:pointer;max-width:1400px">
-          <div class="flow-step lifecycle-reveal" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+        <div id="lifecycle-flow" class="flow-steps" style="max-width:1400px">
+          <div class="flow-step lifecycle-reveal">
             <div class="num">01</div>
             <h4>Bid Management</h4>
             <p>Bulk-import RFPs into a standardized format. Organize &amp; track in one platform.</p>
           </div>
-          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+          <div class="flow-arrow lifecycle-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal">
             <div class="num">02</div>
             <h4>Workflow Collaboration</h4>
             <p>Review progress, assignments, and comments. Flag issues for upcoming meetings.</p>
           </div>
-          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+          <div class="flow-arrow lifecycle-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal">
             <div class="num">03</div>
             <h4>Pricing Intelligence</h4>
             <p>Analyze market data, past decisions, profitability trends &mdash; all within your workflow.</p>
           </div>
-          <div class="flow-arrow lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease"><i data-lucide="chevron-right"></i></div>
-          <div class="flow-step lifecycle-reveal" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+          <div class="flow-arrow lifecycle-reveal"><i data-lucide="chevron-right"></i></div>
+          <div class="flow-step lifecycle-reveal">
             <div class="num">04</div>
             <h4>Award Review</h4>
             <p>Evaluate awarded lanes and quickly identify unprofitable freight.</p>
           </div>
-        </div>
-        <div id="lifecycle-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
-          <button class="reveal-btn" onclick="revealNextLifecycle()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Capability</button>
         </div>
       </div>
     </div>
@@ -812,91 +825,88 @@
         <div class="section-label">The BidRight Flywheel</div>
         <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Continuous Improvement</h2>
         <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Every bid outcome feeds back into the system. This is how Nussbaum stayed 5% above market for 10 quarters.</p>
-        <div id="cycle-diagram" class="cycle-container" onclick="revealNextCycle()" style="cursor:pointer;max-width:900px;margin:0 auto">
+        <div id="cycle-diagram" class="cycle-container" style="max-width:900px;margin:0 auto">
           <div class="cycle-ring">
-            <div class="cycle-step cycle-reveal" data-pos="top" style="opacity:1;transform:translateY(0);transition:all 0.5s ease">
+            <div class="cycle-step cycle-reveal" data-pos="top">
               <div class="cycle-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="inbox"></i></div>
               <div class="cycle-label">Import</div>
               <div class="cycle-desc">Bulk-import &amp; score RFP lanes</div>
             </div>
-            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="right" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="right">
               <div class="cycle-icon" style="background:rgba(78,167,0,0.15);color:var(--green)"><i data-lucide="dollar-sign"></i></div>
               <div class="cycle-label">Price</div>
               <div class="cycle-desc">FM-powered pricing intelligence</div>
             </div>
-            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="bottom" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="bottom">
               <div class="cycle-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="trophy"></i></div>
               <div class="cycle-label">Award</div>
               <div class="cycle-desc">Evaluate wins &amp; flag unprofitable freight</div>
             </div>
-            <div class="cycle-arrow cycle-reveal" style="opacity:0;transition:all 0.5s ease"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="left" style="opacity:0;transform:translateY(8px);transition:all 0.5s ease">
+            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
+            <div class="cycle-step cycle-reveal" data-pos="left">
               <div class="cycle-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="refresh-cw"></i></div>
               <div class="cycle-label">Refine</div>
               <div class="cycle-desc">Improve models with every outcome</div>
             </div>
           </div>
         </div>
-        <div id="cycle-prompt" style="margin-top:16px;text-align:center;transition:opacity 0.4s">
-          <button class="reveal-btn" onclick="revealNextCycle()"><i data-lucide="chevron-right" class="lucide-xs"></i> Next Step</button>
-        </div>
       </div>
     </div>
 
     <!-- SLIDE 14: DEVELOPMENT ROADMAP & SECURITY -->
     <div class="slide slide-dark" data-section="How It Works">
-      <div class="full-content stagger">
-        <div class="section-label">Development Progress</div>
-        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">BidRight Roadmap</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Actively building in the open. Real progress, real timelines.</p>
+      <div class="full-content" style="align-items:center;text-align:center">
+        <div class="section-label" style="justify-content:center">Development Progress</div>
+        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px);text-align:center">BidRight Roadmap</h2>
+        <p style="font-size:clamp(24px, 2vw, 40px);color:var(--steel);max-width:1400px;margin-bottom:clamp(32px, 3vw, 56px);text-align:center">Actively building in the open. Real progress, real timelines.</p>
 
         <!-- Roadmap Timeline -->
-        <div class="roadmap" style="max-width:1200px">
-          <div class="roadmap-track">
-            <div class="roadmap-phase completed">
-              <div class="roadmap-marker"><i data-lucide="check" class="lucide-sm"></i></div>
-              <div class="roadmap-content">
+        <div class="roadmap" style="max-width:none">
+          <div class="roadmap-track roadmap-track-lg">
+            <div class="roadmap-phase completed roadmap-reveal">
+              <div class="roadmap-marker roadmap-marker-lg"><i data-lucide="check" class="lucide-sm"></i></div>
+              <div class="roadmap-content roadmap-content-lg">
                 <h4>Phase 1: Foundation</h4>
-                <span class="roadmap-status tag tag-green" style="font-size:11px">Completed</span>
-                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                <span class="roadmap-status tag tag-green" style="font-size:clamp(13px, 0.9vw, 18px)">Completed</span>
+                <ul style="margin-top:clamp(12px, 1vw, 20px);font-size:clamp(20px, 1.6vw, 32px);color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:clamp(6px, 0.5vw, 12px)">
                   <li>Architecture &amp; Automation</li>
                   <li>Database &amp; Navigation</li>
                   <li>Customer Login &amp; Teams</li>
                 </ul>
               </div>
             </div>
-            <div class="roadmap-phase completed">
-              <div class="roadmap-marker"><i data-lucide="check" class="lucide-sm"></i></div>
-              <div class="roadmap-content">
+            <div class="roadmap-phase completed roadmap-reveal">
+              <div class="roadmap-marker roadmap-marker-lg"><i data-lucide="check" class="lucide-sm"></i></div>
+              <div class="roadmap-content roadmap-content-lg">
                 <h4>Phase 2: Bid Setup</h4>
-                <span class="roadmap-status tag tag-green" style="font-size:11px">Completed</span>
-                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                <span class="roadmap-status tag tag-green" style="font-size:clamp(13px, 0.9vw, 18px)">Completed</span>
+                <ul style="margin-top:clamp(12px, 1vw, 20px);font-size:clamp(20px, 1.6vw, 32px);color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:clamp(6px, 0.5vw, 12px)">
                   <li>Creating &amp; Importing Bids</li>
                   <li>Task Management</li>
                   <li>Customer Details</li>
                 </ul>
               </div>
             </div>
-            <div class="roadmap-phase in-progress">
-              <div class="roadmap-marker"><i data-lucide="loader" class="lucide-sm"></i></div>
-              <div class="roadmap-content">
+            <div class="roadmap-phase in-progress roadmap-reveal">
+              <div class="roadmap-marker roadmap-marker-lg"><i data-lucide="loader" class="lucide-sm"></i></div>
+              <div class="roadmap-content roadmap-content-lg">
                 <h4>Phase 3: Bid Workflow</h4>
-                <span class="roadmap-status tag tag-cyan" style="font-size:11px">In Progress</span>
-                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                <span class="roadmap-status tag tag-cyan" style="font-size:clamp(13px, 0.9vw, 18px)">In Progress</span>
+                <ul style="margin-top:clamp(12px, 1vw, 20px);font-size:clamp(20px, 1.6vw, 32px);color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:clamp(6px, 0.5vw, 12px)">
                   <li>Workflow &amp; Bid Detail Pages</li>
                   <li>Export &amp; Bid Import</li>
                   <li>Feedback &amp; Awards Control</li>
                 </ul>
               </div>
             </div>
-            <div class="roadmap-phase design">
-              <div class="roadmap-marker"><i data-lucide="pencil" class="lucide-sm"></i></div>
-              <div class="roadmap-content">
+            <div class="roadmap-phase design roadmap-reveal">
+              <div class="roadmap-marker roadmap-marker-lg"><i data-lucide="pencil" class="lucide-sm"></i></div>
+              <div class="roadmap-content roadmap-content-lg">
                 <h4>Phase 4: Follow Up</h4>
-                <span class="roadmap-status tag tag-yellow" style="font-size:11px">Design Phase</span>
-                <ul style="margin-top:8px;font-size:16px;color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:4px">
+                <span class="roadmap-status tag tag-yellow" style="font-size:clamp(13px, 0.9vw, 18px)">Design Phase</span>
+                <ul style="margin-top:clamp(12px, 1vw, 20px);font-size:clamp(20px, 1.6vw, 32px);color:var(--steel);list-style:none;display:flex;flex-direction:column;gap:clamp(6px, 0.5vw, 12px)">
                   <li>Dashboard &amp; Awards</li>
                   <li>Payment Processing</li>
                   <li>Rate &amp; Commit Review</li>
@@ -907,9 +917,9 @@
         </div>
 
         <!-- Security Bar -->
-        <div style="display:flex;gap:16px;align-items:center;margin-top:24px;padding:16px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;max-width:1200px;flex-wrap:wrap">
-          <i data-lucide="shield-check" style="width:20px;height:20px;color:var(--green);flex-shrink:0"></i>
-          <span style="font-size:16px;color:var(--steel)"><strong style="color:var(--text-primary)">Security First</strong> &mdash; Role-based access &bull; Division management &bull; Audit logging &bull; Your privacy is our top priority</span>
+        <div class="roadmap-reveal" style="display:flex;gap:clamp(16px, 1.4vw, 28px);align-items:center;justify-content:center;margin-top:clamp(28px, 2.5vw, 48px);padding:clamp(20px, 1.6vw, 36px) clamp(28px, 2.2vw, 48px);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:16px;max-width:none;flex-wrap:wrap">
+          <i data-lucide="shield-check" style="width:clamp(28px, 2vw, 40px);height:clamp(28px, 2vw, 40px);color:var(--green);flex-shrink:0"></i>
+          <span style="font-size:clamp(22px, 1.8vw, 36px);color:var(--steel)"><strong style="color:var(--text-primary)">Security First</strong> &mdash; Role-based access &bull; Division management &bull; Audit logging &bull; Your privacy is our top priority</span>
         </div>
       </div>
     </div>
@@ -920,47 +930,96 @@
 
     <!-- SLIDE 15: WHY NOW — Urgency Drivers -->
     <div class="slide slide-accent" data-section="Next Steps">
-      <div class="full-content stagger">
+      <div class="full-content">
         <div class="section-label">Section 5 &mdash; Why Now</div>
-        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Market Conditions Demand Better Tools</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">The carriers who win the next cycle will be the ones who invest in pricing infrastructure now.</p>
-        <ul class="bullet-list" style="max-width:900px">
-          <li><span class="dot"></span><strong style="color:var(--text-primary)">Rate volatility is increasing</strong> &mdash; Q/Q swings are wider than historical averages</li>
-          <li><span class="dot"></span><strong style="color:var(--text-primary)">Shippers expect more from carriers</strong> &mdash; data-backed bids win more awards</li>
-          <li><span class="dot"></span><strong style="color:var(--text-primary)">Margin compression is real</strong> &mdash; the days of "good enough" pricing are over</li>
-          <li><span class="dot"></span><strong style="color:var(--text-primary)">RFP complexity is growing</strong> &mdash; more lanes, tighter timelines, multi-round bids</li>
-          <li><span class="dot"></span><strong style="color:var(--text-primary)">Your competitors are investing</strong> &mdash; pricing technology is no longer optional</li>
+        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px)">Market Conditions Demand Better Tools</h2>
+        <p style="font-size:clamp(28px, 2.2vw, 44px);color:var(--steel);max-width:1400px;margin-bottom:clamp(32px, 3vw, 56px)">The carriers who win the next cycle will be the ones who invest in pricing infrastructure now.</p>
+        <ul class="bullet-list whynow-list" style="max-width:1400px">
+          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Rate volatility is increasing</strong> &mdash; Q/Q swings are wider than historical averages</li>
+          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Shippers expect more from carriers</strong> &mdash; data-backed bids win more awards</li>
+          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Margin compression is real</strong> &mdash; the days of &ldquo;good enough&rdquo; pricing are over</li>
+          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">RFP complexity is growing</strong> &mdash; more lanes, tighter timelines, multi-round bids</li>
+          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Your competitors are investing</strong> &mdash; pricing technology is no longer optional</li>
         </ul>
       </div>
     </div>
 
-    <!-- SLIDE 16: WAYS TO ENGAGE — 3-Column Card Grid -->
+    <!-- SLIDE 16: BREAKTHROUGH FUEL — How FM + BR Handle It -->
     <div class="slide slide-dark" data-section="Next Steps">
-      <div class="center-content stagger">
-        <div class="section-label">Your Next Step</div>
-        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Ways to Engage</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:28px">Choose the path that fits your timeline and goals.</p>
-        <div class="three-col" style="max-width:1100px">
-          <div class="card" style="padding:32px;text-align:center">
-            <div class="lucide-hero"><i data-lucide="book-open" style="width:40px;height:40px;color:var(--steel)"></i></div>
-            <h3 style="font-size:20px;margin-bottom:8px">Learn More</h3>
-            <p style="font-size:16px">Deep-dive into FreightMath capabilities and see how your data fits the model.</p>
-            <div class="divider-line" style="margin:16px auto"></div>
-            <p style="font-size:16px;color:var(--accent);font-weight:600">30-min overview</p>
+      <div class="full-content">
+        <div class="section-label">The Fuel Surcharge Reality</div>
+        <h2 class="slide-title" style="font-size:clamp(30px, 3vw, 64px)">Breakthrough Fuel &mdash; Threat or Managed Input?</h2>
+        <p style="font-size:clamp(22px, 1.8vw, 36px);color:var(--steel);max-width:1400px;margin-bottom:clamp(24px, 2vw, 44px)">~40% of RFPs now mandate Breakthrough Fuel Recovery. Carriers who treat FSC as a black box lose margin. FreightMath + BidRight turn it into a controlled variable.</p>
+
+        <div class="bt-fuel-grid">
+          <!-- Left: The Problem -->
+          <div class="bt-fuel-panel bt-fuel-reveal">
+            <div class="bt-fuel-header" style="color:var(--red)"><i data-lucide="alert-triangle" style="width:clamp(24px, 1.8vw, 36px);height:clamp(24px, 1.8vw, 36px)"></i> The Carrier Risk</div>
+            <ul class="bt-fuel-list">
+              <li><strong>Rate compression</strong> &mdash; FSC isolated, procurement pressure shifts entirely to linehaul</li>
+              <li><strong>MPG squeeze</strong> &mdash; Moving benchmarks from 6.0 to 6.5 MPG cuts reimbursed gallons ~8% per load</li>
+              <li><strong>Uncompensated costs</strong> &mdash; Deadhead, detention &amp; idling never reimbursed under Fuel Recovery</li>
+              <li><strong>Black-box pricing</strong> &mdash; Proprietary algorithms carriers cannot independently verify</li>
+            </ul>
           </div>
-          <div class="card" style="padding:32px;text-align:center;border-color:rgba(40,50,196,0.25)">
-            <div class="lucide-hero"><i data-lucide="monitor-play" style="width:40px;height:40px;color:var(--accent)"></i></div>
-            <h3 style="font-size:20px;margin-bottom:8px;color:var(--accent)">Request Demo</h3>
-            <p style="font-size:16px">See BidRight in action with sample RFP data from your market.</p>
-            <div class="divider-line" style="margin:16px auto"></div>
-            <p style="font-size:16px;color:var(--accent);font-weight:600">Live walkthrough</p>
+
+          <!-- Right: The FM + BR Solution -->
+          <div class="bt-fuel-panel bt-fuel-reveal" style="border-color:rgba(40,50,196,0.2)">
+            <div class="bt-fuel-header" style="color:var(--accent)"><i data-lucide="shield-check" style="width:clamp(24px, 1.8vw, 36px);height:clamp(24px, 1.8vw, 36px)"></i> How FM + BidRight Protect You</div>
+            <ul class="bt-fuel-list bt-fuel-list-green">
+              <li><strong>Cost-plus linehaul</strong> &mdash; FM calculates total required price (LH + FSC), then subtracts shipper-specific FSC to set your true floor</li>
+              <li><strong>Uncompensated fuel recovery</strong> &mdash; Deadhead MPG, idle burn &amp; detention costs built into every lane price</li>
+              <li><strong>Volatility premium</strong> &mdash; FSC shortfall vs. historical DOE pricing automatically factored in</li>
+              <li><strong>BidRight enforcement</strong> &mdash; Pre-RFP due diligence checklist, protective contract language &amp; audit-ready documentation</li>
+            </ul>
           </div>
-          <div class="card" style="padding:32px;text-align:center">
-            <div class="lucide-hero"><i data-lucide="rocket" style="width:40px;height:40px;color:var(--steel)"></i></div>
-            <h3 style="font-size:20px;margin-bottom:8px">Start Pilot</h3>
-            <p style="font-size:16px">Run your next RFP through BidRight with full FM integration.</p>
-            <div class="divider-line" style="margin:16px auto"></div>
-            <p style="font-size:16px;color:var(--accent);font-weight:600">90-day pilot</p>
+        </div>
+
+        <!-- Bottom stat bar -->
+        <div class="bt-fuel-stats bt-fuel-reveal">
+          <div class="bt-fuel-stat">
+            <span class="bt-fuel-stat-val" style="color:var(--red)">~40%</span>
+            <span class="bt-fuel-stat-label">of RFPs mandate Breakthrough</span>
+          </div>
+          <div class="bt-fuel-stat">
+            <span class="bt-fuel-stat-val" style="color:var(--yellow)">$0.40/gal</span>
+            <span class="bt-fuel-stat-label">less than traditional FSC methods</span>
+          </div>
+          <div class="bt-fuel-stat">
+            <span class="bt-fuel-stat-val" style="color:var(--green)">100%</span>
+            <span class="bt-fuel-stat-label">of fuel costs accounted in FM model</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 17: WAYS TO ENGAGE — 3-Column Card Grid -->
+    <div class="slide slide-dark" data-section="Next Steps">
+      <div class="center-content">
+        <div class="section-label" style="justify-content:center">Your Next Step</div>
+        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px);text-align:center">Ways to Engage</h2>
+        <p style="font-size:clamp(24px, 2vw, 40px);color:var(--steel);max-width:1200px;margin-bottom:clamp(32px, 3vw, 56px);text-align:center">Choose the path that fits your timeline and goals.</p>
+        <div class="engage-grid">
+          <div class="card engage-card" data-engage="0">
+            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="book-open" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--steel)"></i></div>
+            <h3>Learn More</h3>
+            <p>Deep-dive into FreightMath capabilities and see how your data fits the model.</p>
+            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
+            <p class="engage-cta">30-min overview</p>
+          </div>
+          <div class="card engage-card" data-engage="1" style="border-color:rgba(40,50,196,0.25)">
+            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="monitor-play" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--accent)"></i></div>
+            <h3 style="color:var(--accent)">Request Demo</h3>
+            <p>See BidRight in action with sample RFP data from your market.</p>
+            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
+            <p class="engage-cta">Live walkthrough</p>
+          </div>
+          <div class="card engage-card" data-engage="2">
+            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="rocket" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--steel)"></i></div>
+            <h3>Start Pilot</h3>
+            <p>Run your next RFP through BidRight with full FM integration.</p>
+            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
+            <p class="engage-cta">90-day pilot</p>
           </div>
         </div>
       </div>
@@ -1003,7 +1062,7 @@
   <!-- Bottom Navigation -->
   <nav id="nav">
     <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>&larr; Previous</button>
-    <div id="slide-counter"><span>1</span> / 20</div>
+    <div id="slide-counter"><span>1</span> / 21</div>
     <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
   </nav>
 
@@ -1019,7 +1078,7 @@
   <!-- Application Scripts (order matters) -->
   <script src="config.js?v=4"></script>
   <script src="map.js?v=4"></script>
-  <script src="presentation.js?v=4"></script>
+  <script src="presentation.js?v=5"></script>
 
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>

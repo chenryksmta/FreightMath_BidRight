@@ -1286,6 +1286,52 @@ body::before {
   display: inline-block;
 }
 
+/* Large roadmap variant — doubled sizes */
+.roadmap-track-lg {
+  gap: clamp(20px, 1.8vw, 40px);
+}
+
+.roadmap-track-lg::before {
+  top: clamp(28px, 2.25vw, 44px);
+  left: clamp(28px, 2.25vw, 44px);
+  right: clamp(28px, 2.25vw, 44px);
+  height: 3px;
+}
+
+.roadmap-marker-lg {
+  width: clamp(52px, 3.8vw, 80px) !important;
+  height: clamp(52px, 3.8vw, 80px) !important;
+  border-width: 3px;
+}
+
+.roadmap-marker-lg i[data-lucide] {
+  width: clamp(24px, 1.8vw, 36px) !important;
+  height: clamp(24px, 1.8vw, 36px) !important;
+}
+
+.roadmap-content-lg {
+  padding: clamp(24px, 2vw, 44px) !important;
+  border-radius: clamp(14px, 1.1vw, 24px) !important;
+}
+
+.roadmap-content-lg h4 {
+  font-size: clamp(24px, 2vw, 40px) !important;
+  margin-bottom: clamp(8px, 0.7vw, 14px) !important;
+}
+
+/* Left-to-right reveal for roadmap phases */
+.roadmap-reveal {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roadmap-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 @media (max-width: 1024px) {
   .roadmap-track {
     grid-template-columns: 1fr;
@@ -1293,6 +1339,231 @@ body::before {
   .roadmap-track::before {
     display: none;
   }
+  .roadmap-reveal {
+    transform: translateY(30px);
+  }
+  .roadmap-reveal.visible {
+    transform: translateY(0);
+  }
+}
+
+/* ─── WAYS TO ENGAGE — Large Cards with Left-to-Right Reveal ─── */
+.engage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 2.5vw, 56px);
+  width: 100%;
+  max-width: none;
+  align-items: stretch;
+}
+
+.engage-card {
+  padding: clamp(56px, 4.5vw, 96px) clamp(40px, 3.2vw, 72px) !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.engage-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.engage-card h3 {
+  font-size: clamp(32px, 2.8vw, 56px) !important;
+  margin-bottom: clamp(14px, 1.2vw, 24px) !important;
+}
+
+.engage-card p {
+  font-size: clamp(24px, 2vw, 40px) !important;
+  line-height: 1.5;
+}
+
+.engage-cta {
+  color: var(--accent) !important;
+  font-weight: 700 !important;
+  font-size: clamp(24px, 2vw, 40px) !important;
+}
+
+@media (max-width: 1024px) {
+  .engage-grid { grid-template-columns: 1fr; }
+  .engage-card { transform: translateY(40px); }
+  .engage-card.visible { transform: translateY(0); }
+}
+
+/* ─── BREAKTHROUGH FUEL SLIDE ─── */
+.bt-fuel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 1.8vw, 40px);
+  width: 100%;
+  max-width: none;
+}
+
+.bt-fuel-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: clamp(28px, 2.2vw, 48px);
+  box-shadow: var(--card-shadow);
+}
+
+.bt-fuel-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 0.7vw, 14px);
+  font-family: var(--font-headline);
+  font-size: clamp(22px, 1.8vw, 36px);
+  font-weight: 700;
+  margin-bottom: clamp(16px, 1.4vw, 28px);
+}
+
+.bt-fuel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1vw, 22px);
+}
+
+.bt-fuel-list li {
+  font-size: clamp(18px, 1.4vw, 28px);
+  line-height: 1.5;
+  color: var(--text-body);
+  padding-left: clamp(16px, 1.2vw, 24px);
+  position: relative;
+}
+
+.bt-fuel-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.bt-fuel-list-green li::before {
+  background: var(--green);
+}
+
+.bt-fuel-stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(32px, 3vw, 64px);
+  margin-top: clamp(24px, 2vw, 44px);
+  padding: clamp(20px, 1.6vw, 36px);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+}
+
+.bt-fuel-stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bt-fuel-stat-val {
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 2.4vw, 48px);
+  font-weight: 700;
+}
+
+.bt-fuel-stat-label {
+  font-size: clamp(14px, 1.1vw, 22px);
+  color: var(--steel);
+}
+
+/* Reveal animation */
+.bt-fuel-reveal {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bt-fuel-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 1024px) {
+  .bt-fuel-grid { grid-template-columns: 1fr; }
+  .bt-fuel-stats { flex-direction: column; align-items: center; }
+}
+
+/* ─── WHY NOW: Large bullets with stagger reveal ─── */
+.whynow-list li {
+  font-size: clamp(28px, 2.4vw, 48px) !important;
+  line-height: 1.45 !important;
+  padding-left: clamp(36px, 3vw, 56px) !important;
+}
+
+.whynow-list li .dot {
+  width: clamp(14px, 1.1vw, 20px);
+  height: clamp(14px, 1.1vw, 20px);
+  min-width: clamp(14px, 1.1vw, 20px);
+  top: 0.5em;
+}
+
+.whynow-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.whynow-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── CYCLE DIAGRAM: Left-to-right auto-reveal ─── */
+.cycle-reveal {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cycle-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── LIFECYCLE FLOW: Left-to-right auto-reveal ─── */
+.lifecycle-reveal {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lifecycle-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── ORIGIN STORY: Left-to-right auto-reveal ─── */
+.origin-reveal {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.origin-reveal.visible {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 /* ─── BIDRIGHT: CTA CARD HOVER ─── */
@@ -1579,8 +1850,8 @@ body::before {
   margin: 0 auto;
 }
 
-/* Tier 1: GL Pills */
-.gl-row {
+/* Phase 1: GL Account Pills — scatter, reveal, absorb */
+.gl-scatter {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1590,9 +1861,10 @@ body::before {
   border: 1px dashed rgba(217,119,6,0.25);
   border-radius: var(--card-radius);
   width: 100%;
+  min-height: clamp(48px, 3.5vw, 72px);
 }
 
-.gl-pill {
+.gl-acct {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1602,12 +1874,202 @@ body::before {
   font-weight: 600;
   background: var(--pill-color, rgba(0,0,0,0.06));
   color: var(--pill-text, var(--text-primary));
-  transform: rotate(var(--pill-tilt, 0deg));
-  transition: transform 0.6s ease;
   white-space: nowrap;
+  opacity: 0;
+  transform: translate(var(--scatter-x, 0), var(--scatter-y, 0)) rotate(var(--scatter-r, 0deg)) scale(0.7);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.slide.active .gl-pill { transform: rotate(0deg); }
+.gl-acct.visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg) scale(1);
+}
+
+.gl-acct.absorbed {
+  opacity: 0;
+  transform: translate(0, 40px) rotate(0deg) scale(0.3);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.5, 0, 0.75, 0);
+}
+
+/* Phase 2-3: MapLedger Funnel */
+.alloc-funnel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: clamp(400px, 32vw, 600px);
+  margin: 0 auto;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alloc-funnel.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.funnel-body {
+  width: 100%;
+  height: clamp(80px, 6vw, 120px);
+  clip-path: polygon(2% 0%, 98% 0%, 68% 100%, 32% 100%);
+  background: linear-gradient(180deg, rgba(40,50,196,0.12) 0%, rgba(40,50,196,0.06) 100%);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.funnel-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(2% 0%, 98% 0%, 68% 100%, 32% 100%);
+  border: 2px solid rgba(40,50,196,0.25);
+  pointer-events: none;
+}
+
+.funnel-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-headline);
+  font-size: clamp(14px, 1vw, 22px);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.alloc-funnel.processing .funnel-label {
+  opacity: 1;
+}
+
+.funnel-logo {
+  height: clamp(24px, 1.8vw, 40px);
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Funnel shimmer sweep */
+.funnel-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(40,50,196,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.alloc-funnel.processing .funnel-shimmer {
+  opacity: 1;
+  animation: funnelShimmer 0.9s ease-in-out 2;
+}
+
+@keyframes funnelShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Funnel glow pulse */
+.alloc-funnel.processing .funnel-body::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  clip-path: polygon(2% 0%, 98% 0%, 68% 100%, 32% 100%);
+  border: 2px solid var(--accent);
+  animation: funnelGlow 1s ease-in-out 2;
+  pointer-events: none;
+}
+
+@keyframes funnelGlow {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+/* Falling particles inside funnel */
+.funnel-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.funnel-dot {
+  position: absolute;
+  width: clamp(6px, 0.4vw, 10px);
+  height: clamp(6px, 0.4vw, 10px);
+  border-radius: 50%;
+  background: var(--dot-color, var(--accent));
+  left: var(--dot-x, 50%);
+  top: 5%;
+  opacity: 0;
+  transform: scale(0);
+}
+
+.alloc-funnel.processing .funnel-dot {
+  animation: particleFall 1.4s ease-in forwards;
+}
+.alloc-funnel.processing .funnel-dot:nth-child(1) { animation-delay: 0s; }
+.alloc-funnel.processing .funnel-dot:nth-child(2) { animation-delay: 0.2s; }
+.alloc-funnel.processing .funnel-dot:nth-child(3) { animation-delay: 0.35s; }
+.alloc-funnel.processing .funnel-dot:nth-child(4) { animation-delay: 0.5s; }
+.alloc-funnel.processing .funnel-dot:nth-child(5) { animation-delay: 0.65s; }
+.alloc-funnel.processing .funnel-dot:nth-child(6) { animation-delay: 0.8s; }
+
+@keyframes particleFall {
+  0% { top: 5%; opacity: 0; transform: scale(0); }
+  15% { opacity: 1; transform: scale(1.2); }
+  50% { opacity: 0.8; transform: scale(1); }
+  85% { opacity: 0.4; transform: scale(0.6); }
+  100% { top: 92%; opacity: 0; transform: scale(0); }
+}
+
+/* Funnel spout */
+.funnel-spout {
+  width: clamp(40px, 3vw, 60px);
+  height: clamp(16px, 1.2vw, 24px);
+  background: linear-gradient(180deg, rgba(40,50,196,0.12) 0%, rgba(40,50,196,0.04) 100%);
+  border-left: 2px solid rgba(40,50,196,0.2);
+  border-right: 2px solid rgba(40,50,196,0.2);
+  border-bottom: 2px solid rgba(40,50,196,0.2);
+  border-radius: 0 0 6px 6px;
+}
+
+/* Generic reveal state for alloc animation */
+.alloc-reveal {
+  opacity: 0;
+  transform: translateY(clamp(10px, 0.8vw, 16px));
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alloc-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Ensure .gl-acct uses its own transition logic (not generic alloc-reveal) */
+.gl-acct.alloc-reveal {
+  transform: translate(var(--scatter-x, 0), var(--scatter-y, 0)) rotate(var(--scatter-r, 0deg)) scale(0.7);
+}
+
+.gl-acct.alloc-reveal.visible {
+  transform: translate(0, 0) rotate(0deg) scale(1);
+}
+
+/* Last load box dashed style override */
+.load-box.alloc-reveal.visible {
+  opacity: 1;
+}
+.load-box.alloc-reveal[data-delay="900"].visible {
+  opacity: 0.5;
+}
 
 /* Connector lines */
 .alloc-connector {

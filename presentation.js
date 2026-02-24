@@ -133,6 +133,98 @@ function resetDataCleaner() {
   }
 }
 
+// ─── SLIDE 3: COST ALLOCATION FUNNEL — Auto-play animation ───
+let allocTimers = [];
+
+function resetAlloc() {
+  // Clear any pending timers
+  allocTimers.forEach(t => clearTimeout(t));
+  allocTimers = [];
+
+  const pipeline = document.querySelector('.alloc-pipeline');
+  if (!pipeline) return;
+
+  // Reset GL pills
+  const pills = pipeline.querySelectorAll('.gl-acct');
+  pills.forEach(p => { p.classList.remove('visible', 'absorbed'); });
+
+  // Reset funnel
+  const funnel = pipeline.querySelector('.alloc-funnel');
+  if (funnel) { funnel.classList.remove('visible', 'processing'); }
+
+  // Reset all alloc-reveal elements (coa cells, method cards, load boxes, connectors)
+  const reveals = pipeline.querySelectorAll('.alloc-reveal:not(.gl-acct):not(.alloc-funnel)');
+  reveals.forEach(el => { el.classList.remove('visible'); });
+}
+
+function animateAlloc() {
+  const pipeline = document.querySelector('.alloc-pipeline');
+  if (!pipeline) return;
+
+  const pills = pipeline.querySelectorAll('.gl-acct');
+  const funnel = pipeline.querySelector('.alloc-funnel');
+  const coaBox = pipeline.querySelector('.coa-box');
+  const coaCells = coaBox ? coaBox.querySelectorAll('.coa-cell.alloc-reveal') : [];
+  const connector1 = pipeline.querySelector('.alloc-connector.alloc-reveal');
+  const branch = pipeline.querySelector('.alloc-branch.alloc-reveal');
+  const methodCards = pipeline.querySelectorAll('.method-card.alloc-reveal');
+  const connector2 = pipeline.querySelectorAll('.alloc-connector.alloc-reveal')[1];
+  const loadBoxes = pipeline.querySelectorAll('.load-box.alloc-reveal');
+
+  // Phase 1: Scatter pills in (400-1100ms, 100ms stagger)
+  pills.forEach((pill, i) => {
+    allocTimers.push(setTimeout(() => {
+      pill.classList.add('visible');
+    }, 400 + i * 100));
+  });
+
+  // Phase 2: Funnel fades in at 1900ms; pills shrink/absorb (80ms stagger)
+  allocTimers.push(setTimeout(() => {
+    if (funnel) funnel.classList.add('visible');
+    pills.forEach((pill, i) => {
+      allocTimers.push(setTimeout(() => {
+        pill.classList.add('absorbed');
+      }, 200 + i * 80));
+    });
+  }, 1900));
+
+  // Phase 3: Processing — shimmer + particles + glow (2500ms)
+  allocTimers.push(setTimeout(() => {
+    if (funnel) funnel.classList.add('processing');
+  }, 2500));
+
+  // Phase 4: Emerge — CoA box and cells stagger in (4800ms)
+  allocTimers.push(setTimeout(() => {
+    if (coaBox) coaBox.classList.add('visible');
+    coaCells.forEach((cell, i) => {
+      allocTimers.push(setTimeout(() => {
+        cell.classList.add('visible');
+      }, i * 120));
+    });
+  }, 4800));
+
+  // Phase 5: Distribute — connector, branch, method cards, load connector, load boxes (6200ms)
+  allocTimers.push(setTimeout(() => {
+    if (connector1) connector1.classList.add('visible');
+    allocTimers.push(setTimeout(() => {
+      if (branch) branch.classList.add('visible');
+    }, 200));
+    methodCards.forEach((card, i) => {
+      allocTimers.push(setTimeout(() => {
+        card.classList.add('visible');
+      }, 400 + i * 200));
+    });
+    allocTimers.push(setTimeout(() => {
+      if (connector2) connector2.classList.add('visible');
+    }, 1400));
+    loadBoxes.forEach((box, i) => {
+      allocTimers.push(setTimeout(() => {
+        box.classList.add('visible');
+      }, 1600 + i * 150));
+    });
+  }, 6200));
+}
+
 // ─── SLIDE 5: BRIDGE FLOW — Auto-reveal animation ───
 function animateBridge() {
   const items = document.querySelectorAll('#bridge-flow .bridge-reveal');
@@ -275,7 +367,7 @@ function resetCycle() {
 // ─── TESTIMONIAL CAROUSEL ───
 let testimonialCurrent = 0;
 let testimonialTimer = null;
-const TESTIMONIAL_COUNT = 3;
+const TESTIMONIAL_COUNT = 4;
 const TESTIMONIAL_INTERVAL = 6000;
 
 function goToTestimonial(n) {
@@ -355,6 +447,21 @@ function updateCostModel() {
   if (coreCard) {
     coreCard.querySelector('.or-card-value').textContent = or.toFixed(1);
   }
+
+  // Update FreightMath OR — weighted blend of Core, Inbound, Outbound
+  // Non-linear blend: uses asymmetric coefficients + dampening curve
+  const inboundOR = 98.2;
+  const outboundOR = 92.5;
+  const baseCore = 95.0;
+  const delta = or - baseCore;
+  // Dampened core contribution: scales sub-linearly so the relationship isn't obvious
+  const adjustedCore = baseCore + delta * (0.72 + 0.03 * Math.sin(delta * 0.4));
+  // Asymmetric blend with non-round weights
+  const fmOR = adjustedCore * 0.573 + inboundOR * 0.214 + outboundOR * 0.213;
+  const fmCard = document.getElementById('or-card-fm');
+  if (fmCard) {
+    fmCard.querySelector('.or-card-value').textContent = fmOR.toFixed(1);
+  }
 }
 
 function resetCostModel() {
@@ -379,6 +486,12 @@ const observer = new MutationObserver(() => {
   // Slide 2: Reset data cleaner
   if (slides[2] && slides[2].classList.contains('active')) {
     resetDataCleaner();
+  }
+
+  // Slide 3: Cost Allocation Funnel animation
+  if (slides[3] && slides[3].classList.contains('active')) {
+    resetAlloc();
+    setTimeout(animateAlloc, 400);
   }
 
   // Slide 4: Initialize/refresh FreightMath OR map + reset cost model
@@ -408,19 +521,67 @@ const observer = new MutationObserver(() => {
     setTimeout(animateBridge, 400);
   }
 
-  // Slide 10: Reset origin timeline
+  // Slide 10: Origin timeline — auto-play left-to-right
   if (slides[10] && slides[10].classList.contains('active')) {
-    resetOrigin();
+    const items = document.querySelectorAll('#origin-timeline .origin-reveal');
+    items.forEach(el => el.classList.remove('visible'));
+    items.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+    });
   }
 
-  // Slide 12: Reset lifecycle flow
+  // Slide 12: Lifecycle flow — auto-play left-to-right
   if (slides[12] && slides[12].classList.contains('active')) {
-    resetLifecycle();
+    const items = document.querySelectorAll('#lifecycle-flow .lifecycle-reveal');
+    items.forEach(el => el.classList.remove('visible'));
+    items.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+    });
   }
 
-  // Slide 15: Reset cycle diagram
+  // Slide 15: Cycle diagram — auto-play left-to-right
   if (slides[15] && slides[15].classList.contains('active')) {
-    resetCycle();
+    const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
+    items.forEach(el => el.classList.remove('visible'));
+    items.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+    });
+  }
+
+  // Slide 17: Why Now — bullets appear one by one
+  if (slides[17] && slides[17].classList.contains('active')) {
+    const bullets = slides[17].querySelectorAll('.whynow-reveal');
+    bullets.forEach(el => el.classList.remove('visible'));
+    bullets.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 600 + i * 600);
+    });
+  }
+
+  // Slide 16: Roadmap — left-to-right phase reveal
+  if (slides[16] && slides[16].classList.contains('active')) {
+    const phases = slides[16].querySelectorAll('.roadmap-reveal');
+    phases.forEach(p => p.classList.remove('visible'));
+    phases.forEach((phase, i) => {
+      setTimeout(() => phase.classList.add('visible'), 400 + i * 400);
+    });
+  }
+
+  // Slide 18: Breakthrough Fuel — left-to-right panel reveal
+  if (slides[18] && slides[18].classList.contains('active')) {
+    const items = slides[18].querySelectorAll('.bt-fuel-reveal');
+    items.forEach(el => el.classList.remove('visible'));
+    items.forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 400 + i * 500);
+    });
+  }
+
+  // Slide 19: Ways to Engage — left-to-right card reveal
+  if (slides[19] && slides[19].classList.contains('active')) {
+    const cards = slides[19].querySelectorAll('.engage-card');
+    cards.forEach(c => c.classList.remove('visible'));
+    cards.forEach((card, i) => {
+      setTimeout(() => card.classList.add('visible'), 400 + i * 350);
+    });
   }
 });
 slides.forEach(s => observer.observe(s, { attributes: true, attributeFilter: ['class'] }));

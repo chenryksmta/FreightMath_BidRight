@@ -556,8 +556,8 @@ const observer = new MutationObserver(() => {
     setTimeout(animateBridge, 400);
   }
 
-  // Slide 10: Origin timeline — auto-play left-to-right
-  if (slides[10] && slides[10].classList.contains('active')) {
+  // Slide 9: Origin timeline — auto-play left-to-right
+  if (slides[9] && slides[9].classList.contains('active')) {
     const items = document.querySelectorAll('#origin-timeline .origin-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -565,8 +565,35 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 12: Lifecycle flow — auto-play left-to-right
+  // Slide 10: Security — staggered diagram reveal
+  if (slides[10] && slides[10].classList.contains('active')) {
+    const nodes = slides[10].querySelectorAll('.sec-reveal');
+    nodes.forEach(el => el.classList.remove('visible'));
+    nodes.forEach((el, i) => {
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 300 + i * 350));
+    });
+  }
+
+  // Slide 11: Real Results — staggered stat card reveal
+  if (slides[11] && slides[11].classList.contains('active')) {
+    const cards = slides[11].querySelectorAll('.results-reveal');
+    cards.forEach(el => el.classList.remove('visible'));
+    cards.forEach((el, i) => {
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 400));
+    });
+  }
+
+  // Slide 12: Before/After — show "After" column after 3.5s delay
   if (slides[12] && slides[12].classList.contains('active')) {
+    const afterCol = slides[12].querySelector('.after-col');
+    if (afterCol) {
+      afterCol.classList.remove('visible');
+      slideTimers.push(setTimeout(() => afterCol.classList.add('visible'), 3500));
+    }
+  }
+
+  // Slide 13: Lifecycle flow — auto-play left-to-right
+  if (slides[13] && slides[13].classList.contains('active')) {
     const items = document.querySelectorAll('#lifecycle-flow .lifecycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -574,8 +601,8 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 15: Cycle diagram — auto-play left-to-right
-  if (slides[15] && slides[15].classList.contains('active')) {
+  // Slide 16: Cycle diagram — auto-play left-to-right
+  if (slides[16] && slides[16].classList.contains('active')) {
     const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -583,36 +610,36 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 16: Roadmap — left-to-right phase reveal
-  if (slides[16] && slides[16].classList.contains('active')) {
-    const phases = slides[16].querySelectorAll('.roadmap-reveal');
+  // Slide 17: Roadmap — left-to-right phase reveal
+  if (slides[17] && slides[17].classList.contains('active')) {
+    const phases = slides[17].querySelectorAll('.roadmap-reveal');
     phases.forEach(p => p.classList.remove('visible'));
     phases.forEach((phase, i) => {
       slideTimers.push(setTimeout(() => phase.classList.add('visible'), 400 + i * 400));
     });
   }
 
-  // Slide 17: Why Now — bullets appear one by one
-  if (slides[17] && slides[17].classList.contains('active')) {
-    const bullets = slides[17].querySelectorAll('.whynow-reveal');
+  // Slide 18: Why Now — bullets appear one by one
+  if (slides[18] && slides[18].classList.contains('active')) {
+    const bullets = slides[18].querySelectorAll('.whynow-reveal');
     bullets.forEach(el => el.classList.remove('visible'));
     bullets.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 600 + i * 600));
     });
   }
 
-  // Slide 18: Breakthrough Fuel — left-to-right panel reveal
-  if (slides[18] && slides[18].classList.contains('active')) {
-    const items = slides[18].querySelectorAll('.bt-fuel-reveal');
+  // Slide 19: Breakthrough Fuel — left-to-right panel reveal
+  if (slides[19] && slides[19].classList.contains('active')) {
+    const items = slides[19].querySelectorAll('.bt-fuel-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
     });
   }
 
-  // Slide 19: Ways to Engage — left-to-right card reveal
-  if (slides[19] && slides[19].classList.contains('active')) {
-    const cards = slides[19].querySelectorAll('.engage-card');
+  // Slide 20: Ways to Engage — left-to-right card reveal
+  if (slides[20] && slides[20].classList.contains('active')) {
+    const cards = slides[20].querySelectorAll('.engage-card');
     cards.forEach(c => c.classList.remove('visible'));
     cards.forEach((card, i) => {
       slideTimers.push(setTimeout(() => card.classList.add('visible'), 400 + i * 350));
@@ -620,3 +647,42 @@ const observer = new MutationObserver(() => {
   }
 });
 slides.forEach(s => observer.observe(s, { attributes: true, attributeFilter: ['class'] }));
+
+/* ─── Excel Popup ─── */
+function openExcelPopup() {
+  const overlay = document.getElementById('excel-popup-overlay');
+  const slash = document.getElementById('excel-slash');
+  const msg = document.getElementById('excel-msg');
+  slash.classList.remove('animate');
+  msg.classList.remove('show');
+  overlay.classList.add('open');
+  // Force reflow then trigger animations
+  void slash.offsetWidth;
+  slash.classList.add('animate');
+  msg.classList.add('show');
+}
+
+function closeExcelPopup(e, forceClose) {
+  const overlay = document.getElementById('excel-popup-overlay');
+  if (forceClose || e.target === overlay) {
+    overlay.classList.remove('open');
+  }
+}
+
+/* ─── Reusable Preview Popup ─── */
+function openPreviewPopup(imgSrc, title) {
+  const overlay = document.getElementById('preview-popup-overlay');
+  const img = document.getElementById('preview-img');
+  const titleEl = document.getElementById('preview-title');
+  img.src = imgSrc;
+  img.alt = title;
+  titleEl.textContent = title;
+  overlay.classList.add('open');
+}
+
+function closePreviewPopup(e, forceClose) {
+  const overlay = document.getElementById('preview-popup-overlay');
+  if (forceClose || e.target === overlay) {
+    overlay.classList.remove('open');
+  }
+}

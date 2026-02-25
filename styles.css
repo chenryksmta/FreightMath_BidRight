@@ -2900,6 +2900,501 @@ body::before {
   .testimonial-carousel { max-width: 100%; }
 }
 
+/* ─── SECURITY DIAGRAM — CSS GRID ─── */
+.sec-grid {
+  display: grid;
+  grid-template-columns: auto 24px auto 24px auto 24px 1fr 1fr 24px auto;
+  grid-template-rows: auto 20px auto auto auto auto auto auto;
+  grid-template-areas:
+    ".     .  .    .  .     .     review   review   rev-audit audit"
+    ".     .  .    .  .     .     rev-down rev-down .         audit"
+    "nuss  c1 wall c2 ntech c3   siloA    siloB    c4        audit"
+    ".     .  .    .  .     .     vA       vB       .         ."
+    ".     .  .    .  .     .     clientA  clientB  .         ."
+    ".     .  .    .  .     .     fmVA     fmVB     .         ."
+    ".     .  .    .  .     .     fm       fm       .         ."
+    ".     .  .    .  .     perm  perm     perm     .         .";
+  gap: 6px 4px;
+  align-items: center;
+  justify-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(8px, 1vw, 16px);
+}
+
+/* Standard box */
+.sec-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: clamp(10px, 1vw, 18px);
+  text-align: center;
+  min-width: clamp(100px, 10vw, 140px);
+}
+.sec-box-icon { margin-bottom: 6px; }
+.sec-box-title {
+  font-weight: 700;
+  font-size: clamp(12px, 0.85vw, 15px);
+  line-height: 1.3;
+}
+
+/* Tags */
+.sec-tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: clamp(9px, 0.6vw, 11px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+.sec-tag-red    { background: rgba(239,68,68,0.15); color: var(--red); }
+.sec-tag-yellow { background: rgba(245,158,11,0.15); color: #f59e0b; }
+.sec-tag-blue   { background: rgba(40,50,196,0.12); color: var(--accent); }
+
+/* Blocked box (Nussbaum — dashed red border) */
+.sec-blocked {
+  border: 2px dashed var(--red);
+  opacity: 0.7;
+}
+
+/* Horizontal join (connector between boxes) */
+.sec-horiz-join {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0 2px;
+  white-space: nowrap;
+}
+.sec-line {
+  height: 2px;
+  flex: 1;
+  min-width: 12px;
+  background: var(--accent);
+}
+.sec-line-blocked {
+  background: var(--red);
+  height: 2px;
+}
+.sec-line-caution { background: #f59e0b; }
+.sec-connector-label {
+  font-size: 9px;
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+/* Vertical join */
+.sec-vert-join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 0;
+  position: relative;
+}
+.sec-vert-line {
+  width: 2px;
+  height: 20px;
+  background: var(--accent);
+}
+.sec-vert-label {
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Chinese Wall */
+.sec-wall-v2 {
+  background: var(--red);
+  color: #fff;
+  border-radius: 8px;
+  padding: clamp(8px, 0.8vw, 14px) clamp(6px, 0.6vw, 10px);
+  text-align: center;
+  min-width: clamp(80px, 8vw, 110px);
+}
+.sec-wall-icon  { margin-bottom: 4px; }
+.sec-wall-title { font-weight: 800; font-size: clamp(11px, 0.8vw, 14px); margin-bottom: 6px; }
+.sec-wall-items { display: flex; flex-direction: column; gap: 3px; }
+.sec-wall-items span {
+  font-size: clamp(8px, 0.55vw, 10px);
+  opacity: 0.9;
+  border-top: 1px dashed rgba(255,255,255,0.3);
+  padding-top: 3px;
+}
+
+/* Data silo cells */
+.sec-silo-v2-cell {
+  background: rgba(40,50,196,0.08);
+  border: 2px solid rgba(40,50,196,0.25);
+  border-radius: 10px;
+  padding: clamp(10px, 1vw, 16px);
+  text-align: center;
+  font-size: clamp(11px, 0.75vw, 14px);
+  font-weight: 600;
+  min-width: clamp(100px, 10vw, 140px);
+}
+.sec-silo-v2-icon {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 6px;
+}
+
+/* 3rd Party Review (purple accent) */
+.sec-review-v2 {
+  background: rgba(139,92,246,0.1);
+  border-color: rgba(139,92,246,0.3);
+}
+
+/* Client (Authorized User) boxes */
+.sec-client-v2 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: clamp(8px, 0.8vw, 14px);
+  text-align: center;
+  font-size: clamp(10px, 0.7vw, 13px);
+  min-width: clamp(100px, 10vw, 140px);
+}
+
+/* Audit Log — prominent box */
+.sec-audit-box {
+  background: rgba(139,92,246,0.08);
+  border: 2px solid rgba(139,92,246,0.35);
+  border-radius: 12px;
+  padding: clamp(12px, 1.2vw, 22px);
+  min-width: clamp(120px, 12vw, 180px);
+}
+
+/* Audit log entries */
+.sec-log-entries { margin-top: 8px; text-align: left; }
+.sec-log-line {
+  font-size: clamp(8px, 0.55vw, 10px);
+  color: var(--steel);
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-family: 'Courier New', monospace;
+}
+
+/* FreightMath Intelligence flow */
+.sec-fm-flow {
+  background: rgba(5,150,105,0.1);
+  border: 2px solid rgba(5,150,105,0.3);
+  border-radius: 10px;
+  padding: clamp(10px, 1vw, 16px);
+  text-align: center;
+  min-width: clamp(100px, 10vw, 140px);
+}
+.sec-fm-join {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.sec-fm-permission {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: clamp(9px, 0.6vw, 11px);
+  color: var(--green);
+  font-style: italic;
+  padding: 6px 12px;
+  background: rgba(5,150,105,0.06);
+  border-radius: 6px;
+  border: 1px dashed rgba(5,150,105,0.2);
+}
+
+/* Staggered reveal animation */
+.sec-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.sec-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive — security diagram */
+@media (max-width: 1024px) {
+  .sec-grid {
+    grid-template-columns: auto 16px auto 16px auto 16px 1fr 1fr 16px auto;
+    font-size: 11px;
+  }
+}
+
+/* ─── RESULTS REVEAL ─── */
+.results-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.results-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── BEFORE/AFTER REVEAL ─── */
+.after-col {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.after-col.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── NUSSBAUM CULTURE CORNER ─── */
+.nussbaum-corner {
+  position: absolute;
+  top: 33%;
+  right: var(--slide-pad-h);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.nussbaum-corner-logo {
+  height: clamp(28px, 2.5vw, 46px);
+  object-fit: contain;
+}
+.nussbaum-culture-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid #c8102e;
+  border-radius: 6px;
+  background: rgba(200, 16, 46, 0.08);
+  color: #c8102e;
+  font-size: clamp(12px, 0.8vw, 15px);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.nussbaum-culture-btn:hover {
+  background: rgba(200, 16, 46, 0.18);
+  transform: scale(1.03);
+}
+
+/* ─── EXCEL POPUP ─── */
+.excel-popup-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: auto auto 0;
+  padding: 14px 30px;
+  border: 2px solid var(--red);
+  border-radius: 8px;
+  background: rgba(225, 29, 72, 0.08);
+  color: var(--red);
+  font-size: clamp(18px, 1.3vw, 24px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.excel-popup-trigger:hover {
+  background: rgba(225, 29, 72, 0.18);
+  transform: scale(1.03);
+}
+
+.excel-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.excel-popup-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+
+.excel-popup-window {
+  position: relative;
+  width: min(95vw, 1460px);
+  background: var(--bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  animation: popupZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes popupZoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.excel-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.excel-popup-close:hover { background: var(--red); }
+
+.excel-popup-img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.excel-popup-img-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Red diagonal slash */
+.excel-popup-slash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.excel-popup-slash::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 6px;
+  background: var(--red);
+  border-radius: 3px;
+  transform: translate(-50%, -50%) rotate(-25deg) scaleX(0);
+  transform-origin: center;
+  box-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+}
+.excel-popup-slash.animate::before {
+  animation: slashDraw 0.6s 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes slashDraw {
+  from { transform: translate(-50%, -50%) rotate(-25deg) scaleX(0); }
+  to   { transform: translate(-50%, -50%) rotate(-25deg) scaleX(1); }
+}
+
+/* "Say no" message */
+.excel-popup-msg {
+  text-align: center;
+  padding: 20px 24px;
+  font-size: clamp(20px, 2vw, 34px);
+  font-weight: 800;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  transform: translateY(12px);
+}
+.excel-popup-msg.show {
+  animation: msgFadeUp 0.5s 1s ease-out forwards;
+}
+@keyframes msgFadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── PREVIEW BUTTON (reusable) ─── */
+.preview-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  background: rgba(40, 50, 196, 0.08);
+  color: var(--accent);
+  font-size: clamp(11px, 0.75vw, 14px);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+}
+.preview-btn:hover {
+  background: rgba(40, 50, 196, 0.18);
+  transform: scale(1.05);
+}
+
+/* ─── PREVIEW POPUP (reusable across deck) ─── */
+.preview-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.preview-popup-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.preview-popup-window {
+  position: relative;
+  width: min(95vw, 1460px);
+  background: var(--bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  animation: popupZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.preview-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: #fff;
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.preview-popup-close:hover { background: var(--red); }
+.preview-popup-title {
+  padding: 16px 24px 8px;
+  font-size: clamp(18px, 1.4vw, 28px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.preview-popup-img-wrap {
+  width: 100%;
+  padding: 0 16px 16px;
+}
+.preview-popup-img-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 @media (max-width: 768px) {
   .stat-grid { grid-template-columns: 1fr; }
   .method-grid { grid-template-columns: repeat(2, 1fr); }

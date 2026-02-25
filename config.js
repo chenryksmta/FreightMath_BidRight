@@ -6,7 +6,7 @@
 // Presentation metadata
 const presentationConfig = {
   title: "FreightMath BidRight — Interactive Primer & Demo",
-  totalSlides: 20,
+  totalSlides: 21,
   sections: [
     { name: "Intro", startSlide: 0 },
     { name: "The Why", startSlide: 1 },
@@ -14,8 +14,8 @@ const presentationConfig = {
     { name: "BidRight", startSlide: 8 },
     { name: "BidRight Story", startSlide: 9 },
     { name: "How It Works", startSlide: 13 },
-    { name: "Next Steps", startSlide: 18 },
-    { name: "Connect", startSlide: 19 }
+    { name: "Next Steps", startSlide: 19 },
+    { name: "Connect", startSlide: 20 }
   ]
 };
 

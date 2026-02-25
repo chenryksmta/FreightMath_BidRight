@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
 
@@ -1000,38 +1000,57 @@
       </div>
     </div>
 
-    <!-- SLIDE 12: WHAT BIDRIGHT REPLACES — Interactive Checklist -->
-    <!-- AWARD ANALYSIS & FEEDBACK LOOP — Cycle Diagram -->
+    <!-- THE BIDRIGHT FLYWHEEL — Circular Diagram -->
     <div class="slide slide-accent" data-section="How It Works">
-      <div class="full-content stagger">
-        <div class="section-label">The BidRight Flywheel</div>
+      <div class="full-content" style="text-align:center">
+        <div class="section-label" style="justify-content:center"><i data-lucide="refresh-cw" class="lucide-xs"></i> The BidRight Flywheel</div>
         <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Continuous Improvement</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Every bid outcome feeds back into the system. This is how Nussbaum stayed 5% above market for 10 quarters.</p>
-        <div id="cycle-diagram" class="cycle-container" style="max-width:900px;margin:0 auto">
-          <div class="cycle-ring">
-            <div class="cycle-step cycle-reveal" data-pos="top">
-              <div class="cycle-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="inbox"></i></div>
-              <div class="cycle-label">Import</div>
-              <div class="cycle-desc">Bulk-import &amp; score RFP lanes</div>
-            </div>
-            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="right">
-              <div class="cycle-icon" style="background:rgba(78,167,0,0.15);color:var(--green)"><i data-lucide="dollar-sign"></i></div>
-              <div class="cycle-label">Price</div>
-              <div class="cycle-desc">FM-powered pricing intelligence</div>
-            </div>
-            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="bottom">
-              <div class="cycle-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="trophy"></i></div>
-              <div class="cycle-label">Award</div>
-              <div class="cycle-desc">Evaluate wins &amp; flag unprofitable freight</div>
-            </div>
-            <div class="cycle-arrow cycle-reveal"><i data-lucide="chevron-down"></i></div>
-            <div class="cycle-step cycle-reveal" data-pos="left">
-              <div class="cycle-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="refresh-cw"></i></div>
-              <div class="cycle-label">Refine</div>
-              <div class="cycle-desc">Improve models with every outcome</div>
-            </div>
+        <p style="font-size:clamp(14px, 0.95vw, 18px);color:var(--steel);max-width:900px;margin:0 auto clamp(12px, 1vw, 20px)">Every bid outcome feeds back into the system. This is how Nussbaum stayed 5% above market for 10 quarters.</p>
+
+        <div id="flywheel-diagram" class="flywheel-wrap">
+          <!-- SVG circular arcs with arrows -->
+          <svg class="flywheel-ring" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="fw-arr-blue" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0,10 4,0 8" fill="#2832c4"/></marker>
+              <marker id="fw-arr-green" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0,10 4,0 8" fill="#059669"/></marker>
+              <marker id="fw-arr-cyan" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0,10 4,0 8" fill="#2c78c9"/></marker>
+              <marker id="fw-arr-yellow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><polygon points="0 0,10 4,0 8" fill="#f0c617"/></marker>
+            </defs>
+            <!-- Faint background track -->
+            <circle cx="250" cy="250" r="190" stroke="rgba(255,255,255,0.06)" stroke-width="28" fill="none"/>
+            <!-- 4 arc segments (clockwise: Import→Price→Award→Refine→Import) -->
+            <path d="M 299 66 A 190 190 0 0 1 434 201" stroke="#2832c4" stroke-width="4" stroke-linecap="round" marker-end="url(#fw-arr-blue)" opacity="0.85"/>
+            <path d="M 434 299 A 190 190 0 0 1 299 434" stroke="#059669" stroke-width="4" stroke-linecap="round" marker-end="url(#fw-arr-green)" opacity="0.85"/>
+            <path d="M 201 434 A 190 190 0 0 1 66 299" stroke="#2c78c9" stroke-width="4" stroke-linecap="round" marker-end="url(#fw-arr-cyan)" opacity="0.85"/>
+            <path d="M 66 201 A 190 190 0 0 1 201 66" stroke="#f0c617" stroke-width="4" stroke-linecap="round" marker-end="url(#fw-arr-yellow)" opacity="0.85"/>
+          </svg>
+
+          <!-- Center hub -->
+          <div class="flywheel-hub fw-reveal">
+            <i data-lucide="refresh-cw" style="width:clamp(28px,2.2vw,44px);height:clamp(28px,2.2vw,44px);color:var(--accent);animation:fw-spin 8s linear infinite"></i>
+            <span>BidRight<br>Flywheel</span>
+          </div>
+
+          <!-- 4 nodes at cardinal positions -->
+          <div class="flywheel-node fw-top fw-reveal">
+            <div class="fw-node-icon" style="background:rgba(40,50,196,0.15);color:var(--accent)"><i data-lucide="inbox" style="width:clamp(20px,1.5vw,28px);height:clamp(20px,1.5vw,28px)"></i></div>
+            <div class="fw-node-label">Import</div>
+            <div class="fw-node-desc">Bulk-import &amp; score RFP lanes</div>
+          </div>
+          <div class="flywheel-node fw-right fw-reveal">
+            <div class="fw-node-icon" style="background:rgba(5,150,105,0.15);color:var(--green)"><i data-lucide="dollar-sign" style="width:clamp(20px,1.5vw,28px);height:clamp(20px,1.5vw,28px)"></i></div>
+            <div class="fw-node-label">Price</div>
+            <div class="fw-node-desc">FM-powered pricing intelligence</div>
+          </div>
+          <div class="flywheel-node fw-bottom fw-reveal">
+            <div class="fw-node-icon" style="background:rgba(44,120,201,0.15);color:var(--cyan)"><i data-lucide="trophy" style="width:clamp(20px,1.5vw,28px);height:clamp(20px,1.5vw,28px)"></i></div>
+            <div class="fw-node-label">Award</div>
+            <div class="fw-node-desc">Evaluate wins &amp; flag unprofitable freight</div>
+          </div>
+          <div class="flywheel-node fw-left fw-reveal">
+            <div class="fw-node-icon" style="background:rgba(240,198,23,0.15);color:var(--yellow)"><i data-lucide="refresh-cw" style="width:clamp(20px,1.5vw,28px);height:clamp(20px,1.5vw,28px)"></i></div>
+            <div class="fw-node-label">Refine</div>
+            <div class="fw-node-desc">Improve models with every outcome</div>
           </div>
         </div>
       </div>
@@ -1236,7 +1255,7 @@
   <!-- Application Scripts (order matters) -->
   <script src="config.js?v=8"></script>
   <script src="map.js?v=4"></script>
-  <script src="presentation.js?v=13"></script>
+  <script src="presentation.js?v=14"></script>
 
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>

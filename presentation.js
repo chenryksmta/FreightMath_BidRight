@@ -601,12 +601,12 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 17: Cycle diagram — auto-play left-to-right
+  // Slide 17: Flywheel diagram — staggered reveal from center out
   if (slides[17] && slides[17].classList.contains('active')) {
-    const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
+    const items = document.querySelectorAll('#flywheel-diagram .fw-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
-      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 400));
     });
   }
 

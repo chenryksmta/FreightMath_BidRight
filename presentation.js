@@ -601,8 +601,8 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 17: Flywheel diagram — staggered reveal from center out
-  if (slides[17] && slides[17].classList.contains('active')) {
+  // Slide 18: Flywheel diagram — staggered reveal from center out
+  if (slides[18] && slides[18].classList.contains('active')) {
     const items = document.querySelectorAll('#flywheel-diagram .fw-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -610,18 +610,18 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 18: Roadmap — left-to-right phase reveal
-  if (slides[18] && slides[18].classList.contains('active')) {
-    const phases = slides[18].querySelectorAll('.roadmap-reveal');
+  // Slide 19: Roadmap — left-to-right phase reveal
+  if (slides[19] && slides[19].classList.contains('active')) {
+    const phases = slides[19].querySelectorAll('.roadmap-reveal');
     phases.forEach(p => p.classList.remove('visible'));
     phases.forEach((phase, i) => {
       slideTimers.push(setTimeout(() => phase.classList.add('visible'), 400 + i * 400));
     });
   }
 
-  // Slide 19: Breakthrough Fuel — left-to-right panel reveal
-  if (slides[19] && slides[19].classList.contains('active')) {
-    const items = slides[19].querySelectorAll('.bt-fuel-reveal');
+  // Slide 20: Breakthrough Fuel — left-to-right panel reveal
+  if (slides[20] && slides[20].classList.contains('active')) {
+    const items = slides[20].querySelectorAll('.bt-fuel-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));

@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=23">
+  <link rel="stylesheet" href="styles.css?v=24">
 </head>
 <body>
 
@@ -483,7 +483,21 @@
       </div>
     </div>
 
-    <!-- SLIDE 6: CARRIER TESTIMONIALS — Cycling Carousel -->
+    <!-- FREIGHTMATH LIVE DEMO — Power BI Embed -->
+    <div class="slide slide-dark" data-section="The Why">
+      <div class="full-content" style="text-align:center">
+        <div class="section-label" style="justify-content:center"><i data-lucide="monitor" class="lucide-xs"></i> Live Demo</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Let's Jump In</h2>
+        <div id="fm-live-wrap" class="video-frame" style="max-width:90vw;width:90%;margin:clamp(12px,1vw,20px) auto 0;position:relative">
+          <div style="padding:56.25% 0 0 0;position:relative;">
+            <iframe src="https://app.powerbi.com/reportEmbed?reportId=119557ed-e5d6-44fb-bfeb-92a7f92190a9&autoAuth=true&ctid=a5b5103d-4834-4aa5-80db-a1fed2b83080" title="FreightMath — Live Dashboard" allow="fullscreen" frameborder="0" scrolling="auto" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.08);background:#fff"></iframe>
+          </div>
+          <button class="video-fullscreen-btn" onclick="toggleVideoFullscreen('fm-live-wrap')" title="Fullscreen"><i data-lucide="maximize" style="width:20px;height:20px"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: CARRIER TESTIMONIALS — Cycling Carousel -->
     <div class="slide slide-accent" data-section="The Why">
       <div class="center-content stagger">
         <div class="section-label">Real Outcomes</div>
@@ -1250,7 +1264,7 @@
             <h3 style="font-size:clamp(16px,1.2vw,20px);margin:0">Keep in Touch</h3>
           </div>
           <p style="font-size:clamp(13px,0.9vw,15px);color:var(--steel);margin-bottom:16px;line-height:1.4">Join the <strong>FreightMath</strong> and <strong>BidRight</strong> Weekly Newsletter</p>
-          <iframe src="https://preview.mailerlite.io/forms/1747049/173869456905209452/share" width="100%" height="220" frameborder="0" scrolling="no" class="nl-iframe" style="border:none;overflow:hidden;border-radius:8px"></iframe>
+          <div id="mlb2-34659178" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-34659178"></div>
         </div>
 
         <p style="font-size:16px;color:var(--steel);margin-top:24px">Chris Henry &nbsp;&middot;&nbsp; <strong>KSM Transport Advisors</strong> &nbsp;&middot;&nbsp; Tyler Dietrich &nbsp;&middot;&nbsp; <strong>Nussbaum Technology</strong></p>
@@ -1262,7 +1276,7 @@
   <!-- Bottom Navigation -->
   <nav id="nav">
     <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>&larr; Previous</button>
-    <div id="slide-counter"><span>1</span> / 22</div>
+    <div id="slide-counter"><span>1</span> / 23</div>
     <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
   </nav>
 
@@ -1299,13 +1313,57 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <!-- Application Scripts (order matters) -->
-  <script src="config.js?v=9"></script>
+  <script src="config.js?v=10"></script>
   <script src="map.js?v=4"></script>
-  <script src="presentation.js?v=17"></script>
+  <script src="presentation.js?v=18"></script>
 
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>
 
+  <!-- MailerLite Embedded Form -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '1747049');
+  </script>
+  <script>
+    // Ensure the form container is visible to MailerLite when it initializes
+    var mlContainer = document.getElementById('mlb2-34659178');
+    if (mlContainer) {
+      // Temporarily make all ancestor slides visible so ML can measure the form
+      var ancestors = [];
+      var el = mlContainer.parentElement;
+      while (el) {
+        if (el.classList && el.classList.contains('slide') && !el.classList.contains('active')) {
+          el.style.display = 'flex';
+          el.style.position = 'absolute';
+          el.style.visibility = 'hidden';
+          el.style.pointerEvents = 'none';
+          ancestors.push(el);
+        }
+        el = el.parentElement;
+      }
+      // Init the form
+      ml('initializeEmbeddedForm', '173869456905209452');
+      // Restore after a delay to let ML render
+      setTimeout(function() {
+        ancestors.forEach(function(a) {
+          a.style.display = '';
+          a.style.position = '';
+          a.style.visibility = '';
+          a.style.pointerEvents = '';
+        });
+      }, 3000);
+    }
+    function ml_webform_success_34659178() {
+      var c = document.getElementById('mlb2-34659178');
+      if (c) {
+        var rows = c.querySelectorAll('.row-form');
+        var success = c.querySelectorAll('.row-success');
+        rows.forEach(function(r){ r.style.display = 'none'; });
+        success.forEach(function(s){ s.style.display = 'block'; });
+      }
+    }
+  </script>
 
 </body>
 </html>

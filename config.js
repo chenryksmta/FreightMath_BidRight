@@ -6,16 +6,16 @@
 // Presentation metadata
 const presentationConfig = {
   title: "FreightMath BidRight — Interactive Primer & Demo",
-  totalSlides: 22,
+  totalSlides: 23,
   sections: [
     { name: "Intro", startSlide: 0 },
     { name: "The Why", startSlide: 1 },
-    { name: "The Bridge", startSlide: 7 },
-    { name: "BidRight", startSlide: 8 },
-    { name: "BidRight Story", startSlide: 9 },
-    { name: "How It Works", startSlide: 13 },
-    { name: "Next Steps", startSlide: 20 },
-    { name: "Connect", startSlide: 21 }
+    { name: "The Bridge", startSlide: 8 },
+    { name: "BidRight", startSlide: 9 },
+    { name: "BidRight Story", startSlide: 10 },
+    { name: "How It Works", startSlide: 14 },
+    { name: "Next Steps", startSlide: 21 },
+    { name: "Connect", startSlide: 22 }
   ]
 };
 

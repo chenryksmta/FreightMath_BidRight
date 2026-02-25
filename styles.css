@@ -3330,6 +3330,49 @@ body::before {
   transform: scale(1.03);
 }
 
+/* ─── PARTNER CORNER (reusable top-right button) ─── */
+.partner-corner {
+  position: absolute;
+  top: clamp(70px, 5.5vw, 110px);
+  right: var(--slide-pad-h);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.partner-corner-logo {
+  height: clamp(28px, 2.5vw, 46px);
+  object-fit: contain;
+}
+.partner-corner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1.5px solid var(--accent);
+  border-radius: 6px;
+  background: rgba(40, 50, 196, 0.08);
+  color: var(--accent);
+  font-size: clamp(11px, 0.75vw, 14px);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  max-width: 260px;
+  text-align: left;
+  line-height: 1.3;
+}
+.partner-corner-btn:hover {
+  background: rgba(40, 50, 196, 0.18);
+  transform: scale(1.03);
+}
+.partner-corner-btn-accent {
+  border-color: var(--accent);
+  background: rgba(40, 50, 196, 0.08);
+  color: var(--accent);
+}
+
 /* ─── EXCEL POPUP ─── */
 .excel-popup-trigger {
   display: inline-flex;

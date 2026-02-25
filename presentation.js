@@ -565,21 +565,21 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 10: Security — staggered diagram reveal
+  // Slide 10: Real Results — staggered stat card reveal
   if (slides[10] && slides[10].classList.contains('active')) {
-    const nodes = slides[10].querySelectorAll('.sec-reveal');
-    nodes.forEach(el => el.classList.remove('visible'));
-    nodes.forEach((el, i) => {
-      slideTimers.push(setTimeout(() => el.classList.add('visible'), 300 + i * 350));
-    });
-  }
-
-  // Slide 11: Real Results — staggered stat card reveal
-  if (slides[11] && slides[11].classList.contains('active')) {
-    const cards = slides[11].querySelectorAll('.results-reveal');
+    const cards = slides[10].querySelectorAll('.results-reveal');
     cards.forEach(el => el.classList.remove('visible'));
     cards.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 400));
+    });
+  }
+
+  // Slide 11: Security — staggered diagram reveal
+  if (slides[11] && slides[11].classList.contains('active')) {
+    const nodes = slides[11].querySelectorAll('.sec-reveal');
+    nodes.forEach(el => el.classList.remove('visible'));
+    nodes.forEach((el, i) => {
+      slideTimers.push(setTimeout(() => el.classList.add('visible'), 300 + i * 350));
     });
   }
 
@@ -601,8 +601,8 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 16: Cycle diagram — auto-play left-to-right
-  if (slides[16] && slides[16].classList.contains('active')) {
+  // Slide 15: Cycle diagram — auto-play left-to-right
+  if (slides[15] && slides[15].classList.contains('active')) {
     const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -610,39 +610,21 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 17: Roadmap — left-to-right phase reveal
-  if (slides[17] && slides[17].classList.contains('active')) {
-    const phases = slides[17].querySelectorAll('.roadmap-reveal');
+  // Slide 16: Roadmap — left-to-right phase reveal
+  if (slides[16] && slides[16].classList.contains('active')) {
+    const phases = slides[16].querySelectorAll('.roadmap-reveal');
     phases.forEach(p => p.classList.remove('visible'));
     phases.forEach((phase, i) => {
       slideTimers.push(setTimeout(() => phase.classList.add('visible'), 400 + i * 400));
     });
   }
 
-  // Slide 18: Why Now — bullets appear one by one
-  if (slides[18] && slides[18].classList.contains('active')) {
-    const bullets = slides[18].querySelectorAll('.whynow-reveal');
-    bullets.forEach(el => el.classList.remove('visible'));
-    bullets.forEach((el, i) => {
-      slideTimers.push(setTimeout(() => el.classList.add('visible'), 600 + i * 600));
-    });
-  }
-
-  // Slide 19: Breakthrough Fuel — left-to-right panel reveal
-  if (slides[19] && slides[19].classList.contains('active')) {
-    const items = slides[19].querySelectorAll('.bt-fuel-reveal');
+  // Slide 17: Breakthrough Fuel — left-to-right panel reveal
+  if (slides[17] && slides[17].classList.contains('active')) {
+    const items = slides[17].querySelectorAll('.bt-fuel-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));
-    });
-  }
-
-  // Slide 20: Ways to Engage — left-to-right card reveal
-  if (slides[20] && slides[20].classList.contains('active')) {
-    const cards = slides[20].querySelectorAll('.engage-card');
-    cards.forEach(c => c.classList.remove('visible'));
-    cards.forEach((card, i) => {
-      slideTimers.push(setTimeout(() => card.classList.add('visible'), 400 + i * 350));
     });
   }
 });

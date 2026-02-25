@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=11">
+  <link rel="stylesheet" href="styles.css?v=12">
 </head>
 <body>
 
@@ -634,6 +634,46 @@
       </div>
     </div>
 
+    <!-- REAL RESULTS — Nussbaum Stats -->
+    <div class="slide slide-accent" data-section="BidRight Story">
+      <div class="full-content stagger" style="text-align:center">
+        <div class="section-label" style="justify-content:center">Proven Impact</div>
+        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Real Results</h2>
+        <p style="font-size:18px;color:var(--steel);max-width:1000px;margin:0 auto 24px">Here&rsquo;s what Nussbaum Transportation achieved by using the technology that is now BidRight:</p>
+
+        <div class="stat-grid" style="max-width:1200px;margin:0 auto 24px">
+          <div class="stat-card results-reveal">
+            <div class="value" style="font-size:44px;color:var(--accent)">20x</div>
+            <div class="label">Faster general bidding</div>
+            <div class="sublabel">Nussbaum Transportation saw 20&times; faster bid generation versus traditional processes.</div>
+          </div>
+          <div class="stat-card results-reveal">
+            <div class="value" style="font-size:44px;color:var(--green)">5%</div>
+            <div class="label">Higher rates than the market (10 consecutive quarters)</div>
+            <div class="sublabel">Average contract rates exceed market trends by 5% through optimized data.</div>
+          </div>
+          <div class="stat-card results-reveal">
+            <div class="value" style="font-size:44px;color:var(--accent)">15x</div>
+            <div class="label">Faster team review process</div>
+            <div class="sublabel">BidRight simplifies review workflows, accelerating insights and action.</div>
+          </div>
+        </div>
+
+        <div class="stat-grid" style="max-width:900px;margin:0 auto;grid-template-columns:repeat(2,1fr)">
+          <div class="stat-card results-reveal">
+            <div class="value" style="font-size:40px;color:var(--green)"><i data-lucide="truck" style="width:32px;height:32px"></i></div>
+            <div class="label">Industry-leading miles/truck</div>
+            <div class="sublabel">Optimized routes and consistent schedules. Fleets achieve benchmark-level efficiency across their active network.</div>
+          </div>
+          <div class="stat-card results-reveal">
+            <div class="value" style="font-size:40px;color:var(--accent)"><i data-lucide="smile" style="width:32px;height:32px"></i></div>
+            <div class="label">Driver satisfaction</div>
+            <div class="sublabel">Fleets achieve benchmark-level efficiency across their active network.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SECURITY OF YOUR DATA — Architecture Diagram -->
     <div class="slide slide-dark" data-section="BidRight Story" style="padding-top:clamp(70px, 5vw, 100px)">
       <div class="full-content" style="text-align:center">
@@ -642,14 +682,6 @@
         <p style="font-size:clamp(14px, 0.9vw, 17px);color:var(--steel);max-width:900px;margin:0 auto clamp(12px, 1vw, 20px)">Your data is completely isolated. No one, without explicit permission, can access it.</p>
 
         <div class="sec-grid">
-          <!--
-            Grid layout (matching reference image):
-            Row 1:  .  .  .  .  .  3rdParty .  .  audit
-            Row 2:  nuss X wall ~ ntech → siloA siloB → audit
-            Row 3:  .  .  .  .  .  clientA clientB .  .
-            Row 4:  .  .  .  .  fm ↔A    ↔B      .  .
-          -->
-
           <!-- ─── ROW 1: 3rd Party Review (above silos) + connector to Audit Log ─── -->
           <div class="sec-box sec-review-v2 sec-reveal" style="grid-area:review">
             <div class="sec-box-icon" style="color:#8b5cf6"><i data-lucide="clipboard-check" style="width:32px;height:32px"></i></div>
@@ -774,46 +806,6 @@
           <div class="sec-fm-permission sec-reveal" style="grid-area:perm">
             <i data-lucide="key" style="width:14px;height:14px"></i>
             Explicit permission granted by shared FreightMath/BidRight users to share this data
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- REAL RESULTS — Nussbaum Stats -->
-    <div class="slide slide-accent" data-section="BidRight Story">
-      <div class="full-content stagger" style="text-align:center">
-        <div class="section-label" style="justify-content:center">Proven Impact</div>
-        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Real Results</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:1000px;margin:0 auto 24px">Here&rsquo;s what Nussbaum Transportation achieved by using the technology that is now BidRight:</p>
-
-        <div class="stat-grid" style="max-width:1200px;margin:0 auto 24px">
-          <div class="stat-card results-reveal">
-            <div class="value" style="font-size:44px;color:var(--accent)">20x</div>
-            <div class="label">Faster general bidding</div>
-            <div class="sublabel">Nussbaum Transportation saw 20&times; faster bid generation versus traditional processes.</div>
-          </div>
-          <div class="stat-card results-reveal">
-            <div class="value" style="font-size:44px;color:var(--green)">5%</div>
-            <div class="label">Higher rates than the market (10 consecutive quarters)</div>
-            <div class="sublabel">Average contract rates exceed market trends by 5% through optimized data.</div>
-          </div>
-          <div class="stat-card results-reveal">
-            <div class="value" style="font-size:44px;color:var(--accent)">15x</div>
-            <div class="label">Faster team review process</div>
-            <div class="sublabel">BidRight simplifies review workflows, accelerating insights and action.</div>
-          </div>
-        </div>
-
-        <div class="stat-grid" style="max-width:900px;margin:0 auto;grid-template-columns:repeat(2,1fr)">
-          <div class="stat-card results-reveal">
-            <div class="value" style="font-size:40px;color:var(--green)"><i data-lucide="truck" style="width:32px;height:32px"></i></div>
-            <div class="label">Industry-leading miles/truck</div>
-            <div class="sublabel">Optimized routes and consistent schedules. Fleets achieve benchmark-level efficiency across their active network.</div>
-          </div>
-          <div class="stat-card results-reveal">
-            <div class="value" style="font-size:40px;color:var(--accent)"><i data-lucide="smile" style="width:32px;height:32px"></i></div>
-            <div class="label">Driver satisfaction</div>
-            <div class="sublabel">Fleets achieve benchmark-level efficiency across their active network.</div>
           </div>
         </div>
       </div>
@@ -975,45 +967,7 @@
     </div>
 
     <!-- SLIDE 12: WHAT BIDRIGHT REPLACES — Interactive Checklist -->
-    <div class="slide slide-dark" data-section="How It Works">
-      <div class="full-content stagger">
-        <div class="section-label">What BidRight Replaces</div>
-        <h2 class="slide-title" style="font-size:clamp(26px, 2.5vw, 52px)">Your Old Bid Process</h2>
-        <p style="font-size:18px;color:var(--steel);max-width:900px;margin-bottom:24px">Check off the manual steps BidRight automates &mdash; every one powered by FreightMath intelligence.</p>
-        <div class="checklist" style="max-width:900px">
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Bulk RFP import &amp; standardization (no more reformatting)</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">FM cost overlay on every lane &mdash; true floor price before you bid</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Market data, past decisions &amp; profitability trends in one view</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Team assignments, progress tracking &amp; collaboration</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Defined strategic pricing variables across your team</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Award evaluation &mdash; quickly identify unprofitable freight</span>
-          </div>
-          <div class="check-item" onclick="toggleCheck(this)">
-            <div class="check-box"><i data-lucide="check" class="lucide-check"></i></div>
-            <span class="check-text">Role-based access, division management &amp; audit logging</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 13: AWARD ANALYSIS & FEEDBACK LOOP — Cycle Diagram -->
+    <!-- AWARD ANALYSIS & FEEDBACK LOOP — Cycle Diagram -->
     <div class="slide slide-accent" data-section="How It Works">
       <div class="full-content stagger">
         <div class="section-label">The BidRight Flywheel</div>
@@ -1123,27 +1077,12 @@
     <!-- ═══════════════════════════════════════════════════ -->
 
     <!-- SLIDE 15: WHY NOW — Urgency Drivers -->
-    <div class="slide slide-accent" data-section="Next Steps" style="padding-top:clamp(80px, 6vw, 120px)">
-      <div class="full-content">
-        <div class="section-label">Section 5 &mdash; Why Now</div>
-        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px)">Market Conditions Demand Better Tools</h2>
-        <p style="font-size:clamp(28px, 2.2vw, 44px);color:var(--steel);max-width:1400px;margin-bottom:clamp(32px, 3vw, 56px)">The carriers who win the next cycle will be the ones who invest in pricing infrastructure now.</p>
-        <ul class="bullet-list whynow-list" style="max-width:1400px">
-          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Rate volatility is increasing</strong> &mdash; Q/Q swings are wider than historical averages</li>
-          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Shippers expect more from carriers</strong> &mdash; data-backed bids win more awards</li>
-          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Margin compression is real</strong> &mdash; the days of &ldquo;good enough&rdquo; pricing are over</li>
-          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">RFP complexity is growing</strong> &mdash; more lanes, tighter timelines, multi-round bids</li>
-          <li class="whynow-reveal"><span class="dot"></span><strong style="color:var(--text-primary)">Your competitors are investing</strong> &mdash; pricing technology is no longer optional</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SLIDE 16: BREAKTHROUGH FUEL — How FM + BR Handle It -->
+    <!-- BREAKTHROUGH FUEL — How FM + BR Handle It -->
     <div class="slide slide-dark" data-section="Next Steps">
-      <div class="full-content">
-        <div class="section-label">The Fuel Surcharge Reality</div>
-        <h2 class="slide-title" style="font-size:clamp(30px, 3vw, 64px)">Breakthrough Fuel &mdash; Threat or Managed Input?</h2>
-        <p style="font-size:clamp(22px, 1.8vw, 36px);color:var(--steel);max-width:1400px;margin-bottom:clamp(24px, 2vw, 44px)">~40% of RFPs now mandate Breakthrough Fuel Recovery. Carriers who treat FSC as a black box lose margin. FreightMath + BidRight turn it into a controlled variable.</p>
+      <div class="full-content" style="text-align:center">
+        <div class="section-label" style="justify-content:center">The Fuel Surcharge Reality</div>
+        <h2 class="slide-title" style="font-size:clamp(30px, 3vw, 64px);text-align:center">Breakthrough Fuel &mdash; Threat or Managed Input?</h2>
+        <p style="font-size:clamp(22px, 1.8vw, 36px);color:var(--steel);max-width:1400px;margin:0 auto clamp(24px, 2vw, 44px);text-align:center">~40% of RFPs now mandate Breakthrough Fuel Recovery. Carriers who treat FSC as a black box lose margin. FreightMath + BidRight turn it into a controlled variable.</p>
 
         <div class="bt-fuel-grid">
           <!-- Left: The Problem -->
@@ -1187,39 +1126,7 @@
       </div>
     </div>
 
-    <!-- SLIDE 17: WAYS TO ENGAGE — 3-Column Card Grid -->
-    <div class="slide slide-dark" data-section="Next Steps">
-      <div class="center-content">
-        <div class="section-label" style="justify-content:center">Your Next Step</div>
-        <h2 class="slide-title" style="font-size:clamp(36px, 3.6vw, 76px);text-align:center">Ways to Engage</h2>
-        <p style="font-size:clamp(24px, 2vw, 40px);color:var(--steel);max-width:1200px;margin-bottom:clamp(32px, 3vw, 56px);text-align:center">Choose the path that fits your timeline and goals.</p>
-        <div class="engage-grid">
-          <div class="card engage-card" data-engage="0">
-            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="book-open" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--steel)"></i></div>
-            <h3>Learn More</h3>
-            <p>Deep-dive into FreightMath capabilities and see how your data fits the model.</p>
-            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
-            <p class="engage-cta">30-min overview</p>
-          </div>
-          <div class="card engage-card" data-engage="1" style="border-color:rgba(40,50,196,0.25)">
-            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="monitor-play" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--accent)"></i></div>
-            <h3 style="color:var(--accent)">Request Demo</h3>
-            <p>See BidRight in action with sample RFP data from your market.</p>
-            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
-            <p class="engage-cta">Live walkthrough</p>
-          </div>
-          <div class="card engage-card" data-engage="2">
-            <div class="lucide-hero" style="margin-bottom:clamp(20px, 1.8vw, 36px)"><i data-lucide="rocket" style="width:clamp(72px, 6vw, 112px);height:clamp(72px, 6vw, 112px);color:var(--steel)"></i></div>
-            <h3>Start Pilot</h3>
-            <p>Run your next RFP through BidRight with full FM integration.</p>
-            <div class="divider-line" style="margin:clamp(24px, 2vw, 40px) auto"></div>
-            <p class="engage-cta">90-day pilot</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 17: CONNECT — CTA Grid -->
+    <!-- CONNECT — CTA Grid -->
     <div class="slide slide-hero" data-section="Connect">
       <div class="center-content stagger">
         <div class="section-label" style="justify-content:center;font-size:16px">Let's Connect</div>
@@ -1256,7 +1163,7 @@
   <!-- Bottom Navigation -->
   <nav id="nav">
     <button class="nav-btn" id="prev-btn" onclick="navigate(-1)" disabled>&larr; Previous</button>
-    <div id="slide-counter"><span>1</span> / 22</div>
+    <div id="slide-counter"><span>1</span> / 19</div>
     <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
   </nav>
 
@@ -1293,9 +1200,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 
   <!-- Application Scripts (order matters) -->
-  <script src="config.js?v=5"></script>
+  <script src="config.js?v=6"></script>
   <script src="map.js?v=4"></script>
-  <script src="presentation.js?v=9"></script>
+  <script src="presentation.js?v=10"></script>
 
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>

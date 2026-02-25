@@ -121,6 +121,69 @@ function cleanDataRow(row) {
   }
 }
 
+/* ─── OR Tick-Down Animation ─── */
+function resetORTick() {
+  document.querySelectorAll('.or-tick').forEach(el => {
+    el.textContent = el.dataset.start;
+    const card = el.closest('.stat-card');
+    card.className = 'stat-card loss';
+    const sub = card.querySelector('.sublabel');
+    if (sub) sub.textContent = '2025 Avg. Operating Ratio';
+  });
+  const ann = document.getElementById('or-recapture');
+  if (ann) ann.classList.remove('visible');
+}
+
+function startORTick() {
+  const els = document.querySelectorAll('.or-tick');
+  if (!els.length) return;
+
+  // Swap sublabels when tick begins
+  els.forEach(el => {
+    const sub = el.closest('.stat-card').querySelector('.sublabel');
+    if (sub) sub.textContent = 'Historical Operating Ratio';
+  });
+
+  const duration = 3000;   // total animation time in ms
+  const fps = 30;
+  const interval = 1000 / fps;
+  const steps = duration / interval;
+  let step = 0;
+
+  const data = [];
+  els.forEach(el => {
+    const start = parseFloat(el.dataset.start);
+    const end = parseFloat(el.dataset.end);
+    data.push({ el: el, card: el.closest('.stat-card'), start: start, end: end, crossed: false });
+  });
+
+  const timer = setInterval(() => {
+    step++;
+    const progress = Math.min(step / steps, 1);
+    // Ease-out quad
+    const ease = 1 - (1 - progress) * (1 - progress);
+
+    data.forEach(d => {
+      const current = d.start + (d.end - d.start) * ease;
+      d.el.textContent = current.toFixed(1);
+
+      if (current < 100 && !d.crossed) {
+        d.crossed = true;
+        d.card.className = 'stat-card profit';
+      }
+    });
+
+    if (step >= steps) {
+      clearInterval(timer);
+      // Show annotation
+      const ann = document.getElementById('or-recapture');
+      if (ann) setTimeout(() => ann.classList.add('visible'), 300);
+    }
+  }, interval);
+
+  slideTimers.push(timer);
+}
+
 function resetDataCleaner() {
   const container = document.getElementById('data-cleaner');
   if (!container) return;
@@ -516,6 +579,12 @@ setTimeout(animateORBars, 500);
 // ─── MUTATION OBSERVER — Trigger animations/resets on slide entry ───
 const observer = new MutationObserver(() => {
   animateORBars();
+
+  // Slide 1: OR tick-down animation after 4s
+  if (slides[1] && slides[1].classList.contains('active')) {
+    resetORTick();
+    slideTimers.push(setTimeout(startORTick, 4000));
+  }
 
   // Slide 2: Auto-clean data rows with stagger
   if (slides[2] && slides[2].classList.contains('active')) {

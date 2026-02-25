@@ -286,6 +286,7 @@ body::before {
   line-height: 1.08;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  text-align: center;
 }
 
 .headline .accent { color: var(--accent); }
@@ -296,6 +297,7 @@ body::before {
   color: var(--steel);
   line-height: 1.6;
   max-width: clamp(700px, 50vw, 1100px);
+  text-align: center;
 }
 
 .section-label {
@@ -304,6 +306,7 @@ body::before {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--accent);
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: var(--gap-xs);
@@ -323,6 +326,7 @@ body::before {
   line-height: 1.15;
   margin-bottom: var(--gap-md);
   letter-spacing: -0.01em;
+  text-align: center;
   color: var(--text-primary);
 }
 
@@ -356,6 +360,7 @@ body::before {
 .full-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;

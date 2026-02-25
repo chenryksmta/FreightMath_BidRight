@@ -1705,25 +1705,9 @@ body::before {
 }
 
 /* ─── NEWSLETTER — MAILERLITE EMBED ─── */
-.newsletter-card .ml-form-embedContainer {
+.newsletter-card .ml-embedded {
   max-width: 460px;
   margin: 0 auto;
-}
-.newsletter-card .ml-form-embedWrapper {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-.newsletter-card .ml-form-embedBody {
-  padding: 0 !important;
-}
-/* Hide MailerLite's heading — we have our own */
-.newsletter-card .ml-form-embedContent {
-  display: none !important;
-}
-.newsletter-card .ml-form-embedSubmit button {
-  background: var(--accent, #2832c4) !important;
-  border-radius: 6px !important;
 }
 
 @media (max-width: 1024px) {

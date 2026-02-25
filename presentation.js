@@ -601,8 +601,8 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 15: Cycle diagram — auto-play left-to-right
-  if (slides[15] && slides[15].classList.contains('active')) {
+  // Slide 16: Cycle diagram — auto-play left-to-right
+  if (slides[16] && slides[16].classList.contains('active')) {
     const items = document.querySelectorAll('#cycle-diagram .cycle-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
@@ -610,18 +610,18 @@ const observer = new MutationObserver(() => {
     });
   }
 
-  // Slide 16: Roadmap — left-to-right phase reveal
-  if (slides[16] && slides[16].classList.contains('active')) {
-    const phases = slides[16].querySelectorAll('.roadmap-reveal');
+  // Slide 17: Roadmap — left-to-right phase reveal
+  if (slides[17] && slides[17].classList.contains('active')) {
+    const phases = slides[17].querySelectorAll('.roadmap-reveal');
     phases.forEach(p => p.classList.remove('visible'));
     phases.forEach((phase, i) => {
       slideTimers.push(setTimeout(() => phase.classList.add('visible'), 400 + i * 400));
     });
   }
 
-  // Slide 17: Breakthrough Fuel — left-to-right panel reveal
-  if (slides[17] && slides[17].classList.contains('active')) {
-    const items = slides[17].querySelectorAll('.bt-fuel-reveal');
+  // Slide 18: Breakthrough Fuel — left-to-right panel reveal
+  if (slides[18] && slides[18].classList.contains('active')) {
+    const items = slides[18].querySelectorAll('.bt-fuel-reveal');
     items.forEach(el => el.classList.remove('visible'));
     items.forEach((el, i) => {
       slideTimers.push(setTimeout(() => el.classList.add('visible'), 400 + i * 500));

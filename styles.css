@@ -1199,7 +1199,7 @@ body::before {
   position: relative;
   width: clamp(340px, 50vw, 560px);
   aspect-ratio: 1 / 1;
-  margin: 0 auto;
+  margin: clamp(16px, 1.5vw, 28px) auto 0;
 }
 .flywheel-ring {
   position: absolute;
@@ -1519,6 +1519,7 @@ body::before {
   border-radius: var(--card-radius);
   padding: clamp(28px, 2.2vw, 48px);
   box-shadow: var(--card-shadow);
+  text-align: left;
 }
 
 .bt-fuel-header {

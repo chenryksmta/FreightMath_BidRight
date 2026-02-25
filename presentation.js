@@ -630,6 +630,27 @@ const observer = new MutationObserver(() => {
 });
 slides.forEach(s => observer.observe(s, { attributes: true, attributeFilter: ['class'] }));
 
+/* ─── Video Fullscreen Toggle ─── */
+function toggleVideoFullscreen(id) {
+  const wrap = document.getElementById(id);
+  if (!wrap) return;
+  wrap.classList.toggle('is-fullscreen');
+  const icon = wrap.querySelector('.video-fullscreen-btn i');
+  if (icon) {
+    icon.setAttribute('data-lucide', wrap.classList.contains('is-fullscreen') ? 'minimize' : 'maximize');
+    lucide.createIcons();
+  }
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.video-frame.is-fullscreen').forEach(el => {
+      el.classList.remove('is-fullscreen');
+      const icon = el.querySelector('.video-fullscreen-btn i');
+      if (icon) { icon.setAttribute('data-lucide', 'maximize'); lucide.createIcons(); }
+    });
+  }
+});
+
 /* ─── Excel Popup ─── */
 function openExcelPopup() {
   const overlay = document.getElementById('excel-popup-overlay');

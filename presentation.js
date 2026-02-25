@@ -388,7 +388,7 @@ function resetCycle() {
 // ─── TESTIMONIAL CAROUSEL ───
 let testimonialCurrent = 0;
 let testimonialTimer = null;
-const TESTIMONIAL_COUNT = 4;
+const TESTIMONIAL_COUNT = 5;
 const TESTIMONIAL_INTERVAL = 6000;
 
 function goToTestimonial(n) {

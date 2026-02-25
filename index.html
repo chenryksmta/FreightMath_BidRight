@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="styles.css?v=18">
+  <link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
@@ -80,7 +80,7 @@
     <div class="slide slide-accent dc-compact" data-section="The Why" style="padding-top:clamp(60px, 4.2vw, 85px)">
       <div class="partner-corner">
         <img src="ksm_ta_horizontal_rgb_full_color.png" alt="KSM Transport Advisors" class="partner-corner-logo">
-        <a href="https://www.freightmath.com" target="_blank" rel="noopener" class="partner-corner-btn"><i data-lucide="external-link" style="width:16px;height:16px"></i> Learn more about KSM Transport Advisors — The developers of FreightMath</a>
+        <a href="https://www.ksmcpa.com/services/advisory/transportation-consulting/" target="_blank" rel="noopener" class="partner-corner-btn"><i data-lucide="external-link" style="width:16px;height:16px"></i> Learn more about KSM Transport Advisors — The developers of FreightMath</a>
       </div>
       <div class="full-content stagger">
         <div class="section-label">The Data Problem</div>
@@ -540,6 +540,21 @@
               <img src="Leonards.png" alt="Leonard's Express">
             </div>
           </div>
+
+          <!-- Testimonial 5: Averitt -->
+          <div class="testimonial-slide" data-testimonial="4">
+            <div class="testimonial-quote-mark">&ldquo;</div>
+            <blockquote class="testimonial-quote">Through FreightMath, KSMTA has helped institutionalize disciplined freight selection, pricing, capital deployment, and network optimization; driving sustained improvements in yield, density, velocity, and operating ratio. KSMTA is not simply a consultant to us. They are a long-term strategic partner in managing our TL operations.</blockquote>
+            <div class="testimonial-attribution">
+              <span class="testimonial-name">Danny Crooks</span>
+              <span class="testimonial-title">Vice President, Corporate Transportation</span>
+            </div>
+            <div class="testimonial-logo">
+              <object data="Averitt_logo.pdf" type="application/pdf" width="180" height="60" style="pointer-events:none">
+                <span style="font-size:18px;font-weight:700;color:var(--accent)">Averitt</span>
+              </object>
+            </div>
+          </div>
         </div>
 
         <!-- Dot indicators -->
@@ -548,6 +563,7 @@
           <button class="testimonial-dot" onclick="goToTestimonial(1)"></button>
           <button class="testimonial-dot" onclick="goToTestimonial(2)"></button>
           <button class="testimonial-dot" onclick="goToTestimonial(3)"></button>
+          <button class="testimonial-dot" onclick="goToTestimonial(4)"></button>
         </div>
       </div>
     </div>
@@ -1233,17 +1249,8 @@
             <i data-lucide="newspaper" style="width:26px;height:26px;color:var(--accent)"></i>
             <h3 style="font-size:clamp(16px,1.2vw,20px);margin:0">Keep in Touch</h3>
           </div>
-          <p style="font-size:clamp(13px,0.9vw,15px);color:var(--steel);margin-bottom:20px;line-height:1.4">Join the <strong>FreightMath</strong> and <strong>BidRight</strong> Weekly Newsletter</p>
-          <form id="nl-form" class="nl-form" onsubmit="return submitNewsletter(event)">
-            <div class="nl-form-row">
-              <input type="email" id="nl-email" class="nl-input" placeholder="Enter your email address" required autocomplete="email">
-              <button type="submit" class="nl-submit" id="nl-submit-btn">
-                <i data-lucide="send" style="width:16px;height:16px"></i>
-                <span>Subscribe</span>
-              </button>
-            </div>
-            <div id="nl-status" class="nl-status"></div>
-          </form>
+          <p style="font-size:clamp(13px,0.9vw,15px);color:var(--steel);margin-bottom:16px;line-height:1.4">Join the <strong>FreightMath</strong> and <strong>BidRight</strong> Weekly Newsletter</p>
+          <iframe src="https://preview.mailerlite.io/forms/1747049/173869456905209452/share" width="100%" height="220" frameborder="0" scrolling="no" class="nl-iframe" style="border:none;overflow:hidden;border-radius:8px"></iframe>
         </div>
 
         <p style="font-size:16px;color:var(--steel);margin-top:24px">Chris Henry &nbsp;&middot;&nbsp; <strong>KSM Transport Advisors</strong> &nbsp;&middot;&nbsp; Tyler Dietrich &nbsp;&middot;&nbsp; <strong>Nussbaum Technology</strong></p>
@@ -1299,70 +1306,6 @@
   <!-- Initialize Lucide icons after DOM -->
   <script>lucide.createIcons();</script>
 
-  <!-- MailerLite Universal -->
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1747049');
-  </script>
-
-  <!-- Newsletter form handler -->
-  <script>
-    function submitNewsletter(e) {
-      e.preventDefault();
-      var email = document.getElementById('nl-email').value.trim();
-      var btn = document.getElementById('nl-submit-btn');
-      var status = document.getElementById('nl-status');
-      if (!email) return false;
-
-      btn.disabled = true;
-      btn.querySelector('span').textContent = 'Sending\u2026';
-      status.className = 'nl-status';
-      status.textContent = '';
-
-      // Use MailerLite universal JS subscribe method
-      if (typeof ml === 'function') {
-        ml('subscribe', {
-          form: '173869456905209452',
-          fields: { email: email },
-          success: function() {
-            status.textContent = 'You\u2019re subscribed! Welcome aboard.';
-            status.className = 'nl-status nl-success';
-            btn.querySelector('span').textContent = 'Subscribed';
-            document.getElementById('nl-email').value = '';
-          },
-          error: function() {
-            status.textContent = 'Something went wrong. Please try again.';
-            status.className = 'nl-status nl-error';
-            btn.disabled = false;
-            btn.querySelector('span').textContent = 'Subscribe';
-          }
-        });
-      } else {
-        // Fallback: POST directly to MailerLite form endpoint
-        fetch('https://assets.mailerlite.com/jsonp/1747049/forms/173869456905209452/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields: { email: email } })
-        }).then(function(r) {
-          if (r.ok) {
-            status.textContent = 'You\u2019re subscribed! Welcome aboard.';
-            status.className = 'nl-status nl-success';
-            btn.querySelector('span').textContent = 'Subscribed';
-            document.getElementById('nl-email').value = '';
-          } else { throw new Error(); }
-        }).catch(function() {
-          status.textContent = 'Something went wrong. Please try again.';
-          status.className = 'nl-status nl-error';
-          btn.disabled = false;
-          btn.querySelector('span').textContent = 'Subscribe';
-        });
-      }
-      return false;
-    }
-  </script>
 
 </body>
 </html>
